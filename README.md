@@ -11,7 +11,7 @@ Repositorio de presentaciones interactivas de CIAS IPS, publicadas con GitHub Pa
 ## Publicación
 
 El sitio se sirve con GitHub Pages desde la rama `main` (raíz). La URL pública es
-`https://<organización>.github.io/`.
+`https://ciasips.github.io/`.
 
 Cada presentación es un archivo HTML autocontenido dentro de su carpeta, servido como
 `index.html` para una URL limpia (p. ej. `…/modelos-atencion/`).
