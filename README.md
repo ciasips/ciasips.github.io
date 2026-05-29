@@ -6,6 +6,7 @@ Repositorio de presentaciones interactivas de CIAS IPS, publicadas con GitHub Pa
 
 - **`/` (inicio)** — página índice que enlaza las presentaciones.
 - **`/modelos-atencion/`** — Modelos de atención · Atención médica domiciliaria.
+- **`/telemedicina/`** — Dashboard de Telemedicina.
 - *(próximamente)* `/tercera-edad/` — Programa de tercera edad.
 
 ## Publicación
