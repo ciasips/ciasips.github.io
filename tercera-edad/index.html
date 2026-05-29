@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200, initial-scale=1">
+<meta name="author" content="Juan Pablo Jaramillo Ormaza">
+<title>CIAS IPS · Salud del Adulto Mayor · Atención domiciliaria</title>
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<style>
+:root{
+  --brand-900:#0b2540;--brand-700:#1e4d72;--brand-500:#2c7da0;--brand-300:#61a5c2;--brand-100:#e8f0f7;
+  --bg:#f7f9fc;--surface:#ffffff;--surface-2:#eef2f7;--surface-3:#f1f5f9;--line:#dde5ed;--line-2:#c9d4e0;
+  --ink-900:#0b1f33;--ink-700:#2b3f55;--ink-500:#5b6b7e;--ink-300:#94a3b6;
+  --diff:#6a4c93;--diff-soft:#efe7f9;--data:#2a9d8f;--data-soft:#def5f1;--asoegre:#c9a227;--asoegre-soft:#fbf3d6;
+  --warn:#e76f51;--warn-soft:#fde4dc;--info:#4895ef;--info-soft:#e3effd;--ok:#2a9d8f;
+  --ctx-urbano:#2c7da0;
+  --auto:#2a9d8f;--auto-soft:#def5f1;--fragil:#c9821f;--fragil-soft:#fbeed3;--depen:#b5485a;--depen-soft:#fbe1e6;
+  --vgi-clin:#2c7da0;--vgi-func:#2a9d8f;--vgi-ment:#6a4c93;--vgi-soc:#c9a227;
+  --cat-sindrome:#c9821f;--cat-cronica:#be123c;--cat-discap:#6a4c93;--cat-general:#1e4d72;
+  --r-sm:6px;--r-md:10px;--r-lg:14px;--r-xl:20px;--r-pill:999px;
+  --shadow-1:0 1px 2px rgba(11,31,51,.05),0 1px 1px rgba(11,31,51,.03);
+  --shadow-2:0 8px 24px rgba(11,31,51,.08);--shadow-3:0 20px 48px rgba(11,31,51,.14);
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink-900);
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-feature-settings:"cv11","ss01";font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+body{min-width:1180px;}
+h1,h2,h3,h4{margin:0;color:var(--ink-900);font-weight:700;letter-spacing:-.01em;}
+p{margin:0;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+/* HEADER */
+.app-header{position:sticky;top:0;z-index:100;background:var(--brand-900);color:#fff;box-shadow:var(--shadow-2);}
+.app-header .wrap{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;height:64px;}
+.logo-block{display:flex;align-items:center;gap:13px;}
+.logo-mark{width:38px;height:38px;border-radius:10px;background:#fff;display:grid;place-items:center;}
+.app-header h1{font-size:15px;color:#fff;}
+.app-header .sub{font-size:11px;color:rgba(255,255,255,.66);font-weight:400;margin-top:2px;}
+.app-header .meta{display:flex;gap:9px;align-items:center;font-size:11px;}
+.app-header .badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:5px 11px;border-radius:var(--r-pill);font-weight:600;color:rgba(255,255,255,.85);}
+.app-header .author{font-size:11px;color:rgba(255,255,255,.74);font-weight:500;white-space:nowrap;}
+.app-header .gloss-btn{cursor:pointer;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.30);color:#fff;font-weight:700;white-space:nowrap;}
+.app-header .gloss-btn:hover{background:rgba(255,255,255,.24);}
+.app-header .gloss-btn.is-on{background:#fff;color:var(--brand-900);border-color:#fff;}
+
+/* TOP NAV */
+.topnav{position:sticky;top:64px;z-index:90;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow-1);}
+.topnav .wrap{display:flex;align-items:center;gap:6px;height:56px;}
+.topnav-tab{border:none;background:transparent;padding:10px 16px;border-radius:var(--r-md);font-size:13px;font-weight:700;color:var(--ink-500);cursor:pointer;display:flex;align-items:center;gap:9px;}
+.topnav-tab .tnum{font-size:10px;font-weight:800;color:var(--ink-300);}
+.topnav-tab.is-active{background:var(--brand-100);color:var(--brand-700);}
+.topnav-tab.is-active .tnum{color:var(--brand-500);}
+.topnav .ctx-pill{margin-left:auto;font-size:11px;font-weight:700;color:var(--ctx-urbano);background:#e3f0f6;border:1px solid #cfe3ee;padding:6px 13px;border-radius:var(--r-pill);display:flex;align-items:center;gap:7px;}
+.topnav .ctx-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--ctx-urbano);}
+.topsec{display:none;}
+.topsec.is-active{display:block;}
+
+/* SECTION HEAD */
+.scn-head{padding:24px 0 4px;}
+.scn-eyebrow{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--brand-500);}
+.scn-head h2{font-size:24px;margin-top:5px;display:flex;align-items:center;gap:12px;}
+.scn-pill{font-size:11px;font-weight:700;padding:4px 12px;border-radius:var(--r-pill);background:#e3f0f6;color:#1c5e7a;}
+.scn-sub{font-size:13px;color:var(--ink-500);margin-top:6px;max-width:940px;line-height:1.55;}
+
+/* HERO */
+.hero{margin-top:20px;background:linear-gradient(135deg,#0b2540 0%,#1e4d72 60%,#2c7da0 130%);border-radius:var(--r-xl);padding:30px 34px;color:#fff;box-shadow:var(--shadow-2);}
+.hero h2{color:#fff;font-size:26px;letter-spacing:-.02em;}
+.hero p{color:rgba(255,255,255,.85);font-size:14px;margin-top:10px;max-width:880px;line-height:1.6;}
+.hero .pilar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px;}
+.pilar-card{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-lg);padding:15px 17px;}
+.pilar-card .pk{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.62);}
+.pilar-card .pv{font-size:13px;font-weight:600;color:#fff;margin-top:6px;line-height:1.45;}
+.encuadre{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;}
+.encuadre .e-chip{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-pill);padding:8px 15px;font-size:12px;font-weight:600;color:var(--ink-700);box-shadow:var(--shadow-1);display:flex;align-items:center;gap:8px;}
+.encuadre .e-chip b{color:var(--brand-700);}
+
+/* SECTION TITLE strip */
+.sec-title{margin-top:26px;font-size:13px;font-weight:800;letter-spacing:.04em;color:var(--ink-900);text-transform:uppercase;display:flex;align-items:center;gap:10px;}
+.sec-title::after{content:"";flex:1;height:1px;background:var(--line);}
+.sec-lead{font-size:12.5px;color:var(--ink-500);margin-top:8px;max-width:920px;line-height:1.55;}
+
+/* DEPENDENCIA band */
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;}
+.dep-card{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--dc,var(--brand-500));border-radius:var(--r-lg);padding:16px 18px;box-shadow:var(--shadow-1);}
+.dep-card .dk{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--dc,var(--brand-500));}
+.dep-card .dt{font-size:16px;font-weight:800;margin-top:4px;}
+.dep-card .dd{font-size:12px;color:var(--ink-700);margin-top:7px;line-height:1.5;}
+
+/* MAPA de patologías */
+.mapa{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px;}
+.mapa-col h4{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.mapa-col h4 .cdot{width:10px;height:10px;border-radius:3px;}
+.mapa-card{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--mc,var(--brand-500));border-radius:var(--r-md);padding:11px 13px;margin-bottom:9px;cursor:pointer;transition:all .15s;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.mapa-card:hover{box-shadow:var(--shadow-2);transform:translateY(-1px);}
+.mapa-card .mt{font-size:13px;font-weight:700;color:var(--ink-900);}
+.mapa-card .md{font-size:11px;color:var(--ink-500);margin-top:2px;line-height:1.4;}
+.mapa-card .mgo{font-size:16px;color:var(--mc,var(--brand-500));font-weight:800;}
+.mapa-card.pending{cursor:default;opacity:.62;border-left-style:dashed;}
+.mapa-card.pending:hover{box-shadow:var(--shadow-1);transform:none;}
+.mapa-card .tagpx{font-size:9px;font-weight:800;letter-spacing:.06em;color:var(--ink-300);border:1px solid var(--line);border-radius:var(--r-pill);padding:2px 8px;text-transform:uppercase;}
+
+/* GROUP / lens cards (Valoración) */
+.grp-panel{margin-top:18px;display:grid;grid-template-columns:1fr;gap:18px;}
+.grp-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--shadow-2);padding:22px 24px;border-top:4px solid var(--gc,var(--brand-500));}
+.grp-card .gc-eye{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gc,var(--brand-500));}
+.grp-card h3{font-size:20px;margin-top:5px;}
+.grp-card .gc-tag{display:inline-block;font-size:11px;font-weight:700;color:var(--gc,var(--brand-700));background:color-mix(in srgb,var(--gc,var(--brand-500)) 12%,#fff);padding:3px 11px;border-radius:var(--r-pill);margin-top:8px;}
+.grp-card .gc-desc{font-size:13px;color:var(--ink-700);line-height:1.6;margin-top:12px;}
+.gc-block{margin-top:16px;}
+.gc-block .gb-h{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-300);margin-bottom:9px;}
+.gc-list{list-style:none;margin:0;padding:0;}
+.gc-list li{position:relative;padding:5px 0 5px 18px;font-size:12.5px;color:var(--ink-700);line-height:1.5;border-bottom:1px dashed var(--line);}
+.gc-list li:last-child{border-bottom:0;}
+.gc-list li::before{content:"";position:absolute;left:2px;top:.95em;width:6px;height:6px;border-radius:1.5px;transform:rotate(45deg);background:var(--gc,var(--brand-300));}
+.gc-list li b{color:var(--ink-900);}
+.cias-box{background:var(--data-soft);border:1px solid #bfe6df;border-left:4px solid var(--data);border-radius:0 var(--r-md) var(--r-md) 0;padding:13px 16px;}
+.cias-box .cb-h{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1c6b60;margin-bottom:8px;}
+.cias-box ul{list-style:none;margin:0;padding:0;}
+.cias-box li{position:relative;padding:4px 0 4px 18px;font-size:12px;color:var(--ink-700);line-height:1.5;}
+.cias-box li::before{content:"";position:absolute;left:3px;top:.85em;width:6px;height:6px;border-radius:50%;background:var(--data);}
+.cias-box li b{color:#155f55;}
+
+/* ESCALA cards */
+.esc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;}
+.esc-card{border:1px solid var(--line);border-radius:var(--r-lg);padding:13px 15px;background:linear-gradient(180deg,var(--surface),var(--surface-2));}
+.esc-card .ec-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.esc-card .ec-name{font-size:13.5px;font-weight:800;color:var(--ink-900);}
+.esc-card .ec-range{font-size:10.5px;font-weight:700;color:var(--ink-500);background:var(--surface);border:1px solid var(--line);padding:3px 9px;border-radius:var(--r-pill);white-space:nowrap;}
+.esc-card .ec-mide{font-size:11.5px;color:var(--ink-500);margin-top:3px;}
+.esc-card .ec-corte{font-size:12px;color:var(--ink-900);margin-top:9px;background:var(--brand-100);border-radius:var(--r-sm);padding:7px 10px;line-height:1.45;}
+.esc-card .ec-corte b{color:var(--brand-700);}
+.esc-card .ec-why{font-size:11.5px;color:var(--ink-700);margin-top:8px;line-height:1.5;font-style:italic;}
+.esc-card .ec-why b{font-style:normal;color:var(--ink-900);}
+.esc-card .ec-src{font-size:10.5px;margin-top:8px;}
+.esc-card .ec-src a{color:var(--brand-500);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--brand-300);}
+.esc-card .ec-flag{margin-top:8px;font-size:10.5px;font-weight:700;color:#9a6212;background:var(--asoegre-soft);border-radius:var(--r-sm);padding:6px 9px;line-height:1.4;}
+
+/* PATOLOGÍAS selector */
+.cat-bar{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap;}
+.cat-btn{border:1.5px solid var(--line);background:var(--surface);border-radius:var(--r-lg);padding:11px 16px;cursor:pointer;font-weight:800;font-size:13px;color:var(--ink-700);display:flex;align-items:center;gap:9px;transition:all .16s;}
+.cat-btn .cdot{width:10px;height:10px;border-radius:3px;background:var(--cc,var(--brand-500));}
+.cat-btn.is-active{border-color:var(--cc,var(--brand-700));background:color-mix(in srgb,var(--cc,var(--brand-500)) 10%,#fff);color:var(--cc,var(--brand-900));}
+.pat-chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;}
+.pat-chip{border:1px solid var(--line);background:var(--surface);border-radius:var(--r-pill);padding:8px 15px;font-size:12.5px;font-weight:700;color:var(--ink-700);cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:8px;}
+.pat-chip .pdot{width:9px;height:9px;border-radius:50%;background:var(--pc,var(--brand-500));}
+.pat-chip.is-active{color:#fff;background:var(--pc,var(--brand-900));border-color:var(--pc,var(--brand-900));}
+.pat-chip.is-active .pdot{background:#fff;}
+.pat-chip:disabled{opacity:.4;cursor:not-allowed;}
+
+/* DEP tag por patología (clicable) */
+.dep-hint{margin-top:14px;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-300);}
+.dep-hint span{font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink-500);}
+.pat-dep{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px;}
+.pat-dep .pd{border:1px solid var(--line);border-left:3px solid var(--pdc,var(--brand-500));border-radius:var(--r-md);padding:9px 13px;background:var(--surface);box-shadow:var(--shadow-1);cursor:pointer;text-align:left;font:inherit;transition:all .15s var(--ease);}
+.pat-dep .pd:hover{box-shadow:var(--shadow-2);transform:translateY(-1px);}
+.pat-dep .pd.is-active{background:color-mix(in srgb,var(--pdc,var(--brand-500)) 12%,#fff);box-shadow:var(--shadow-2);border-color:var(--pdc,var(--brand-500));}
+.pat-dep .pd .pdk{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--pdc,var(--brand-500));display:flex;align-items:center;gap:6px;}
+.pat-dep .pd.is-active .pdk::after{content:"● en el flujo";font-size:8px;font-weight:700;color:var(--pdc,var(--brand-500));letter-spacing:0;text-transform:none;}
+.pat-dep .pd .pdv{font-size:11.5px;color:var(--ink-700);margin-top:4px;line-height:1.45;}
+
+/* fact-mod (norma facturación) */
+.fact-mod{margin:0;padding-left:16px;}
+.fact-mod li{font-size:12px;color:var(--ink-900);font-weight:600;margin-bottom:3px;}
+.hl2{background:#fff7cc;padding:0 3px;border-radius:3px;font-weight:600;}
+
+/* TABS */
+.tabs{display:flex;gap:4px;margin-top:18px;border-bottom:1px solid var(--line);}
+.tab{border:none;background:transparent;padding:11px 18px;font-size:13px;font-weight:700;color:var(--ink-500);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;display:flex;align-items:center;gap:8px;}
+.tab .tn{font-size:10px;font-weight:800;color:var(--ink-300);}
+.tab.is-active{color:var(--brand-700);border-bottom-color:var(--brand-500);}
+.tab.is-active .tn{color:var(--brand-500);}
+.view{display:none;}
+.view.is-active{display:block;}
+
+/* STAGE / flow */
+.stage-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--shadow-2);padding:22px 24px;margin-top:16px;}
+.stage{display:grid;grid-template-columns:1.45fr 1fr;gap:22px;align-items:stretch;}
+.svg-wrap{background:linear-gradient(180deg,#fbfdff,#f1f6fb);border:1px solid var(--line);border-radius:var(--r-lg);padding:8px;display:flex;align-items:center;}
+.flow-svg{width:100%;height:auto;overflow:visible;display:block;}
+.story-node{opacity:0;transition:opacity 500ms var(--ease);}
+.story-node.is-visible{opacity:1;}
+.story-node.is-spotlight{filter:drop-shadow(0 10px 26px rgba(30,77,114,.42)) drop-shadow(0 0 20px rgba(44,125,160,.35));}
+.story-node.is-dim{opacity:.34;}
+.story-edge{opacity:0;stroke-dasharray:320;stroke-dashoffset:320;transition:opacity 280ms var(--ease);}
+.story-edge.is-visible{opacity:1;animation:storyDraw 850ms var(--ease) forwards;}
+.story-edge.dashed{stroke-dasharray:5 4 !important;stroke-dashoffset:0 !important;}
+.story-edge.dashed.is-visible{animation:none;}
+@keyframes storyDraw{to{stroke-dashoffset:0;}}
+.story-particle{opacity:0;transition:opacity 400ms var(--ease);filter:drop-shadow(0 0 4px currentColor);}
+.story-particle.is-visible{opacity:.95;}
+
+.actor-card{background:linear-gradient(180deg,var(--surface) 0%,var(--surface-2) 100%);border:1px solid var(--line);border-left:4px solid var(--brand-500);border-radius:var(--r-lg);padding:20px 22px;display:flex;flex-direction:column;gap:13px;box-shadow:var(--shadow-1);}
+.actor-card.tone-diff{border-left-color:var(--diff);}
+.actor-card.tone-data{border-left-color:var(--data);}
+.actor-card.tone-asoegre{border-left-color:var(--asoegre);}
+.actor-card.tone-coco{border-left-color:var(--ctx-urbano);}
+.actor-kind{font-size:10px;font-weight:800;letter-spacing:.15em;color:var(--ink-300);text-transform:uppercase;}
+.actor-name{font-size:18px;font-weight:800;color:var(--ink-900);line-height:1.2;margin-top:3px;}
+.actor-subtitle{font-size:12px;color:var(--ink-500);font-style:italic;}
+.actor-desc{font-size:12.5px;color:var(--ink-700);line-height:1.55;}
+.actor-io{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.io-block{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:8px 10px;min-width:0;}
+.io-label{font-size:9.5px;font-weight:800;color:var(--ink-300);letter-spacing:.11em;text-transform:uppercase;display:block;margin-bottom:5px;}
+.io-block ul{list-style:none;padding:0;margin:0;font-size:11px;color:var(--ink-700);line-height:1.4;}
+.io-block li{padding:2px 0;border-bottom:1px dashed var(--line);}
+.io-block li:last-child{border-bottom:0;}
+.actor-tech{background:var(--brand-100);border-radius:var(--r-md);padding:8px 10px;}
+.actor-tech p{font-size:11px;font-weight:600;color:var(--brand-700);line-height:1.4;}
+.actor-note{background:var(--asoegre-soft);border-left:3px solid var(--asoegre);border-radius:0 var(--r-md) var(--r-md) 0;padding:8px 12px;}
+.actor-note p{font-size:11px;color:#7a6312;line-height:1.45;font-style:italic;}
+.actor-criteria{border-radius:var(--r-md);padding:11px 13px;border-left:3px solid var(--vc,var(--data));background:color-mix(in srgb,var(--vc,var(--data)) 9%,#fff);}
+.actor-criteria .crit-h{font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:7px;color:var(--vc,#1c6b60);}
+.actor-options{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:10px 12px;}
+.opt-h{font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-300);display:block;margin-bottom:7px;}
+@keyframes cardListIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.actor-criteria ul,.actor-options ul{list-style:none;margin:0;padding-left:3px;}
+.actor-criteria li,.actor-options li{position:relative;padding-left:18px;font-size:11.5px;color:var(--ink-700);line-height:1.5;margin-bottom:5px;opacity:0;animation:cardListIn .42s var(--ease) both;}
+.actor-criteria li::before,.actor-options li::before{content:"";position:absolute;left:3px;top:.52em;width:6px;height:6px;border-radius:1.5px;transform:rotate(45deg);background:var(--vc,var(--brand-300));box-shadow:0 0 0 1px rgba(11,31,51,.12);}
+.actor-options li b{color:var(--ink-900);}
+.io-block li{opacity:0;animation:cardListIn .42s var(--ease) both;}
+.actor-empty{display:flex;align-items:center;justify-content:center;height:100%;color:var(--ink-300);font-size:13px;text-align:center;}
+
+.cap-row{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;margin-top:18px;}
+.caption{background:linear-gradient(180deg,var(--surface) 0%,var(--surface-2) 100%);border-radius:var(--r-lg);padding:14px 18px;border-left:3px solid var(--brand-500);min-height:84px;}
+.cap-head{display:flex;align-items:baseline;gap:12px;margin-bottom:4px;flex-wrap:wrap;}
+.cap-num{font-size:10px;font-weight:800;color:var(--brand-500);letter-spacing:.12em;}
+.cap-title{font-size:15px;font-weight:800;color:var(--ink-900);}
+.cap-desc{font-size:12.5px;color:var(--ink-700);line-height:1.5;}
+.controls{display:inline-flex;align-items:center;gap:5px;background:var(--surface-2);border-radius:var(--r-pill);padding:4px;}
+.cbtn{width:32px;height:32px;border-radius:50%;border:0;background:transparent;color:var(--ink-500);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;}
+.cbtn:hover{background:var(--surface);color:var(--brand-700);}
+.cbtn.primary{background:var(--brand-700);color:#fff;width:36px;height:36px;}
+.cbtn.primary.playing{background:var(--warn);}
+.cbtn:disabled{opacity:.35;cursor:not-allowed;}
+.dots{display:flex;gap:7px;justify-content:center;margin-top:16px;flex-wrap:wrap;}
+.dot-btn{width:30px;height:24px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--surface);font-size:10px;font-weight:800;color:var(--ink-300);cursor:pointer;transition:all .15s;}
+.dot-btn.is-active{background:var(--brand-900);color:#fff;border-color:var(--brand-900);}
+.dot-btn.seen{color:var(--brand-500);border-color:var(--brand-300);}
+
+/* escalas strip under flow */
+.esc-strip{margin-top:18px;}
+.esc-strip .es-h{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-300);margin-bottom:10px;}
+
+/* NORMA cards */
+.norma-wrap{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.norma-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px;box-shadow:var(--shadow-1);}
+.norma-card.full{grid-column:1 / -1;}
+.norma-card h4{font-size:13px;display:flex;align-items:center;gap:9px;margin-bottom:11px;}
+.norma-card h4 .ic{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:800;background:var(--brand-500);}
+.norma-card.diff h4 .ic{background:var(--diff);}
+.norma-card.data h4 .ic{background:var(--data);}
+.norma-card.gold h4 .ic{background:var(--asoegre);}
+.nrow{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--surface-2);font-size:12px;}
+.nrow:last-child{border-bottom:none;}
+.nrow .k{font-weight:700;color:var(--ink-900);min-width:120px;flex-shrink:0;}
+.nrow .v{color:var(--ink-700);}
+.nlist{margin:0;padding-left:16px;}
+.nlist li{font-size:12px;color:var(--ink-700);margin-bottom:6px;line-height:1.45;}
+.nlist a{color:var(--brand-500);font-weight:600;text-decoration:underline;}
+.ntaglist{display:flex;flex-wrap:wrap;gap:7px;}
+.ntag2{font-size:11px;font-weight:600;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-700);padding:4px 11px;border-radius:var(--r-pill);}
+.ntag2 a{color:inherit;text-decoration:none;}
+
+footer{margin-top:40px;padding:24px 0 40px;border-top:1px solid var(--line);color:var(--ink-500);font-size:11.5px;}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.src{font-size:10.5px;color:var(--ink-300);margin-top:5px;max-width:760px;}
+</style>
+</head>
+<body>
+<header class="app-header">
+  <div class="wrap">
+    <div class="logo-block">
+      <div class="logo-mark" aria-label="CIAS IPS">
+        <svg width="30" height="26" viewBox="35 21 170 145" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="#c4cfdb" stroke-width="2.6" stroke-linecap="round">
+            <line x1="116" y1="92" x2="70" y2="52"/><line x1="116" y1="92" x2="158" y2="46"/><line x1="116" y1="92" x2="176" y2="96"/>
+            <line x1="116" y1="92" x2="60" y2="100"/><line x1="116" y1="92" x2="92" y2="138"/><line x1="116" y1="92" x2="158" y2="132"/>
+            <line x1="70" y1="52" x2="158" y2="46"/><line x1="70" y1="52" x2="60" y2="100"/><line x1="158" y1="46" x2="176" y2="96"/>
+            <line x1="176" y1="96" x2="158" y2="132"/><line x1="92" y1="138" x2="158" y2="132"/><line x1="60" y1="100" x2="92" y2="138"/>
+          </g>
+          <circle cx="40" cy="72" r="3.6" fill="#7c4ba0"/><circle cx="104" cy="27" r="3.6" fill="#d33b34"/><circle cx="199" cy="79" r="3.6" fill="#29a5bf"/><circle cx="71" cy="160" r="3.6" fill="#e6a52e"/>
+          <circle cx="138" cy="63" r="3.2" fill="#2f6cae"/><circle cx="186" cy="138" r="3.2" fill="#8c5a3a"/>
+          <g stroke="#ffffff" stroke-width="2" stroke-linejoin="round">
+            <polygon points="70,40 82,52 70,64 58,52" fill="#2f6cae"/><polygon points="158,34 170,46 158,58 146,46" fill="#d33b34"/>
+            <polygon points="176,84 188,96 176,108 164,96" fill="#29a5bf"/><polygon points="60,88 72,100 60,112 48,100" fill="#7c4ba0"/>
+            <polygon points="92,126 104,138 92,150 80,138" fill="#e6a52e"/><polygon points="158,120 170,132 158,144 146,132" fill="#8c5a3a"/>
+            <polygon points="116,75 133,92 116,109 99,92" fill="#2e9b63"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <h1>CIAS IPS · Salud del Adulto Mayor</h1>
+        <div class="sub">Programa de tercera edad · Atención domiciliaria</div>
+      </div>
+    </div>
+    <div></div>
+    <div class="meta">
+      <span class="author">Juan Pablo Jaramillo Ormaza · Autor</span>
+      <button class="badge gloss-btn" id="btnGloss" type="button">Glosario y fuentes</button>
+      <span class="badge">v0.3</span>
+    </div>
+  </div>
+</header>
+
+<nav class="topnav" id="topNav">
+  <div class="wrap">
+    <button class="topnav-tab is-active" data-sec="panorama"><span class="tnum">1</span>Panorama</button>
+    <button class="topnav-tab" data-sec="valoracion"><span class="tnum">2</span>Valoración (VGI)</button>
+    <button class="topnav-tab" data-sec="patologias"><span class="tnum">3</span>Patologías</button>
+    <span class="ctx-pill"><span class="dot"></span>Versión Ciudad</span>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ===================== PANORAMA ===================== -->
+  <section class="topsec is-active" data-sec="panorama">
+    <div class="hero">
+      <h2>El adulto mayor, pilar de servicio de CIAS</h2>
+      <p>La salud del adulto mayor es un eje propio del modelo CIAS. Su columna vertebral es la <b>Valoración Geriátrica Integral (VGI)</b>: una evaluación multidimensional —clínica, funcional, mental y social— que detecta los <b>síndromes geriátricos</b> que la consulta convencional pasa por alto y orienta un plan de cuidado domiciliario centrado en preservar la <b>funcionalidad</b>. Esta presentación va de lo general (cómo atendemos y valoramos) a lo particular (un abordaje específico por patología).</p>
+      <div class="pilar-grid">
+        <div class="pilar-card"><div class="pk">Unidad de medida</div><div class="pv">No solo la enfermedad: la <b>funcionalidad</b> y su trayectoria.</div></div>
+        <div class="pilar-card"><div class="pk">Dónde</div><div class="pv">En el domicilio — donde ocurren las caídas y vive el cuidador.</div></div>
+        <div class="pilar-card"><div class="pk">Con quién</div><div class="pv">Equipo extramural + médico orquestador + <b>cuidador</b> como co-protagonista.</div></div>
+      </div>
+    </div>
+
+    <div class="encuadre">
+      <span class="e-chip"><b>Captura clínica del episodio</b>, no telemonitoreo (Res. 2654/2019)</span>
+      <span class="e-chip">Atención domiciliaria · <b>versión Ciudad</b></span>
+      <span class="e-chip">Ancla RPMS-vejez (60+) · <b>Res. 3280/2018</b></span>
+    </div>
+
+    <div class="sec-title">Niveles de dependencia</div>
+    <div class="sec-lead">Una banda transversal que define la <b>intensidad del cuidado</b>: la misma patología se aborda distinto según la funcionalidad de la persona.</div>
+    <div class="dep-grid">
+      <div class="dep-card" style="--dc:var(--auto)"><div class="dk">Autónomo / robusto</div><div class="dt">Independiente</div><div class="dd">Conserva ABVD y AIVD, sin fragilidad. Foco: prevención, vacunación y tamizajes; preservar la autonomía.</div></div>
+      <div class="dep-card" style="--dc:var(--fragil)"><div class="dk">Frágil / pre-frágil</div><div class="dt">Vulnerable</div><div class="dd">En riesgo de declinar; síndromes incipientes. Ventana de intervención: la VGI domiciliaria tiene el mayor impacto.</div></div>
+      <div class="dep-card" style="--dc:var(--depen)"><div class="dk">Dependiente</div><div class="dt">Requiere cuidador</div><div class="dd">Pérdida de ABVD. Foco: cuidado continuado, prevención de complicaciones y soporte al cuidador.</div></div>
+    </div>
+
+    <div class="sec-title">Mapa de patologías</div>
+    <div class="sec-lead">El universo de entidades que aborda el programa, agrupadas en tres categorías. Cada una tiene su flujo de atención propio en la sección <b>Patologías</b>. <span id="mapaProgreso"></span></div>
+    <div class="mapa" id="mapa"></div>
+  </section>
+
+  <!-- ===================== VALORACIÓN (VGI) ===================== -->
+  <section class="topsec" data-sec="valoracion">
+    <div class="scn-head">
+      <div class="scn-eyebrow">Cómo valoramos · versión Ciudad</div>
+      <h2>Valoración Geriátrica Integral (VGI)</h2>
+      <p class="scn-sub">El instrumento central de la geriatría: una evaluación multidimensional que se aplica en domicilio y es común a todas las patologías. Cada dimensión trae sus escalas con interpretación, "por qué" y fuente.</p>
+    </div>
+    <div class="grp-panel" id="vgiPanel"></div>
+  </section>
+
+  <!-- ===================== PATOLOGÍAS ===================== -->
+  <section class="topsec" data-sec="patologias">
+    <div class="scn-head">
+      <div class="scn-eyebrow">Abordaje particular · versión Ciudad</div>
+      <h2>Patologías del adulto mayor</h2>
+      <p class="scn-sub">Cada entidad con su flujo de atención domiciliaria, sus escalas aplicables y su marco normativo. Selecciona una categoría y luego la patología.</p>
+    </div>
+
+    <div class="cat-bar" id="catBar"></div>
+    <div class="pat-chips" id="patChips"></div>
+
+    <div class="scn-head" style="padding-top:18px">
+      <div class="scn-eyebrow" id="patEyebrow">Patología</div>
+      <h2 id="patTitle">—</h2>
+      <p class="scn-sub" id="patSub">—</p>
+    </div>
+
+    <div class="dep-hint">Manejo según el nivel de dependencia <span>· clic en un nivel para verlo aplicado en el paso de manejo del flujo</span></div>
+    <div class="pat-dep" id="patDep"></div>
+
+    <div class="tabs">
+      <button class="tab is-active" data-view="flujo"><span class="tn">A</span>Flujo de atención</button>
+      <button class="tab" data-view="norma"><span class="tn">B</span>Marco normativo</button>
+    </div>
+
+    <div class="view is-active" id="viewFlujo">
+      <div class="stage-card">
+        <div class="stage">
+          <div class="svg-wrap">
+            <svg viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid meet" class="flow-svg" id="flowSvg">
+              <defs>
+                <marker id="amh" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="context-stroke"/></marker>
+                <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0b2540" flood-opacity="0.18"/></filter>
+                <radialGradient id="floor" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#0b2540" stop-opacity="0.22"/><stop offset="100%" stop-color="#0b2540" stop-opacity="0"/></radialGradient>
+                <linearGradient id="gPhone" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3b5168"/><stop offset="100%" stop-color="#1e3550"/></linearGradient>
+                <linearGradient id="gWhats" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#34d97a"/><stop offset="100%" stop-color="#25b061"/></linearGradient>
+                <linearGradient id="gHimed" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#cab8e8"/><stop offset="100%" stop-color="#8a6dba"/></linearGradient>
+                <linearGradient id="gHDE" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5ec0b1"/><stop offset="100%" stop-color="#1f7268"/></linearGradient>
+              </defs>
+              <g>
+                <path id="e1"  class="story-edge" d="M 220,130 C 290,130 320,130 370,130" stroke="#94a3b6" stroke-width="2.2" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+                <path id="e2"  class="story-edge" d="M 470,140 C 540,140 580,200 620,235" stroke="#94a3b6" stroke-width="2.2" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+                <path id="e2b" class="story-edge dashed" d="M 395,140 C 360,144 340,148 335,150" stroke="#94a3b6" stroke-width="1.8" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+                <path id="e3a" class="story-edge" d="M 340,170 C 460,200 540,235 600,245" stroke="#2a9d8f" stroke-width="2.3" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+                <path id="e4"  class="story-edge" d="M 740,243 C 800,243 830,243 862,245" stroke="#c9a227" stroke-width="2.3" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+                <path id="e5"  class="story-edge dashed" d="M 862,262 C 830,266 800,264 740,262" stroke="#c9a227" stroke-width="2" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+                <path id="e6"  class="story-edge" d="M 650,372 C 500,372 320,360 200,332" stroke="#b5485a" stroke-width="2.2" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+                <path id="e7"  class="story-edge" d="M 600,250 C 470,330 360,360 215,318" stroke="#b5485a" stroke-width="1.9" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+                <path id="eH1" class="story-edge" d="M 300,172 C 350,235 395,288 420,308" stroke="#2a9d8f" stroke-width="2.2" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+                <path id="eH2" class="story-edge dashed" d="M 462,320 C 545,300 600,272 656,256" stroke="#2a9d8f" stroke-width="2" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+                <path id="eH3" class="story-edge" d="M 645,378 C 560,360 510,352 466,346" stroke="#6a4c93" stroke-width="2" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+                <path id="eIM" class="story-edge" d="M 680,228 C 680,195 680,160 681,122" stroke="#6a4c93" stroke-width="2.4" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+                <path id="eEM" class="story-edge" d="M 722,240 C 870,182 980,142 1034,124" stroke="#dc2626" stroke-width="2.4" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+                <path id="eFA" class="story-edge" d="M 668,420 C 680,452 676,470 656,476" stroke="#c9a227" stroke-width="2.2" fill="none" stroke-linecap="round" marker-end="url(#amh)"/>
+              </g>
+              <g>
+                <circle r="3.4" class="story-particle" data-p="e1" fill="#94a3b6"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#e1"/></animateMotion></circle>
+                <circle r="3.4" class="story-particle" data-p="e2" fill="#94a3b6"><animateMotion dur="3s" repeatCount="indefinite" begin="0.4s"><mpath href="#e2"/></animateMotion></circle>
+                <circle r="3.4" class="story-particle" data-p="e3a" fill="#2a9d8f"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0.2s"><mpath href="#e3a"/></animateMotion></circle>
+                <circle r="3.4" class="story-particle" data-p="e4" fill="#c9a227"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#e4"/></animateMotion></circle>
+                <circle r="3.4" class="story-particle" data-p="e5" fill="#c9a227"><animateMotion dur="2.2s" repeatCount="indefinite" begin="1.1s"><mpath href="#e5"/></animateMotion></circle>
+                <circle r="3.8" class="story-particle" data-p="e6" fill="#b5485a"><animateMotion dur="3.4s" repeatCount="indefinite" begin="0.5s"><mpath href="#e6"/></animateMotion></circle>
+                <circle r="3.6" class="story-particle" data-p="eH1" fill="#2a9d8f"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#eH1"/></animateMotion></circle>
+                <circle r="3.6" class="story-particle" data-p="eH2" fill="#2a9d8f"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.6s"><mpath href="#eH2"/></animateMotion></circle>
+                <circle r="3.6" class="story-particle" data-p="eIM" fill="#6a4c93"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.3s"><mpath href="#eIM"/></animateMotion></circle>
+                <circle r="3.4" class="story-particle" data-p="eFA" fill="#c9a227"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0.4s"><mpath href="#eFA"/></animateMotion></circle>
+              </g>
+              <!-- NODES -->
+              <g class="story-node" data-node="patient" transform="translate(150,130)">
+                <g opacity="0.95">
+                  <path d="M -33,-7 L 0,-30 L 33,-7 Z" fill="#b8917c"/>
+                  <rect x="-27" y="-7" width="54" height="36" fill="#ddccb9"/>
+                  <rect x="-22" y="-1" width="11" height="11" fill="#bcd0dc" stroke="#fff" stroke-width="0.8"/>
+                  <rect x="11" y="-1" width="11" height="11" fill="#bcd0dc" stroke="#fff" stroke-width="0.8"/>
+                  <rect x="-5.5" y="13" width="11" height="16" fill="#a08b78"/>
+                </g>
+                <ellipse cx="0" cy="30" rx="22" ry="4.8" fill="#0b2540" opacity="0.11"/>
+                <g transform="translate(0,-11) scale(2.6)">
+                  <path d="M -8,8 Q 0,2.5 8,8 L 8,13 L -8,13 Z" fill="#837a8c"/>
+                  <circle cx="0" cy="0" r="5.6" fill="#ecd3b5"/>
+                  <path d="M -5.6,-1.5 Q -5.6,-8 0,-8 Q 5.6,-8 5.6,-1.5 Q 3.2,-5 0,-5 Q -3.2,-5 -5.6,-1.5 Z" fill="#cfcac4"/>
+                  <circle cx="0" cy="-8.4" r="2.4" fill="#cfcac4"/>
+                </g>
+                <text x="0" y="82" font-size="11" font-weight="700" fill="#0b1f33" text-anchor="middle">Adulto mayor en su domicilio</text>
+              </g>
+              <g class="story-node" data-node="coco" transform="translate(420,130)">
+                <ellipse cx="0" cy="42" rx="40" ry="6" fill="url(#floor)"/>
+                <g filter="url(#sh)">
+                  <rect x="-15" y="-22" width="30" height="54" rx="6" fill="url(#gPhone)"/>
+                  <rect x="-12" y="-17" width="24" height="42" rx="2" fill="#0a1726"/>
+                  <rect x="-9" y="-13" width="18" height="3" rx="1" fill="#22d3ee" opacity="0.8"/>
+                  <rect x="-9" y="-7" width="14" height="2" rx="1" fill="#94a3b6"/>
+                  <rect x="-9" y="-2" width="16" height="2" rx="1" fill="#94a3b6"/>
+                  <rect x="-9" y="3" width="12" height="2" rx="1" fill="#94a3b6"/>
+                  <rect x="-9" y="8" width="15" height="2" rx="1" fill="#94a3b6"/>
+                  <circle cx="0" cy="28" r="2" fill="#94a3b6"/>
+                </g>
+                <g transform="translate(24,-16)" filter="url(#sh)">
+                  <circle r="10" fill="url(#gWhats)"/>
+                  <path d="M -3,-2 a 1.5,1.5 0 0 0 0,3 M 3,-2 a 1.5,1.5 0 0 1 0,3 M -2.5,2 a 2.5,2.5 0 0 0 5,0" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round"/>
+                  <path d="M -8,5 L -11,9 L -7,7 Z" fill="url(#gWhats)"/>
+                </g>
+                <g transform="translate(-24,10)" filter="url(#sh)">
+                  <circle r="9" fill="#fff" stroke="#2c7da0" stroke-width="1.4"/>
+                  <path d="M -9,0 h 18 M 0,-9 v 18 M -6,-5 c 3,3 9,3 12,0 M -6,5 c 3,-3 9,-3 12,0" stroke="#2c7da0" stroke-width="1" fill="none"/>
+                </g>
+                <text x="0" y="62" font-size="11" font-weight="800" fill="#0b1f33" text-anchor="middle">Coordinación</text>
+                <text x="0" y="76" font-size="9" fill="#5b6b7e" text-anchor="middle">Agenda · videoconsulta · contacto</text>
+              </g>
+              <g class="story-node" data-node="nurse" transform="translate(290,150)">
+                <ellipse cx="0" cy="30" rx="30" ry="5" fill="#0b2540" opacity="0.11"/>
+                <g transform="translate(0,-14) scale(2.35)">
+                  <g transform="translate(-7.5,1.5)"><path d="M -7,8 Q 0,3 7,8 L 7,13 L -7,13 Z" fill="#2f9e8f"/><circle cx="0" cy="0" r="5" fill="#ecd3b5"/><path d="M -5,-1 Q -5,-7 0,-7 Q 5,-7 5,-1 Q 3,-4 0,-4 Q -3,-4 -5,-1 Z" fill="#4a3f36"/></g>
+                  <g transform="translate(7.5,-1.5)"><path d="M -7,8 Q 0,3 7,8 L 7,13 L -7,13 Z" fill="#3aae9e"/><circle cx="0" cy="0" r="5" fill="#f0d3b4"/><path d="M -5,-1 Q -5,-7 0,-7 Q 5,-7 5,-1 Q 3,-4 0,-4 Q -3,-4 -5,-1 Z" fill="#2a221c"/></g>
+                </g>
+                <g transform="translate(-23,18)"><rect x="-9" y="-4" width="18" height="13" rx="2" fill="#2a6b63"/><rect x="-9" y="-4" width="18" height="4" fill="#23574f"/><rect x="-1.4" y="0.5" width="2.8" height="6" fill="#fff"/><rect x="-3" y="2" width="6" height="2.8" fill="#fff"/></g>
+                <g transform="translate(23,19)"><rect x="-6.5" y="-9" width="13" height="18" rx="1.5" fill="#1e3550"/><rect x="-5" y="-7.5" width="10" height="15" rx="0.5" fill="#5fa1c2"/><path d="M -3,-4 h 6 M -3,-1 h 5 M -3,2 h 6" stroke="#fff" stroke-width="0.6" opacity="0.85"/></g>
+                <text x="0" y="83" font-size="11" font-weight="700" fill="#0b1f33" text-anchor="middle">Equipo extramural</text>
+                <text x="0" y="96" font-size="9.5" font-weight="700" fill="#2a9d8f" text-anchor="middle">enfermería + kit BLE</text>
+              </g>
+              <g class="story-node" data-node="md" transform="translate(680,250)">
+                <ellipse cx="0" cy="27" rx="24" ry="4.8" fill="#0b2540" opacity="0.11"/>
+                <g transform="translate(-9,-12) scale(2.7)">
+                  <path d="M -8,8 Q 0,2 8,8 L 8,13 L -8,13 Z" fill="#fff" stroke="#cbd5e1" stroke-width="0.55"/>
+                  <circle cx="0" cy="0" r="5.6" fill="#f0d3b4"/>
+                  <path d="M -5.6,-1 Q -5.6,-7.8 0,-7.8 Q 5.6,-7.8 5.6,-1 Q 3.2,-4.6 0,-4.6 Q -3.2,-4.6 -5.6,-1 Z" fill="#3a2f28"/>
+                  <circle cx="0" cy="7.5" r="1.5" fill="#2c7da0"/>
+                </g>
+                <g transform="translate(26,6)">
+                  <rect x="-13" y="-13" width="26" height="19" rx="1.5" fill="#1e3550"/>
+                  <rect x="-11" y="-11" width="22" height="15" rx="1" fill="#4a6b82"/>
+                  <path d="M -8,-7 h 16 M -8,-3 h 11 M -8,1 h 14" stroke="#cfe0ea" stroke-width="1" opacity="0.85"/>
+                  <rect x="-3" y="6" width="6" height="5" fill="#16283d"/>
+                  <rect x="-9" y="11" width="18" height="2.5" rx="1" fill="#16283d"/>
+                </g>
+                <text x="0" y="80" font-size="11" font-weight="800" fill="#0b1f33" text-anchor="middle">Centro de referencia CIAS</text>
+                <text x="0" y="93" font-size="9" fill="#5b6b7e" text-anchor="middle">médico orquestador</text>
+              </g>
+              <g class="story-node" data-node="teral" transform="translate(925,250)">
+                <ellipse cx="0" cy="48" rx="48" ry="6.5" fill="url(#floor)"/>
+                <g transform="translate(0,-6)">
+                  <circle cx="0" cy="0" r="24" fill="#fff" stroke="#e3d49b" stroke-width="2"/>
+                  <circle cx="0" cy="0" r="24" fill="none" stroke="#c9a227" stroke-width="1" stroke-dasharray="3 3"/>
+                  <path d="M -9,-2 h 18 M 0,-11 v 18" stroke="#a08319" stroke-width="2.4" stroke-linecap="round"/>
+                </g>
+                <g transform="translate(0,-50)">
+                  <g transform="translate(-15,1)"><path d="M -7,8 Q 0,3 7,8 L 7,13 L -7,13 Z" fill="#fff" stroke="#cbd5e1" stroke-width="0.6"/><circle cx="0" cy="0" r="5" fill="#f0d3b4"/><path d="M -5,-1 Q -5,-7 0,-7 Q 5,-7 5,-1 Q 3,-4 0,-4 Q -3,-4 -5,-1 Z" fill="#3a2f28"/><path d="M -2.6,8 v 4 M 2.6,8 v 4" stroke="#2c7da0" stroke-width="0.7"/></g>
+                  <g transform="translate(15,-1)"><path d="M -7,8 Q 0,3 7,8 L 7,13 L -7,13 Z" fill="#bcd5e4"/><circle cx="0" cy="0" r="5" fill="#e8c6a4"/><path d="M -5,-1 Q -5,-7 0,-7 Q 5,-7 5,-1 Q 3,-4 0,-4 Q -3,-4 -5,-1 Z" fill="#5b4636"/></g>
+                  <text x="0" y="24" font-size="8" font-weight="700" fill="#5b6b7e" text-anchor="middle">Geriatría · especialistas</text>
+                </g>
+                <text x="0" y="78" font-size="11" font-weight="800" fill="#0b1f33" text-anchor="middle">Teleapoyo de especialistas</text>
+                <text x="0" y="91" font-size="9" fill="#7a6312" font-weight="700" text-anchor="middle">telexperticia médico-médico</text>
+              </g>
+              <g class="story-node" data-node="hde" transform="translate(440,335)">
+                <ellipse cx="0" cy="26" rx="40" ry="5.5" fill="url(#floor)"/>
+                <g filter="url(#sh)">
+                  <rect x="-26" y="-20" width="52" height="38" rx="3" fill="url(#gHDE)"/>
+                  <ellipse cx="0" cy="-20" rx="26" ry="5.5" fill="#7fdccd"/>
+                  <ellipse cx="0" cy="-9" rx="26" ry="5.5" fill="#7fdccd" opacity="0.6"/>
+                  <ellipse cx="0" cy="2" rx="26" ry="5.5" fill="#7fdccd" opacity="0.6"/>
+                  <ellipse cx="0" cy="13" rx="26" ry="5.5" fill="#46b3a3"/>
+                  <path d="M -12,5 l 4,-7 3,4 4,-8 3,6" stroke="#fff" stroke-width="1.1" fill="none" opacity="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <text x="0" y="38" font-size="10.5" font-weight="800" fill="#0b1f33" text-anchor="middle">Historia de datos extramural</text>
+                <text x="0" y="50" font-size="8.5" fill="#1c6b60" text-anchor="middle">captura en territorio</text>
+              </g>
+              <g class="story-node" data-node="himed" transform="translate(645,400)">
+                <ellipse cx="0" cy="28" rx="50" ry="6" fill="url(#floor)"/>
+                <g filter="url(#sh)">
+                  <rect x="-28" y="-22" width="56" height="42" rx="3" fill="url(#gHimed)"/>
+                  <ellipse cx="0" cy="-22" rx="28" ry="6" fill="#cab8e8"/>
+                  <ellipse cx="0" cy="-10" rx="28" ry="6" fill="#cab8e8" opacity="0.6"/>
+                  <ellipse cx="0" cy="2" rx="28" ry="6" fill="#cab8e8" opacity="0.6"/>
+                  <ellipse cx="0" cy="14" rx="28" ry="6" fill="#9d80c9"/>
+                  <circle cx="20" cy="-16" r="1.5" fill="#34d97a"/>
+                  <circle cx="20" cy="-4" r="1.5" fill="#34d97a"/>
+                </g>
+                <text x="0" y="42" font-size="11" font-weight="800" fill="#0b1f33" text-anchor="middle">Historia clínica electrónica</text>
+                <text x="0" y="55" font-size="9" fill="#5b6b7e" text-anchor="middle">HCE oficial · RDA FHIR R4</text>
+              </g>
+              <g class="story-node" data-node="cuidador" transform="translate(150,300)">
+                <ellipse cx="0" cy="30" rx="28" ry="5" fill="#0b2540" opacity="0.11"/>
+                <g transform="translate(0,-12) scale(2.4)">
+                  <g transform="translate(-6,1)"><path d="M -7,8 Q 0,3 7,8 L 7,13 L -7,13 Z" fill="#c98aa8"/><circle cx="0" cy="0" r="5" fill="#f0d3b4"/><path d="M -5,-1 Q -5,-7 0,-7 Q 5,-7 5,-1 Q 3,-4 0,-4 Q -3,-4 -5,-1 Z" fill="#5b3b2a"/></g>
+                  <g transform="translate(6,2) scale(0.8)"><path d="M -7,8 Q 0,3 7,8 L 7,13 L -7,13 Z" fill="#9aa7b5"/><circle cx="0" cy="0" r="5" fill="#ecd3b5"/><path d="M -5.6,-1.5 Q -5.6,-8 0,-8 Q 5.6,-8 5.6,-1.5 Q 3.2,-5 0,-5 Q -3.2,-5 -5.6,-1.5 Z" fill="#cfcac4"/></g>
+                </g>
+                <text x="0" y="70" font-size="11" font-weight="800" fill="#0b1f33" text-anchor="middle">Cuidador</text>
+                <text x="0" y="83" font-size="9" fill="#a64b6a" font-weight="700" text-anchor="middle">co-protagonista del plan</text>
+              </g>
+              <g class="story-node" data-node="rlcpd" transform="translate(680,92)">
+                <ellipse cx="0" cy="40" rx="40" ry="6" fill="url(#floor)"/>
+                <g filter="url(#sh)">
+                  <rect x="-24" y="-28" width="48" height="56" rx="4" fill="#fff" stroke="#6a4c93" stroke-width="1.8"/>
+                  <rect x="-24" y="-28" width="48" height="9" rx="4" fill="#6a4c93"/>
+                  <path d="M -16,-11 h 32 M -16,-4 h 32 M -16,3 h 22" stroke="#b6a6d4" stroke-width="1.5" stroke-linecap="round"/>
+                  <circle cx="6" cy="15" r="8" fill="#efe7f9" stroke="#6a4c93" stroke-width="1.4"/>
+                  <path d="M 2,15 l 3,3 6,-7" stroke="#6a4c93" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <text x="0" y="50" font-size="10.5" font-weight="800" fill="#0b1f33" text-anchor="middle">RLCPD · SISPRO</text>
+                <text x="0" y="63" font-size="9" fill="#523777" font-weight="700" text-anchor="middle">certificación discapacidad</text>
+              </g>
+              <g class="story-node" data-node="emergencia" transform="translate(1075,118)">
+                <ellipse cx="0" cy="50" rx="44" ry="6.5" fill="url(#floor)"/>
+                <g filter="url(#sh)">
+                  <rect x="-30" y="-4" width="60" height="48" rx="3" fill="#b34234"/>
+                  <rect x="-30" y="-4" width="60" height="9" fill="#8f3328"/>
+                  <rect x="-22" y="9" width="9" height="9" rx="1" fill="#fbe3df"/>
+                  <rect x="-5" y="9" width="9" height="9" rx="1" fill="#fbe3df"/>
+                  <rect x="13" y="9" width="9" height="9" rx="1" fill="#fbe3df"/>
+                  <rect x="-22" y="22" width="9" height="9" rx="1" fill="#fbe3df"/>
+                  <rect x="13" y="22" width="9" height="9" rx="1" fill="#fbe3df"/>
+                  <rect x="-6" y="31" width="12" height="13" fill="#5e1f17"/>
+                  <g transform="translate(0,-16)">
+                    <circle cx="0" cy="0" r="11" fill="#fff" stroke="#dde5ed" stroke-width="1"/>
+                    <rect x="-2.5" y="-6" width="5" height="12" rx="1" fill="#dc2626"/>
+                    <rect x="-6" y="-2.5" width="12" height="5" rx="1" fill="#dc2626"/>
+                  </g>
+                </g>
+                <text x="0" y="62" font-size="11" font-weight="800" fill="#0b1f33" text-anchor="middle">Urgencias</text>
+                <text x="0" y="75" font-size="9" fill="#b91c1c" font-weight="700" text-anchor="middle">centro de mayor complejidad</text>
+              </g>
+              <g class="story-node" data-node="facturacion" transform="translate(645,500)">
+                <ellipse cx="0" cy="34" rx="34" ry="5" fill="url(#floor)"/>
+                <g filter="url(#sh)">
+                  <rect x="-20" y="-26" width="40" height="52" rx="3" fill="#fff" stroke="#c9a227" stroke-width="1.8"/>
+                  <rect x="-20" y="-26" width="40" height="8" rx="3" fill="#c9a227"/>
+                  <path d="M -13,-9 h 26 M -13,-2 h 26 M -13,5 h 16" stroke="#94a3b6" stroke-width="1.4" stroke-linecap="round"/>
+                  <circle cx="0" cy="16" r="7.5" fill="#c9a227"/>
+                  <text x="0" y="19.5" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle">$</text>
+                </g>
+                <text x="0" y="40" font-size="11" font-weight="800" fill="#0b1f33" text-anchor="middle">Facturación</text>
+                <text x="0" y="52" font-size="9" fill="#7a6312" font-weight="700" text-anchor="middle">paso administrativo</text>
+              </g>
+            </svg>
+          </div>
+
+          <aside class="actor-card" id="actorCard">
+            <div class="actor-empty" id="actorEmpty">Selecciona Reproducir o avanza los pasos</div>
+            <div id="actorBody" style="display:none;flex-direction:column;gap:13px;">
+              <div>
+                <div class="actor-kind" id="aKind">ACTOR</div>
+                <div class="actor-name" id="aName">—</div>
+                <div class="actor-subtitle" id="aSub">—</div>
+              </div>
+              <p class="actor-desc" id="aDesc"></p>
+              <div class="actor-criteria" id="aCriteria" style="display:none">
+                <span class="crit-h" id="aCritTitle"></span>
+                <ul id="aCritList"></ul>
+              </div>
+              <div class="actor-options" id="aOptions" style="display:none">
+                <span class="opt-h" id="aOptTitle"></span>
+                <ul id="aOptList"></ul>
+              </div>
+              <div class="actor-io">
+                <div class="io-block"><span class="io-label">Recibe</span><ul id="aRecv"></ul></div>
+                <div class="io-block"><span class="io-label">Emite</span><ul id="aEmit"></ul></div>
+              </div>
+              <div class="actor-tech"><span class="io-label">Soporte / canal</span><p id="aTech"></p></div>
+              <div class="actor-note" id="aNoteWrap"><p id="aNote"></p></div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="cap-row">
+          <div class="caption">
+            <div class="cap-head"><span class="cap-num" id="capNum">PASO 01</span><span class="cap-title" id="capTitle">—</span></div>
+            <p class="cap-desc" id="capDesc">—</p>
+          </div>
+          <div class="controls">
+            <button class="cbtn" id="btnPrev" title="Anterior"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+            <button class="cbtn primary" id="btnPlay" title="Reproducir"><svg id="playIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="8 5 19 12 8 19 8 5"></polygon></svg></button>
+            <button class="cbtn" id="btnNext" title="Siguiente"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+            <button class="cbtn" id="btnReset" title="Reiniciar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg></button>
+          </div>
+        </div>
+        <div class="dots" id="dots"></div>
+
+        <div class="esc-strip" id="escStrip"></div>
+      </div>
+    </div>
+
+    <div class="view" id="viewNorma"></div>
+  </section>
+
+  <!-- ===================== GLOSARIO Y FUENTES ===================== -->
+  <section class="topsec" data-sec="fuentes">
+    <div class="scn-head">
+      <div class="scn-eyebrow">Referencia</div>
+      <h2>Glosario y fuentes</h2>
+      <p class="scn-sub">Los componentes del modelo de atención, los dispositivos biomédicos, las escalas geriátricas con su fuente, el glosario de siglas y las fuentes oficiales.</p>
+    </div>
+    <div id="fuentesBody"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div>CIAS IPS — Salud del Adulto Mayor · Atención domiciliaria · versión Ciudad · v0.3</div>
+      <div class="src">Fuentes oficiales y escalas verificadas — ver "Glosario y fuentes". Presentación preliminar en construcción por fases.</div>
+    </div>
+    <div>Juan Pablo Jaramillo Ormaza</div>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   CIAS IPS · Salud del Adulto Mayor — datos + motor (v0.3)
+   Versión Ciudad. Autor: Juan Pablo Jaramillo Ormaza.
+   Patrón por patología: flujo completo + diagnóstico/manejo/complicaciones
+   + escalas + teleapoyo + cuidador + registro + remisión/emergencia/facturación.
+   Etiqueta de nivel de dependencia · marco normativo completo · color por patología.
+   Borrador para culminar en el feedback con el Dr. Sergio.
+   ===================================================================== */
+(function(){
+  "use strict";
+
+  /* ---------- ESCALAS (verificadas — ver Glosario y fuentes) ---------- */
+  var ESCALAS = {
+    barthel:{name:"Índice de Barthel", mide:"Actividades básicas de la vida diaria (ABVD)", rango:"0–100",
+      corte:"<20 dependencia total · 20–35 grave · 40–55 moderada · ≥60 leve · 100 independiente (corte 60/61 separa dependencia)",
+      why:"Mide lo que la persona puede hacer por sí misma: es el indicador funcional que mejor predice institucionalización y carga de cuidado.",
+      src:{t:"Mahoney & Barthel, 1965", u:"https://www.physio-pedia.com/Barthel_Index"}},
+    lawton:{name:"Escala de Lawton y Brody", mide:"Actividades instrumentales (AIVD)", rango:"0–8",
+      corte:"A menor puntaje, mayor dependencia (8 ítems para ambos sexos)",
+      why:"Las AIVD (teléfono, compras, dinero, medicación) se pierden ANTES que las ABVD: detectan el declive funcional temprano.",
+      src:{t:"Lawton & Brody, 1969 · Hartford HIGN", u:"https://hign.org/sites/default/files/2020-06/Try_This_General_Assessment_23.pdf"}},
+    mmse:{name:"Mini-Mental (MMSE)", mide:"Cognición global", rango:"0–30",
+      corte:"≤23 sugiere deterioro (≥8 años de escolaridad). Ajustar corte por escolaridad y edad.",
+      why:"Tamiza orientación, memoria, atención y lenguaje. La RPMS-vejez prevé su aplicación (Anexo 28, Res. 3280/2018).",
+      flag:"Bajo licencia exclusiva de PAR (2001): no se reproduce el cuestionario; se aplica con licencia y corte ajustado por escolaridad.",
+      src:{t:"Folstein, 1975 · StrokEngine", u:"https://strokengine.ca/en/assessments/mini-mental-state-examination-mmse/"}},
+    gds15:{name:"Depresión Geriátrica (Yesavage GDS-15)", mide:"Síntomas depresivos en el adulto mayor", rango:"0–15",
+      corte:"≥5 depresión probable (5–8 leve · 9–11 moderada · 12–15 grave)",
+      why:"Breve, sí/no, validada en ancianos y de uso libre. La depresión del anciano se confunde con demencia o se atribuye a la edad.",
+      src:{t:"Sheikh & Yesavage, 1986 · Stanford", u:"https://web.stanford.edu/~yesavage/GDS.html"}},
+    tug:{name:"Timed Up and Go (TUG)", mide:"Movilidad funcional y riesgo de caídas", rango:"segundos",
+      corte:"≥12 s = riesgo de caídas aumentado (umbral para comunidad; la literatura usa 12–13,5 s)",
+      why:"Levantarse, caminar 3 m, girar y volver: una prueba de 1 minuto que objetiva la movilidad y prioriza la valoración de caídas.",
+      src:{t:"Podsiadlo & Richardson, 1991", u:"https://agsjournals.onlinelibrary.wiley.com/doi/10.1111/j.1532-5415.1991.tb01616.x"}},
+    tinetti:{name:"Tinetti (POMA)", mide:"Equilibrio y marcha", rango:"0–28",
+      corte:"<19 alto riesgo de caídas · 19–24 moderado · 25–28 bajo",
+      why:"Observa equilibrio y patrón de marcha; dirige la intervención (fuerza, equilibrio, ayudas técnicas).",
+      src:{t:"Tinetti, 1986 · StatPearls", u:"https://www.ncbi.nlm.nih.gov/books/NBK578181/"}},
+    fried:{name:"Fenotipo de fragilidad de Fried", mide:"Fragilidad física (5 criterios)", rango:"0–5 criterios",
+      corte:"0 robusto · 1–2 pre-frágil · ≥3 frágil",
+      why:"Pérdida de peso, agotamiento, debilidad, lentitud de marcha y baja actividad. La fragilidad es reversible si se detecta a tiempo.",
+      src:{t:"Fried et al., 2001", u:"https://pmc.ncbi.nlm.nih.gov/articles/PMC4496916/"}},
+    cfs:{name:"Clinical Frailty Scale (Rockwood)", mide:"Fragilidad global por juicio clínico", rango:"1–9",
+      corte:"1 muy en forma … 5 levemente frágil … 9 enfermo terminal · CFS ≥5 = frágil",
+      why:"Resume en un valor el estado global; útil para individualizar metas (p. ej. tensión arterial) y comunicar la trayectoria.",
+      src:{t:"Rockwood et al., 2005 (v2.0, 2020) · Dalhousie", u:"https://www.dal.ca/sites/gmr/our-tools/clinical-frailty-scale.html"}},
+    stopstart:{name:"Criterios STOPP/START", mide:"Prescripción inapropiada y omisiones en el anciano", rango:"v3 (2023) · 190 criterios",
+      corte:"STOPP: fármacos a retirar · START: tratamientos a iniciar",
+      why:"La polifarmacia causa caídas, delirium e ingresos. STOPP/START estandariza la conciliación medicamentosa con criterios explícitos.",
+      src:{t:"O'Mahony et al., 2023 · European Geriatric Medicine", u:"https://link.springer.com/article/10.1007/s41999-023-00777-y"}},
+    mna:{name:"Mini Nutritional Assessment (MNA)", mide:"Estado / riesgo nutricional", rango:"0–30 (SF 0–14)",
+      corte:"<17 desnutrido · 17–23,5 riesgo · ≥24 normal (SF: ≤7 · 8–11 · 12–14)",
+      why:"La malnutrición es silenciosa y agrava fragilidad, caídas y cicatrización. El MNA la detecta y la gradúa.",
+      src:{t:"Guigoz & Vellas, 1994 · Nestlé NRC", u:"https://www.mna-elderly.com/development-and-validation"}}
+  };
+
+  /* ---------- VALORACIÓN (VGI) — 4 dimensiones ---------- */
+  var VGI = [
+    {id:"clinica", t:"Dimensión clínica", color:"var(--vgi-clin)", tag:"Comorbilidad · riesgo CV · fármacos",
+     desc:"La evaluación médica adaptada al anciano: enfermedades crónicas, riesgo cardiovascular-metabólico (puerta de entrada de la RPMS-vejez) y, central, la revisión de la medicación.",
+     blocks:[{h:"Qué evaluamos",items:["Comorbilidad y control de crónicas (HTA, DM2, ICC, EPOC)","Riesgo cardiovascular y metabólico (RPMS-vejez)","Estado sensorial: visión y audición","Dolor y su impacto funcional"]}],
+     escalas:["stopstart"],
+     cias:["Captura clínica del episodio con kit BLE en domicilio","Conciliación medicamentosa con STOPP/START","Teleapoyo de especialistas cuando se requiere"]},
+    {id:"funcional", t:"Dimensión funcional", color:"var(--vgi-func)", tag:"ABVD · AIVD · marcha y equilibrio",
+     desc:"El corazón de la geriatría: medir lo que la persona puede hacer. La funcionalidad predice mejor el pronóstico que el diagnóstico aislado y define la intensidad del cuidado.",
+     blocks:[{h:"Qué evaluamos",items:["Actividades básicas (Barthel) e instrumentales (Lawton)","Movilidad, marcha y equilibrio (riesgo de caídas)","Fragilidad como eje transversal"]}],
+     escalas:["barthel","lawton","tug","tinetti"],
+     cias:["Medición funcional en cada valoración como línea de base y seguimiento","Plan dirigido a preservar/recuperar funcionalidad","Adaptación del hogar y ayudas técnicas"]},
+    {id:"mental", t:"Dimensión mental", color:"var(--vgi-ment)", tag:"Cognición y estado de ánimo",
+     desc:"Cognición y afecto, evaluados en conjunto porque se influyen mutuamente y condicionan adherencia, seguridad y autonomía.",
+     blocks:[{h:"Qué evaluamos",items:["Cognición global (tamizaje con corte ajustado por escolaridad)","Síntomas depresivos (GDS-15)","Delirium ante cambios agudos del estado mental"]}],
+     escalas:["mmse","gds15"],
+     cias:["Tamizaje cognitivo y de depresión en la valoración integral","Diferenciación demencia / depresión / delirium","Teleapoyo y anclaje en la GPC de demencia"]},
+    {id:"social", t:"Dimensión social", color:"var(--vgi-soc)", tag:"Cuidador · redes · entorno · derechos",
+     desc:"El contexto que sostiene (o pone en riesgo) al adulto mayor: el cuidador y su sobrecarga, las redes de apoyo, el hogar y la protección frente al maltrato y el abandono.",
+     blocks:[{h:"Qué evaluamos",items:["Cuidador principal: presencia, capacidad y sobrecarga","Redes de apoyo y situación económica","Condiciones y seguridad del hogar","Riesgo de maltrato o abandono (Ley 1850/2017)"]}],
+     escalas:[],
+     cias:["El cuidador como co-protagonista del plan: educación y soporte","Detección de maltrato/abandono y activación de rutas de protección","Articulación con programas sociales (Centros Vida, Ley 1276/2009)"]}
+  ];
+
+  var CATS = [
+    {id:"general", label:"Visión general", color:"#1e4d72"},
+    {id:"sindrome", label:"Síndromes geriátricos", color:"#c9821f"},
+    {id:"cronica", label:"ECNT crónicas", color:"#be123c"},
+    {id:"discapacidad", label:"Discapacidad", color:"#6a4c93"}
+  ];
+
+  /* facturación común (versión Ciudad) — sin inventar códigos CUPS específicos */
+  function FACT(mod){ return {modalidades:mod||["Evento / paquete por valoración y procedimiento","Programa de crónicos: cápita o pago global prospectivo (según contrato EPS)","Particular — pago de bolsillo o plan voluntario de salud"],
+    marco:"SGSSS · facturación desde la HCE oficial (RIPS + RDA FHIR R4, Res. 866/2021).",
+    codigos:"CUPS vigente (Res. 2706/2025) por consulta y procedimiento; sin enumerar códigos específicos en este borrador.",
+    glosas:"Régimen de glosas Res. 2284/2023."}; }
+
+  /* =====================================================================
+     PATOLOGÍAS
+     ===================================================================== */
+  var PAT = {
+    /* ---------------- VISIÓN GENERAL ---------------- */
+    general:{cat:"general", built:true, color:"#1e4d72", label:"Atención integral (VGI)",
+      blurb:"El episodio domiciliario común a todas las entidades.",
+      title:"Atención integral del adulto mayor (VGI)",
+      sub:"El flujo general del episodio domiciliario: la valoración geriátrica integral en casa, el plan de cuidado priorizado y el cuidador como co-protagonista. Es el tronco común; cada patología lo especializa.",
+      dep:{autonomo:"Valoración periódica + prevención; preservar autonomía.", fragil:"VGI completa + plan dirigido a revertir la fragilidad.", dependiente:"Cuidado continuado + soporte intensivo al cuidador."},
+      diagnostico:{name:"Integración de la VGI", sub:"Síntesis multidimensional",
+        desc:"El médico integra las cuatro dimensiones de la VGI en una lista de problemas priorizados.",
+        criteria:{title:"Qué integra la VGI", items:["Clínica: comorbilidad, riesgo CV, fármacos","Funcional: ABVD/AIVD, marcha y equilibrio","Mental: cognición y estado de ánimo","Social: cuidador, redes y entorno"]},
+        tech:"Lista de problemas priorizada", note:"La unidad de medida es la funcionalidad, no solo el diagnóstico."},
+      manejo:{name:"Plan de cuidado priorizado", sub:"Metas funcionales",
+        desc:"Define metas medibles y un plan coordinado entre las dimensiones.",
+        options:{title:"Salidas del plan", items:["Conciliación medicamentosa","Plan funcional: ejercicio, nutrición, adaptación del hogar","Metas medibles y fecha de reevaluación"]},
+        tech:"Plan de cuidado · metas funcionales", note:"Coordinación de problemas, no manejo aislado de diagnósticos."},
+      complicaciones:null,
+      escalas:["barthel","lawton","mmse","gds15","fried","mna"],
+      teral:["Deterioro cognitivo o fragilidad avanzada a estudiar","Polifarmacia compleja / deprescripción de alto riesgo","Síndrome geriátrico que no responde al plan inicial"],
+      remision:["Condición que supera la capacidad resolutiva domiciliaria","Necesidad de procedimientos o valoración no disponibles en domicilio"],
+      emergencia:["Deterioro agudo durante la visita","Compromiso vital"],
+      factura:FACT(),
+      norma:{
+        marco:[["RPMS-vejez (Res. 3280/2018)","Valoración integral del adulto mayor (≥60): funcional, nutricional, sensorial, mental, social, caídas, cognitivo y riesgo cardiovascular."],["Política rectora","PPNEV 2022–2031 (Decreto 681/2022)."]],
+        exige:[["Enfoque","Valoración multidimensional periódica (práctica estándar anual)."],["Plan","Metas funcionales y reevaluación."]],
+        paraclinicos:["Según hallazgos de la valoración (no hay batería fija para la VGI general).","Tamizajes y vacunación de la RPMS-vejez."],
+        gpc:["La valoración geriátrica integral es el marco; las escalas son instrumentos validados internacionalmente (ver Glosario y fuentes)."],
+        particular:["Atención domiciliaria, versión Ciudad: kit BLE completo.","Captura clínica del episodio, no telemonitoreo (Res. 2654/2019)."],
+        reporte:["PEDT (Res. 202/2021), Registro Tipo 2.","RDA por atención (FHIR R4, Res. 866/2021)."],
+        fuentes:[["Res. 3280/2018 (RPMS)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"],["PPNEV 2022–2031","https://www.minsalud.gov.co/proteccionsocial/promocion-social/Paginas/envejecimiento-vejez.aspx"]]
+      }},
+
+    /* ---------------- SÍNDROMES GERIÁTRICOS ---------------- */
+    caidas:{cat:"sindrome", built:true, color:"#c9821f", label:"Caídas",
+      blurb:"Síndrome con causas tratables; primera causa de lesión evitable.",
+      title:"Caídas en el adulto mayor",
+      sub:"Las caídas no son parte normal del envejecimiento: son un síndrome con causas tratables (debilidad, fármacos, visión, entorno). El domicilio es el lugar ideal para valorarlas. Ancla: RPMS-vejez (valoración de caídas e inestabilidad).",
+      dep:{autonomo:"Cribado de marcha/equilibrio y consejo preventivo del hogar.", fragil:"Evaluación multifactorial + ejercicio de fuerza y equilibrio.", dependiente:"Prevención de lesiones, ayudas técnicas y educación al cuidador."},
+      diagnostico:{name:"Valoración multifactorial de caídas", sub:"RPMS-vejez · TUG / Tinetti",
+        desc:"Ante caídas o riesgo, evaluación multifactorial en el hogar: marcha y equilibrio, fármacos, visión, presión ortostática y entorno.",
+        criteria:{title:"Banderas / criterios de riesgo", items:["≥2 caídas en el último año o una caída con lesión","Miedo a caer que limita la actividad","Marcha o equilibrio alterados (TUG ≥12 s / Tinetti <19)","Polifarmacia o fármacos de riesgo (psicotrópicos, hipotensores)","Hipotensión ortostática; déficit visual"]},
+        tech:"TUG · Tinetti · ortostatismo · revisión de fármacos · entorno", note:"El domicilio permite ver el entorno real donde ocurren las caídas."},
+      manejo:{name:"Intervención multifactorial", sub:"Reducir el riesgo modificable",
+        desc:"Combina ejercicio, revisión de fármacos y corrección del entorno y de déficits sensoriales.",
+        options:{title:"Abordaje", items:["<b>Ejercicio</b> de fuerza y equilibrio (intervención de mayor evidencia)","<b>Revisión de fármacos</b> (STOPP/START) y manejo de la hipotensión ortostática","<b>Entorno</b>: iluminación, alfombras, agarraderas en el baño","<b>Sensorial y vitamina D</b> según criterio"]},
+        tech:"Ejercicio · deprescripción · adaptación del hogar", note:"La intervención multifactorial reduce la tasa de caídas."},
+      complicaciones:{name:"Vigilancia", items:["Fractura (cadera, muñeca) y síndrome poscaída","Miedo a caer → inmovilidad → mayor fragilidad","Hematoma subdural (vigilar si anticoagulado)"], note:"Una caída con lesión cambia la trayectoria funcional: priorizar prevención secundaria."},
+      escalas:["tug","tinetti"],
+      teral:["Caídas recurrentes sin causa clara tras la valoración","Sospecha de causa específica (síncope, parkinsonismo, neuropatía)","Necesidad de rehabilitación o concepto de geriatría/neurología"],
+      remision:["Fractura o sospecha de fractura","Síncope de causa no aclarada para estudio"],
+      emergencia:["Trauma craneoencefálico con alteración de conciencia","Fractura con compromiso o dolor incontrolable","Sospecha de sangrado intracraneal (anticoagulados)"],
+      factura:FACT(),
+      norma:{
+        marco:[["RPMS-vejez (Res. 3280/2018)","Incluye la valoración de caídas e inestabilidad en el adulto mayor."],["GPC","En Colombia NO existe una GPC específica de caídas; el anclaje es la RPMS."]],
+        exige:[["Evaluación","Multifactorial del riesgo (marcha, fármacos, visión, ortostatismo, entorno)."],["Intervención","Ejercicio de fuerza/equilibrio + corrección de factores."]],
+        paraclinicos:["Según la causa sospechada (no hay batería fija): ortostatismo, glicemia, función tiroidea, vitamina D, ECG si síncope.","Valoración de agudeza visual y revisión de la lista de fármacos."],
+        gpc:["No hay GPC colombiana de caídas; TUG y Tinetti son instrumentos validados internacionalmente.","La valoración cognitiva y de fragilidad acompaña al estudio de caídas."],
+        particular:["El abordaje domiciliario es idóneo: permite valorar y corregir el entorno (baño, iluminación, alfombras)."],
+        reporte:["PEDT (Res. 202/2021).","RDA por atención (FHIR R4)."],
+        fuentes:[["Res. 3280/2018 (RPMS-vejez)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"],["Timed Up and Go (Podsiadlo 1991)","https://agsjournals.onlinelibrary.wiley.com/doi/10.1111/j.1532-5415.1991.tb01616.x"],["Tinetti / POMA (StatPearls)","https://www.ncbi.nlm.nih.gov/books/NBK578181/"]]
+      }},
+
+    fragilidad:{cat:"sindrome", built:true, color:"#b5651d", label:"Fragilidad",
+      blurb:"Vulnerabilidad reversible; Fried / CFS.",
+      title:"Fragilidad en el adulto mayor",
+      sub:"Síndrome de reserva fisiológica disminuida que precede a la discapacidad. Detectarla define qué adultos mayores se benefician más de una intervención proactiva. Es potencialmente reversible.",
+      dep:{autonomo:"Cribado de fragilidad y prevención (ejercicio, nutrición).", fragil:"Intervención intensiva: ejercicio multicomponente + nutrición + revisión de fármacos.", dependiente:"Manejo de la fragilidad avanzada y prevención de complicaciones."},
+      diagnostico:{name:"Identificación de la fragilidad", sub:"Fried / CFS",
+        desc:"Se identifica con el fenotipo de Fried o el juicio clínico global (CFS); la velocidad de marcha lenta es un marcador útil aislado.",
+        criteria:{title:"Criterios", items:["Fenotipo de Fried: ≥3 de 5 (pérdida de peso, agotamiento, debilidad, marcha lenta, baja actividad)","CFS ≥5 (frágil)","Frecuente coexistencia con sarcopenia y malnutrición"]},
+        tech:"Fenotipo de Fried · CFS · velocidad de marcha", note:"La fragilidad es un estado, no una enfermedad: orienta la intensidad del cuidado."},
+      manejo:{name:"Intervención sobre la fragilidad", sub:"Multicomponente",
+        desc:"La evidencia apoya el ejercicio multicomponente y el soporte nutricional, con revisión de fármacos.",
+        options:{title:"Abordaje", items:["<b>Ejercicio multicomponente</b> (fuerza, equilibrio, aeróbico)","<b>Optimización nutricional</b> (proteína; manejar causas)","<b>Revisión de fármacos</b> (STOPP/START)","<b>Vacunación</b> y manejo de comorbilidades"]},
+        tech:"Ejercicio · nutrición · deprescripción", note:"Intervenir temprano evita la cascada hacia la dependencia."},
+      complicaciones:{name:"Vigilancia", items:["Progresión a discapacidad y dependencia","Caídas, delirium y hospitalización ante eventos menores","Sarcopenia y pérdida de masa muscular"], note:"Vigilar la trayectoria: mejora vs. progresión."},
+      escalas:["fried","cfs","tug","mna"],
+      teral:["Fragilidad avanzada o sarcopenia de difícil manejo","Pérdida funcional rápida sin causa clara","Necesidad de concepto de geriatría"],
+      remision:["Deterioro funcional agudo que requiere estudio hospitalario"],
+      emergencia:null,
+      factura:FACT(),
+      norma:{
+        marco:[["RPMS-vejez (Res. 3280/2018)","Valora la capacidad funcional y la fragilidad en el adulto mayor."],["GPC","No hay GPC colombiana específica de fragilidad; el anclaje es la RPMS."]],
+        exige:[["Cribado","Fragilidad en toda valoración de vejez."],["Intervención","Ejercicio multicomponente + soporte nutricional."]],
+        paraclinicos:["Según comorbilidad: hemograma, función renal y tiroidea, vitamina D, perfil nutricional.","Valoración de marcha y de masa/fuerza muscular."],
+        gpc:["Fried y CFS son instrumentos validados internacionalmente.","La fragilidad es transversal a caídas, malnutrición y polifarmacia."],
+        particular:["El domicilio facilita el ejercicio supervisado y la educación al cuidador."],
+        reporte:["PEDT (Res. 202/2021).","RDA por atención (FHIR R4)."],
+        fuentes:[["Res. 3280/2018 (RPMS-vejez)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"],["Fenotipo de Fried (2001)","https://pmc.ncbi.nlm.nih.gov/articles/PMC4496916/"],["Clinical Frailty Scale","https://www.dal.ca/sites/gmr/our-tools/clinical-frailty-scale.html"]]
+      }},
+
+    cognicion:{cat:"sindrome", built:true, color:"#6a4c93", label:"Deterioro cognitivo",
+      blurb:"Del olvido al trastorno neurocognoscitivo mayor.",
+      title:"Deterioro cognitivo y demencia",
+      sub:"El deterioro cognitivo se subdiagnostica. La RPMS-vejez prevé el tamizaje; en Colombia la única GPC específica de la vejez es la de demencia / trastorno neurocognoscitivo mayor.",
+      dep:{autonomo:"Tamizaje cognitivo de rutina con corte ajustado por escolaridad.", fragil:"Estudio dirigido y manejo de factores reversibles; apoyo a la autonomía.", dependiente:"Manejo de la demencia establecida + soporte y educación al cuidador."},
+      diagnostico:{name:"Tamizaje y enfoque diagnóstico", sub:"MMSE ajustado + diferencial",
+        desc:"Tamizaje cognitivo con corte ajustado por escolaridad; diferenciar de depresión y delirium antes de etiquetar.",
+        criteria:{title:"Banderas y enfoque", items:["Quejas de memoria con repercusión funcional (paciente o familia)","MMSE ≤23 (corte ajustado por escolaridad y edad)","Descartar delirium (agudo, fluctuante) y depresión (seudodemencia)","Buscar causas reversibles: fármacos, hipotiroidismo, B12, depresión"]},
+        tech:"MMSE ajustado · diferencial demencia/depresión/delirium", note:"En baja escolaridad el corte 23/24 sobreestima el deterioro: ajustar."},
+      manejo:{name:"Manejo del deterioro cognitivo", sub:"GPC demencia",
+        desc:"Tratar causas reversibles, manejar la demencia según la GPC y planificar el cuidado y la seguridad.",
+        options:{title:"Abordaje", items:["<b>Causas reversibles</b> primero (fármacos, metabólico, depresión)","<b>Demencia</b>: manejo según la GPC colombiana de TNC mayor","<b>Seguridad</b>: fármacos, conducción, manejo del dinero, riesgo de caídas","<b>Cuidador</b>: educación, manejo conductual y prevención de sobrecarga","<b>Planificación anticipada</b> de cuidados"]},
+        tech:"GPC TNC mayor · plan de seguridad · soporte al cuidador", note:"El objetivo es funcionalidad, seguridad y calidad de vida."},
+      complicaciones:{name:"Vigilancia", items:["Delirium superpuesto ante enfermedad aguda o fármacos","Síntomas conductuales y psicológicos (agitación, psicosis)","Desnutrición, caídas y sobrecarga del cuidador"], note:"El delirium superpuesto es una urgencia frecuente y reversible."},
+      escalas:["mmse","gds15"],
+      teral:["Sospecha de demencia para confirmación/tipificación","Síntomas conductuales de difícil manejo","Deterioro rápido o atípico (geriatría/neurología)"],
+      remision:["Deterioro cognitivo rápido o atípico que requiere estudio especializado"],
+      emergencia:["Delirium con agitación severa o riesgo para sí o terceros"],
+      factura:FACT(),
+      norma:{
+        marco:[["GPC demencia (MinSalud)","Guía para el diagnóstico y tratamiento del trastorno neurocognoscitivo mayor (demencia)."],["RPMS-vejez (Res. 3280/2018)","Prevé el tamizaje cognitivo (Mini-mental, Anexo 28)."]],
+        exige:[["Tamizaje","Cognitivo con corte ajustado por escolaridad."],["Diferencial","Descartar delirium y depresión; buscar causas reversibles."]],
+        paraclinicos:["Para causas reversibles: TSH, vitamina B12, glicemia, función renal/hepática, calcio.","Neuroimagen según criterio y la GPC; valoración de depresión (GDS-15)."],
+        gpc:["GPC colombiana del trastorno neurocognoscitivo mayor (demencia) — única GPC específica de vejez verificable.","MMSE bajo licencia PAR: aplicar con licencia y corte ajustado."],
+        particular:["En baja escolaridad/población indígena, el corte estándar no es válido sin ajuste (caveat cultural)."],
+        reporte:["PEDT (Res. 202/2021), variable de mini-mental.","RDA por atención (FHIR R4)."],
+        fuentes:[["GPC demencia (portal GPC MinSalud)","https://gpc.minsalud.gov.co/SitePages/default.aspx"],["MMSE (StrokEngine)","https://strokengine.ca/en/assessments/mini-mental-state-examination-mmse/"],["GDS-15 (Stanford)","https://web.stanford.edu/~yesavage/GDS.html"]]
+      }},
+
+    polifarmacia:{cat:"sindrome", built:true, color:"#2c7da0", label:"Polifarmacia",
+      blurb:"Daño evitable; conciliación con STOPP/START.",
+      title:"Polifarmacia en el adulto mayor",
+      sub:"El uso de múltiples fármacos (a menudo ≥5) multiplica caídas, delirium, interacciones e ingresos. La conciliación medicamentosa es una de las intervenciones de mayor rendimiento en geriatría.",
+      dep:{autonomo:"Revisión periódica y educación sobre adherencia segura.", fragil:"Conciliación activa con STOPP/START y deprescripción dirigida.", dependiente:"Simplificar el esquema; metas adaptadas; vigilancia por el cuidador."},
+      diagnostico:{name:"Revisión de la medicación", sub:"STOPP/START",
+        desc:"Revisión sistemática de la lista completa de fármacos, prescriptores y adherencia, con criterios explícitos.",
+        criteria:{title:"Banderas / criterios", items:["≥5 medicamentos o prescriptores múltiples","Cascada de prescripción (un fármaco trata el efecto de otro)","Fármacos de alto riesgo: benzodiacepinas, anticolinérgicos, AINE, hipoglucemiantes","Síntomas atribuibles a fármacos (caídas, confusión, hipotensión)"]},
+        tech:"Lista completa de fármacos · STOPP/START", note:"La mejor fuente es la bolsa real de medicamentos del paciente en su casa."},
+      manejo:{name:"Conciliación y deprescripción", sub:"Coordinada con el tratante",
+        desc:"Retirar lo inapropiado (STOPP), iniciar lo beneficioso omitido (START) y simplificar el esquema.",
+        options:{title:"Abordaje", items:["<b>STOPP</b>: retirar fármacos potencialmente inapropiados","<b>START</b>: iniciar tratamientos beneficiosos omitidos","<b>Deprescripción</b> gradual y coordinada con el médico tratante","<b>Adherencia</b>: simplificar tomas, pastillero, educación al cuidador"]},
+        tech:"STOPP/START · deprescripción gradual", note:"Deprescribir es un acto clínico activo, no abandonar el tratamiento."},
+      complicaciones:{name:"Vigilancia", items:["Síndrome de retirada al deprescribir bruscamente","Interacciones y reacciones adversas","Errores de adherencia y duplicidades"], note:"La deprescripción se hace gradual y vigilada."},
+      escalas:["stopstart"],
+      teral:["Esquema complejo de alto riesgo (anticoagulación, psicotrópicos)","Conflicto entre guías de varias comorbilidades","Concepto de geriatría/farmacología clínica"],
+      remision:null,
+      emergencia:["Reacción adversa grave o intoxicación medicamentosa"],
+      factura:FACT(),
+      norma:{
+        marco:[["RPMS-vejez (Res. 3280/2018)","La revisión de la medicación es parte del cuidado integral del adulto mayor."],["GPC","No hay GPC colombiana de polifarmacia; STOPP/START es el estándar internacional de cribado."]],
+        exige:[["Revisión","Sistemática de la medicación en cada contacto."],["Conciliación","STOPP/START + deprescripción coordinada."]],
+        paraclinicos:["Según los fármacos: función renal/hepática, ionograma, niveles cuando aplique (p. ej. digoxina), INR si anticoagulado."],
+        gpc:["STOPP/START v3 (2023): criterios explícitos de prescripción inapropiada y omisiones.","Coordinación obligatoria con los médicos tratantes."],
+        particular:["La visita domiciliaria permite revisar la bolsa real de medicamentos y la adherencia efectiva."],
+        reporte:["RDA por atención (FHIR R4) con la conciliación medicamentosa."],
+        fuentes:[["STOPP/START v3 (2023)","https://link.springer.com/article/10.1007/s41999-023-00777-y"],["Res. 3280/2018 (RPMS-vejez)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"]]
+      }},
+
+    incontinencia:{cat:"sindrome", built:true, color:"#0e9488", label:"Incontinencia",
+      blurb:"Prevalente, ocultada y tratable.",
+      title:"Incontinencia urinaria en el adulto mayor",
+      sub:"Deteriora la calidad de vida, predispone a caídas (urgencia nocturna) y a lesiones de piel, y rara vez se consulta por vergüenza. No es un destino inevitable de la vejez.",
+      dep:{autonomo:"Indagación activa y medidas conductuales.", fragil:"Manejo de causas reversibles + entrenamiento vesical.", dependiente:"Manejo dirigido, cuidado de la piel y soporte al cuidador."},
+      diagnostico:{name:"Caracterización de la incontinencia", sub:"Tipo + causas reversibles",
+        desc:"Determinar el tipo (urgencia, esfuerzo, mixta, por rebosamiento), el impacto y las causas reversibles.",
+        criteria:{title:"Qué evaluamos", items:["Tipo: urgencia / esfuerzo / mixta / rebosamiento","Causas reversibles: infección, fármacos (diuréticos), impactación fecal, delirium, movilidad","Repercusión funcional, social y sobre la piel","Diario miccional"]},
+        tech:"Diario miccional · uroanálisis · revisión de fármacos", note:"Indagar activamente: el paciente rara vez lo consulta espontáneamente."},
+      manejo:{name:"Manejo conductual y de causas", sub:"Primero lo reversible",
+        desc:"Corregir causas reversibles y aplicar medidas conductuales antes de farmacoterapia.",
+        options:{title:"Abordaje", items:["<b>Causas reversibles</b>: tratar infección, ajustar diuréticos, manejar estreñimiento","<b>Conductual</b>: entrenamiento vesical, micción programada, ejercicios de piso pélvico","<b>Piel y entorno</b>: prevención de dermatitis y de caídas nocturnas","<b>Farmacoterapia</b> según tipo (cautela con anticolinérgicos en el anciano)"]},
+        tech:"Medidas conductuales · cuidado de piel", note:"Cautela con anticolinérgicos: empeoran cognición (STOPP)."},
+      complicaciones:{name:"Vigilancia", items:["Dermatitis asociada a incontinencia y úlceras","Caídas por urgencia/nicturia","Aislamiento social y depresión"], note:null},
+      escalas:[],
+      teral:["Incontinencia refractaria al manejo inicial","Sospecha de causa urológica/ginecológica (prolapso, obstrucción)","Necesidad de estudio urodinámico"],
+      remision:["Retención urinaria, hematuria o sospecha de obstrucción/neoplasia"],
+      emergencia:["Retención urinaria aguda con dolor","Sepsis de origen urinario"],
+      factura:FACT(),
+      norma:{
+        marco:[["RPMS-vejez (Res. 3280/2018)","La continencia y la función urinaria forman parte de la valoración del adulto mayor."],["GPC","No hay GPC colombiana específica de incontinencia del adulto mayor; manejo según buenas prácticas geriátricas."]],
+        exige:[["Indagación","Activa (no esperar a que se consulte)."],["Causas reversibles","Descartar y tratar antes de farmacoterapia."]],
+        paraclinicos:["Uroanálisis y urocultivo si sospecha de infección.","Residuo posmiccional según disponibilidad; glicemia; revisión de fármacos."],
+        gpc:["Manejo según buenas prácticas geriátricas; cautela con anticolinérgicos (STOPP).","Medidas conductuales como primera línea."],
+        particular:["El domicilio permite valorar el entorno (acceso al baño, iluminación nocturna)."],
+        reporte:["RDA por atención (FHIR R4)."],
+        fuentes:[["Res. 3280/2018 (RPMS-vejez)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"],["STOPP/START v3 (anticolinérgicos)","https://link.springer.com/article/10.1007/s41999-023-00777-y"]]
+      }},
+
+    malnutricion:{cat:"sindrome", built:true, color:"#5d8a2f", label:"Malnutrición",
+      blurb:"Silenciosa; agrava todos los síndromes; MNA.",
+      title:"Malnutrición en el adulto mayor",
+      sub:"La desnutrición y la pérdida de masa muscular aceleran la fragilidad, las caídas y la mala cicatrización. El cribado nutricional es parte de la valoración integral de vejez.",
+      dep:{autonomo:"Cribado nutricional (MNA) y consejo alimentario.", fragil:"Plan nutricional + manejo de causas; enlazar con fragilidad.", dependiente:"Soporte nutricional dirigido; manejo de disfagia y del cuidador."},
+      diagnostico:{name:"Cribado y diagnóstico nutricional", sub:"MNA / MNA-SF",
+        desc:"Tamizaje con MNA y búsqueda de causas (dentales, deglución, sociales, fármacos, enfermedad).",
+        criteria:{title:"Banderas / criterios", items:["Pérdida de peso no intencional","MNA <17 (desnutrido) o 17–23,5 (riesgo); MNA-SF ≤11","Reducción de la ingesta; problemas dentales o de deglución","Perímetro de pantorrilla/braquial disminuido"]},
+        tech:"MNA / MNA-SF · peso · perímetros", note:"La malnutrición es silenciosa: el cribado la hace visible."},
+      manejo:{name:"Plan nutricional", sub:"Causas + aporte",
+        desc:"Tratar las causas y asegurar el aporte energético-proteico; articular con fragilidad y ejercicio.",
+        options:{title:"Abordaje", items:["<b>Causas</b>: salud bucal, deglución, depresión, fármacos, situación social","<b>Aporte</b>: enriquecer la dieta; suplementos si procede","<b>Proteína</b> y ejercicio para preservar masa muscular","<b>Disfagia</b>: adaptar texturas; valorar riesgo de broncoaspiración"]},
+        tech:"Plan dietario · suplementación · manejo de disfagia", note:"Se integra con el síndrome de fragilidad y el ejercicio."},
+      complicaciones:{name:"Vigilancia", items:["Sarcopenia, caídas y úlceras por presión","Inmunodepresión e infecciones","Broncoaspiración en disfagia"], note:null},
+      escalas:["mna"],
+      teral:["Desnutrición severa o sin respuesta al plan","Disfagia que requiere valoración especializada","Concepto de nutrición clínica"],
+      remision:["Desnutrición severa con complicaciones que requieren manejo intrahospitalario"],
+      emergencia:["Broncoaspiración con dificultad respiratoria"],
+      factura:FACT(),
+      norma:{
+        marco:[["RPMS-vejez (Res. 3280/2018)","Incluye la valoración del estado nutricional y antropométrico del adulto mayor."],["GPC","No hay GPC colombiana específica de malnutrición del adulto mayor; MNA es el instrumento estándar."]],
+        exige:[["Cribado","Estado nutricional en la valoración de vejez."],["Manejo","Tratar causas + asegurar aporte energético-proteico."]],
+        paraclinicos:["Según el caso: hemograma, albúmina/prealbúmina, función renal, vitamina B12, perfil tiroideo.","Valoración de deglución si sospecha de disfagia."],
+        gpc:["MNA validado internacionalmente; integrar con fragilidad y ejercicio."],
+        particular:["El domicilio permite valorar la disponibilidad real de alimentos y el apoyo social."],
+        reporte:["RDA por atención (FHIR R4)."],
+        fuentes:[["MNA (Nestlé NRC)","https://www.mna-elderly.com/development-and-validation"],["Res. 3280/2018 (RPMS-vejez)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"]]
+      }},
+
+    depresion:{cat:"sindrome", built:true, color:"#3b82d9", label:"Depresión",
+      blurb:"Infratratada; se confunde con demencia; GDS-15.",
+      title:"Depresión en el adulto mayor",
+      sub:"Se atribuye erróneamente a la edad o se confunde con deterioro cognitivo. Es tratable y su tamizaje está previsto en la RPMS-vejez. Vigilar siempre el riesgo suicida.",
+      dep:{autonomo:"Tamizaje con GDS-15 y consejo psicosocial.", fragil:"Tratamiento + activación; diferenciar de demencia.", dependiente:"Manejo integral, soporte social y vigilancia del riesgo."},
+      diagnostico:{name:"Tamizaje y diagnóstico", sub:"GDS-15 + diferencial",
+        desc:"Tamizaje con GDS-15, diferenciar de demencia (seudodemencia) y de causas orgánicas; valorar riesgo suicida.",
+        criteria:{title:"Banderas / criterios", items:["GDS-15 ≥5 (depresión probable)","Ánimo bajo, anhedonia, aislamiento, alteración del sueño/apetito","Quejas somáticas múltiples sin causa orgánica clara","Duelo, soledad o pérdida de roles recientes","Valorar SIEMPRE el riesgo suicida"]},
+        tech:"GDS-15 · valoración del riesgo suicida", note:"La depresión del anciano se presenta con somatización y queja cognitiva."},
+      manejo:{name:"Manejo de la depresión", sub:"Psicosocial + farmacológico",
+        desc:"Combina intervención psicosocial y, si procede, antidepresivos, descartando causas orgánicas y revisando fármacos.",
+        options:{title:"Abordaje", items:["<b>Psicosocial</b>: activación conductual, redes de apoyo, reducción del aislamiento","<b>Farmacológico</b>: antidepresivo según perfil (cautela con anticolinérgicos)","<b>Descartar</b> hipotiroidismo, B12, fármacos depresógenos","<b>Riesgo suicida</b>: vigilancia y plan de seguridad"]},
+        tech:"Intervención psicosocial · antidepresivo · seguimiento", note:"Diferenciar de demencia evita tratamientos y etiquetas erróneas."},
+      complicaciones:{name:"Vigilancia", items:["Riesgo suicida","Deterioro funcional y nutricional","Mala adherencia a tratamientos de comorbilidades"], note:"El riesgo suicida en el adulto mayor es alto y a menudo subestimado."},
+      escalas:["gds15"],
+      teral:["Depresión grave, refractaria o con riesgo suicida","Duda diagnóstica con demencia","Concepto de psiquiatría/geriatría"],
+      remision:["Depresión grave que requiere manejo especializado"],
+      emergencia:["Ideación o conducta suicida activa","Síntomas psicóticos"],
+      factura:FACT(),
+      norma:{
+        marco:[["RPMS-vejez (Res. 3280/2018)","Incluye la valoración de la función mental, emocional y social del adulto mayor."],["GPC","No hay GPC colombiana específica de depresión del adulto mayor; GDS-15 es el tamiz estándar."]],
+        exige:[["Tamizaje","Síntomas depresivos (GDS-15) en la valoración de vejez."],["Diferencial","Diferenciar de demencia y de causas orgánicas; valorar riesgo suicida."]],
+        paraclinicos:["Para causas orgánicas: TSH, vitamina B12, hemograma, función renal/hepática.","Revisión de fármacos depresógenos."],
+        gpc:["GDS-15 de uso libre y validado en ancianos.","Integrar con la valoración cognitiva (diferenciar seudodemencia)."],
+        particular:["El domicilio permite valorar el aislamiento, las redes de apoyo y el riesgo en el entorno."],
+        reporte:["RDA por atención (FHIR R4)."],
+        fuentes:[["GDS-15 (Stanford)","https://web.stanford.edu/~yesavage/GDS.html"],["Res. 3280/2018 (RPMS-vejez)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"]]
+      }},
+
+    /* ---------------- ECNT CRÓNICAS ---------------- */
+    hta:{cat:"cronica", built:true, color:"#be123c", label:"Hipertensión arterial",
+      blurb:"Control de cifras con meta individualizada por fragilidad.",
+      title:"Hipertensión arterial (HTA) en el adulto mayor",
+      sub:"Seguimiento domiciliario de la HTA: control de cifras con meta individualizada (más laxa en el muy mayor o frágil para evitar hipotensión y caídas) y prevención del daño de órgano blanco. Ancla: GPC HTA (MinSalud/IETS) + tamización de riesgo CV (RPMS-vejez).",
+      dep:{autonomo:"Meta estándar; estilo de vida + farmacoterapia y adherencia.", fragil:"Meta individualizada; evitar hipotensión ortostática y caídas.", dependiente:"Metas conservadoras; simplificar el esquema; vigilancia por el cuidador."},
+      diagnostico:{name:"Confirmación diagnóstica", sub:"GPC HTA · MAPA/AMPA",
+        desc:"Confirmación con MAPA/AMPA y tamización del daño de órgano blanco; descartar HTA secundaria.",
+        criteria:{title:"Confirmación diagnóstica (GPC HTA)", items:["TA en consultorio ≥140/90 mmHg confirmada, o","MAPA — promedio 24 h ≥130/80 mmHg, o","AMPA domiciliaria ≥135/85 mmHg","Descartar HTA secundaria según criterio"]},
+        tech:"MAPA/AMPA · ECG · perfil renal y lipídico", note:"La medición domiciliaria (AMPA) es muy útil en el adulto mayor."},
+      manejo:{name:"Metas y manejo (lente geriátrico)", sub:"Meta individualizada por fragilidad",
+        desc:"Meta tensional individualizada según fragilidad; evitar el sobretratamiento que causa hipotensión y caídas.",
+        options:{title:"Metas y vigilancia", items:["<b>Meta general</b> &lt;140/90 mmHg; individualizar por fragilidad (CFS) — menos estricta en frágiles/muy mayores","<b>Evitar</b> hipotensión ortostática y caídas por sobretratamiento","<b>Daño de órgano blanco</b>: creatinina/TFG, albuminuria, ECG, fondo de ojo","<b>Conciliación</b> de fármacos (STOPP/START) y adherencia"]},
+        tech:"Farmacoterapia escalonada · ortostatismo · adherencia", note:"En el frágil, el objetivo se equilibra con el riesgo de caídas."},
+      complicaciones:{name:"Daño de órgano blanco", items:["Cardiopatía hipertensiva e insuficiencia cardiaca","Enfermedad renal crónica","ACV y deterioro cognitivo vascular","Retinopatía hipertensiva"], note:"El control sostenido previene IAM, ACV y ERC."},
+      escalas:["cfs","stopstart"],
+      teral:["TA no controlada pese a 3 fármacos (HTA resistente)","Sospecha de HTA secundaria","Daño de órgano blanco progresivo","Hipotensión ortostática / caídas por sobretratamiento (desescalar)"],
+      remision:["Daño de órgano blanco que requiere manejo especializado"],
+      emergencia:["Emergencia hipertensiva con daño agudo de órgano","Dolor torácico / signos de IAM o ACV"],
+      factura:FACT(["Programa de crónicos: cápita o pago global prospectivo (PGP)","Evento / paquete por control y paraclínico","Particular — pago de bolsillo o plan voluntario de salud"]),
+      norma:{
+        marco:[["GPC HTA (MinSalud/IETS)","Confirmación, meta individualizada y tamización del daño de órgano blanco."],["RPMS-vejez","La tamización de riesgo cardiovascular es la puerta de entrada."]],
+        exige:[["Confirmación","TA en consultorio + MAPA/AMPA"],["Meta","&lt;140/90 (individualizada; más laxa en frágil)"],["Riesgo CV","Framingham con corrección Colombia ×0,75"],["Daño de órgano blanco","Creatinina/TFG, albuminuria, ECG, fondo de ojo"]],
+        paraclinicos:["Perfil básico: creatinina con TFG, uroanálisis, ionograma, glicemia, perfil lipídico.","ECG de 12 derivaciones; fondo de ojo según riesgo.","MAPA/AMPA para confirmar y titular el tratamiento."],
+        gpc:["GPC para el manejo de la hipertensión arterial primaria (MinSalud/IETS).","Tamización de riesgo cardiovascular en el marco de la RPMS (Res. 3280/2018)."],
+        particular:["En el adulto mayor frágil, la meta se individualiza para evitar hipotensión y caídas."],
+        reporte:["PEDT (Res. 202/2021).","RDA por atención (FHIR R4)."],
+        fuentes:[["GPC HTA — portal GPC MinSalud","https://gpc.minsalud.gov.co/SitePages/default.aspx"],["Res. 3280/2018 (RPMS)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"]]
+      }},
+
+    dm2:{cat:"cronica", built:true, color:"#b45309", label:"Diabetes mellitus tipo 2",
+      blurb:"Control glucémico; meta laxa en frágil; pie diabético.",
+      title:"Diabetes mellitus tipo 2 (DM2) en el adulto mayor",
+      sub:"Seguimiento domiciliario de la DM2: control glucémico con meta individualizada (menos estricta en el frágil) y prevención de complicaciones, incluido el pie diabético. Ancla: GPC DM2 (GPC 2015 No. 51) + tamización metabólica (RPMS-vejez).",
+      dep:{autonomo:"HbA1c ~7 %; estilo de vida y farmacoterapia; tamizaje de complicaciones.", fragil:"HbA1c menos estricta (~7,5–8 %); evitar hipoglucemia.", dependiente:"Metas laxas; evitar hipoglucemia; vigilancia por el cuidador."},
+      diagnostico:{name:"Confirmación diagnóstica", sub:"GPC DM2 No. 51",
+        desc:"Confirmación diagnóstica y meta de HbA1c individualizada; tamización de complicaciones y del pie diabético.",
+        criteria:{title:"Confirmación diagnóstica (GPC DM2)", items:["Glicemia en ayunas ≥126 mg/dL (repetida), o","HbA1c ≥6,5 %, o","Glicemia 2 h post-carga ≥200 mg/dL, o","Glicemia aleatoria ≥200 mg/dL con síntomas"]},
+        tech:"HbA1c · TFG/albuminuria · fondo de ojo · monofilamento", note:"El pie diabético se integra con el cuidado de heridas."},
+      manejo:{name:"Metas y manejo (lente geriátrico)", sub:"Evitar la hipoglucemia",
+        desc:"Meta de HbA1c individualizada por fragilidad y expectativa; la hipoglucemia es especialmente peligrosa en el anciano.",
+        options:{title:"Metas y vigilancia", items:["<b>HbA1c</b> ~7 %; menos estricta (7,5–8 %) en frágiles","<b>Evitar hipoglucemia</b> (caídas, deterioro cognitivo); cautela con sulfonilureas/insulina","<b>Pie diabético</b>: tamización con monofilamento","<b>Nefroprotección</b>: TFG + albuminuria (IECA/ARA-II si albuminuria)","<b>Retinopatía/neuropatía</b>: fondo de ojo y examen de pies"]},
+        tech:"Antidiabéticos · monofilamento · fondo de ojo", note:"En el frágil, el riesgo de hipoglucemia pesa más que el control estricto."},
+      complicaciones:{name:"Complicaciones", items:["Pie diabético y úlceras","Nefropatía y retinopatía","Neuropatía y mayor riesgo de caídas","Hipoglucemia iatrogénica"], note:"La hipoglucemia es una complicación del tratamiento, no solo de la enfermedad."},
+      escalas:["cfs","stopstart"],
+      teral:["Mal control glucémico pese a tratamiento optimizado","Complicación (nefropatía, retinopatía, pie diabético)","Insulinización compleja o ajuste por endocrinología"],
+      remision:["Pie diabético complicado (infección/isquemia)","Complicación micro/macrovascular que requiere especialista"],
+      emergencia:["Hipo/hiperglucemia severa con alteración de conciencia","Pie diabético con sepsis o isquemia crítica"],
+      factura:FACT(["Programa de crónicos: cápita o pago global prospectivo (PGP)","Evento / paquete por control y paraclínico","Particular — pago de bolsillo o plan voluntario de salud"]),
+      norma:{
+        marco:[["GPC DM2 (GPC 2015 No. 51)","Confirmación, meta de HbA1c y tamización de complicaciones."],["RPMS-vejez","Tamización metabólica como puerta de entrada."]],
+        exige:[["Confirmación","Glicemia en ayunas / HbA1c / PTOG"],["Meta","HbA1c individualizada (~7 %; más laxa en frágil)"],["Pie diabético","Tamización (monofilamento)"],["Nefroprotección","TFG + albuminuria; IECA/ARA-II si albuminuria"]],
+        paraclinicos:["HbA1c, glicemia, perfil lipídico, creatinina con TFG, relación albúmina/creatinina.","Fondo de ojo (retinopatía) y examen de pies con monofilamento (neuropatía)."],
+        gpc:["GPC para el diagnóstico, tratamiento y seguimiento de la DM2 en mayores de 18 años (GPC 2015 No. 51).","En el anciano frágil, evitar la hipoglucemia prima sobre el control estricto."],
+        particular:["El domicilio permite revisar la técnica de insulina, la glucometría y el cuidado de los pies."],
+        reporte:["PEDT (Res. 202/2021).","RDA por atención (FHIR R4)."],
+        fuentes:[["GPC DM2 (PDF MinSalud)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/CA/gpc-completa-diabetes-mellitus-tipo2-poblacion-mayor-18-anos.pdf"],["Res. 3280/2018 (RPMS)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"]]
+      }},
+
+    erc:{cat:"cronica", built:true, color:"#0e7490", label:"Enfermedad renal crónica",
+      blurb:"Nefroprotección y estadificación TFG/albuminuria.",
+      title:"Enfermedad renal crónica (ERC) en el adulto mayor",
+      sub:"Seguimiento domiciliario de la ERC: nefroprotección, estadificación por TFG/albuminuria y preparación oportuna de terapia de reemplazo si avanza. Suele derivar de HTA y DM2. Ancla: GPC ERC (MinSalud/IETS).",
+      dep:{autonomo:"Nefroprotección y control de HTA/DM; vigilar progresión.", fragil:"Ajustar fármacos por TFG; evitar nefrotóxicos; decisiones compartidas.", dependiente:"Metas adaptadas; manejo conservador si procede; soporte al cuidador."},
+      diagnostico:{name:"Estadificación", sub:"GPC ERC · TFG + albuminuria (KDIGO)",
+        desc:"Estadificación por TFG y albuminuria, con cronicidad ≥3 meses; identificar la causa (frecuentemente HTA/DM2).",
+        criteria:{title:"Estadificación (TFG + albuminuria)", items:["TFG: ≥90 (G1) · 60–89 (G2) · 45–59 (G3a) · 30–44 (G3b) · 15–29 (G4) · <15 (G5)","Albuminuria: A1 (<30) · A2 (30–300) · A3 (>300 mg/g)","Cronicidad ≥3 meses para el diagnóstico","En el anciano, ajustar la interpretación de la TFG a la edad"]},
+        tech:"TFG (CKD-EPI) · relación albúmina/creatinina · ionograma", note:"La ERC se cogestiona con el control de HTA y DM2."},
+      manejo:{name:"Nefroprotección", sub:"Frenar la progresión",
+        desc:"Control de TA y glicemia, IECA/ARA-II si albuminuria, ajuste de dosis por TFG y evitar nefrotóxicos.",
+        options:{title:"Nefroprotección y vigilancia", items:["<b>Control de TA</b> y de la glicemia (si DM)","<b>IECA/ARA-II</b> si hay albuminuria","<b>Evitar nefrotóxicos</b> (AINE, contrastes) y ajustar dosis por TFG","<b>Anemia y mineral-óseo</b> en estadios avanzados","<b>Preparación de terapia de reemplazo</b> (G4–G5) con decisiones compartidas"]},
+        tech:"IECA/ARA-II · ajuste por TFG · evitar nefrotóxicos", note:"La detección y el manejo tempranos retrasan la diálisis."},
+      complicaciones:{name:"Complicaciones", items:["Anemia y alteración mineral-ósea","Hiperkalemia","Progresión a ERC terminal","Sobredosificación de fármacos por mala depuración"], note:"Vigilar la kalemia al usar IECA/ARA-II."},
+      escalas:["cfs","stopstart"],
+      teral:["Progresión rápida o caída acelerada de TFG","ERC avanzada (G4–G5): preparación de terapia de reemplazo","Complicaciones (anemia, mineral-óseo, hiperkalemia)"],
+      remision:["ERC avanzada que requiere nefrología para terapia de reemplazo"],
+      emergencia:["Hiperkalemia severa","Sobrecarga hídrica con edema agudo de pulmón"],
+      factura:FACT(["Programa de crónicos: cápita o pago global prospectivo (PGP)","Evento / paquete por control y paraclínico","Particular — pago de bolsillo o plan voluntario de salud"]),
+      norma:{
+        marco:[["GPC ERC (MinSalud/IETS)","Estadificación, nefroprotección y preparación de terapia de reemplazo."],["RPMS-vejez","Cogestión con HTA y DM2."]],
+        exige:[["Estadificación","TFG (CKD-EPI) + albuminuria (KDIGO)"],["Cronicidad","≥3 meses"],["Nefroprotección","Control de TA/glicemia, IECA/ARA-II, evitar nefrotóxicos"]],
+        paraclinicos:["Creatinina con TFG (CKD-EPI) y relación albúmina/creatinina.","Ionograma, hemograma (anemia), calcio/fósforo/PTH en estadios avanzados.","Ecografía renal según indicación."],
+        gpc:["GPC para el diagnóstico y manejo de la enfermedad renal crónica (MinSalud/IETS).","Ajuste de dosis de fármacos por TFG (clave en polifarmacia)."],
+        particular:["En el anciano, las decisiones sobre diálisis se comparten considerando fragilidad y pronóstico."],
+        reporte:["PEDT (Res. 202/2021).","RDA por atención (FHIR R4)."],
+        fuentes:[["GPC ERC — portal GPC MinSalud","https://gpc.minsalud.gov.co/SitePages/default.aspx"],["Res. 3280/2018 (RPMS)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"]]
+      }},
+
+    epoc:{cat:"cronica", built:true, color:"#6d28d9", label:"EPOC",
+      blurb:"Confirmación espirométrica y prevención de exacerbaciones.",
+      title:"EPOC en el adulto mayor",
+      sub:"Seguimiento domiciliario de la EPOC: confirmación espirométrica, prevención de exacerbaciones y rehabilitación. Frecuente antecedente de tabaquismo o humo de leña. Ancla: GPC EPOC (MinSalud/IETS).",
+      dep:{autonomo:"Cesación, inhaladores y vacunación; rehabilitación pulmonar.", fragil:"Optimizar técnica de inhalación; prevenir exacerbaciones; oxígeno según criterio.", dependiente:"Plan de acción ante exacerbación; soporte y oxígeno domiciliario si aplica."},
+      diagnostico:{name:"Confirmación y evaluación", sub:"GPC EPOC · espirometría",
+        desc:"Confirmación espirométrica post-broncodilatador y evaluación de síntomas y exacerbaciones.",
+        criteria:{title:"Confirmación y evaluación (GPC EPOC)", items:["Espirometría post-broncodilatador: VEF1/CVF <0,70","Evaluación de síntomas (escalas mMRC y CAT)","Historia de exacerbaciones en el último año","Factor de riesgo: tabaquismo / humo de leña"]},
+        tech:"Espirometría · oximetría · mMRC/CAT", note:"La espirometría puede requerir programar una jornada específica."},
+      manejo:{name:"Manejo y prevención", sub:"Exacerbaciones y rehabilitación",
+        desc:"Cesación, broncodilatadores escalonados con técnica correcta, vacunación y rehabilitación pulmonar.",
+        options:{title:"Manejo y vigilancia", items:["<b>Cesación</b> de tabaco y de humo de leña (intervención clave)","<b>Broncodilatadores</b> inhalados; verificar técnica de inhalación","<b>Vacunación</b> (influenza, neumococo)","<b>Rehabilitación pulmonar</b> y actividad física","<b>Plan de acción</b> ante exacerbación; oxígeno según criterio"]},
+        tech:"Inhaladores · vacunación · rehabilitación", note:"La técnica de inhalación es crítica y se verifica en domicilio."},
+      complicaciones:{name:"Complicaciones", items:["Exacerbaciones e ingresos recurrentes","Insuficiencia respiratoria","Cor pulmonale; comorbilidad cardiovascular","Desacondicionamiento y desnutrición"], note:null},
+      escalas:["cfs"],
+      teral:["EPOC mal controlado o exacerbaciones frecuentes","Duda diagnóstica o necesidad de espirometría / neumología","Indicación o titulación de oxígeno domiciliario"],
+      remision:["Indicación de oxígeno domiciliario o estudio neumológico","Exacerbaciones recurrentes pese a manejo óptimo"],
+      emergencia:["Exacerbación severa con insuficiencia respiratoria","Disnea severa o cianosis"],
+      factura:FACT(["Programa de crónicos: cápita o pago global prospectivo (PGP)","Evento / paquete por control y paraclínico","Particular — pago de bolsillo o plan voluntario de salud"]),
+      norma:{
+        marco:[["GPC EPOC (MinSalud/IETS)","Confirmación espirométrica, evaluación y prevención de exacerbaciones."],["RPMS-vejez","Vacunación y cesación de tabaco en el cuidado integral."]],
+        exige:[["Confirmación","Espirometría post-BD: VEF1/CVF <0,70"],["Evaluación","Síntomas (mMRC/CAT) + exacerbaciones"],["Manejo","Cesación, inhaladores, vacunación, rehabilitación"]],
+        paraclinicos:["Espirometría pre y post-broncodilatador (confirmación).","Oximetría de pulso; gases arteriales según gravedad.","Radiografía de tórax para diagnósticos diferenciales."],
+        gpc:["GPC para la prevención, diagnóstico y tratamiento de la EPOC (MinSalud/IETS).","Énfasis en cesación de tabaco/humo de leña."],
+        particular:["El domicilio permite verificar la técnica de inhalación y la exposición a humo de leña."],
+        reporte:["PEDT (Res. 202/2021).","RDA por atención (FHIR R4)."],
+        fuentes:[["GPC EPOC — portal GPC MinSalud","https://gpc.minsalud.gov.co/SitePages/default.aspx"],["Res. 3280/2018 (RPMS)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"]]
+      }},
+
+    icc:{cat:"cronica", built:true, color:"#c2185b", label:"Insuficiencia cardiaca",
+      blurb:"Síndrome de alta carga; manejo y prevención de descompensaciones.",
+      title:"Insuficiencia cardiaca (IC) en el adulto mayor",
+      sub:"Síndrome de alta prevalencia y carga en el anciano. El seguimiento domiciliario vigila signos de congestión, optimiza el tratamiento y previene descompensaciones e ingresos. Ancla: GPC de falla cardiaca (MinSalud/IETS).",
+      dep:{autonomo:"Optimizar tratamiento; educación en autocuidado (peso, sal).", fragil:"Titular con cautela; vigilar TA, función renal y polifarmacia.", dependiente:"Metas adaptadas; vigilancia de congestión por el cuidador; cuidado paliativo si avanza."},
+      diagnostico:{name:"Diagnóstico y clasificación", sub:"Síntomas + péptidos + ecocardiograma",
+        desc:"Diagnóstico clínico apoyado en péptidos natriuréticos y ecocardiograma; clasificar por fracción de eyección y por clase funcional (NYHA).",
+        criteria:{title:"Diagnóstico y clasificación", items:["Síntomas/signos: disnea, ortopnea, edema, ingurgitación yugular","Péptidos natriuréticos (BNP/NT-proBNP) elevados","Ecocardiograma: FE reducida (≤40 %) vs. preservada","Clase funcional NYHA (I–IV)"]},
+        tech:"BNP/NT-proBNP · ecocardiograma · ECG", note:"Diferenciar IC con FE reducida vs. preservada orienta el tratamiento."},
+      manejo:{name:"Manejo y autocuidado", sub:"Tratamiento + congestión",
+        desc:"Tratamiento dirigido por guías (en FE reducida) y manejo de la congestión; el autocuidado domiciliario es clave.",
+        options:{title:"Manejo y vigilancia", items:["<b>Tratamiento dirigido</b> (en FE reducida): IECA/ARA-II o ARNI, betabloqueador, antialdosterónico, iSGLT2 — titular con cautela en el anciano","<b>Congestión</b>: diuréticos; control de signos","<b>Autocuidado</b>: peso diario, restricción de sal, adherencia","<b>Vacunación</b> y manejo de comorbilidades (HTA, DM, ERC, FA)"]},
+        tech:"Tratamiento por guías · peso diario · diuréticos", note:"El peso diario y la educación al cuidador previenen ingresos."},
+      complicaciones:{name:"Complicaciones", items:["Descompensación y hospitalización recurrente","Deterioro de la función renal e hiperkalemia (síndrome cardiorrenal)","Fibrilación auricular y eventos embólicos","Caquexia cardiaca y fragilidad"], note:"La descompensación con edema agudo de pulmón es una emergencia."},
+      escalas:["cfs","stopstart"],
+      teral:["IC de difícil control o descompensaciones recurrentes","Titulación compleja del tratamiento dirigido","Concepto de cardiología (dispositivos, FE muy reducida)"],
+      remision:["IC avanzada o refractaria para manejo especializado","Necesidad de ecocardiograma/estudio no disponible en domicilio"],
+      emergencia:["Edema agudo de pulmón / disnea severa","Descompensación con compromiso hemodinámico"],
+      factura:FACT(["Programa de crónicos: cápita o pago global prospectivo (PGP)","Evento / paquete por control y paraclínico","Particular — pago de bolsillo o plan voluntario de salud"]),
+      norma:{
+        marco:[["GPC de falla cardiaca (MinSalud/IETS)","Diagnóstico, clasificación y tratamiento de la insuficiencia cardiaca."],["RPMS-vejez","Control de riesgo cardiovascular y comorbilidades."]],
+        exige:[["Diagnóstico","Clínico + péptidos natriuréticos + ecocardiograma"],["Clasificación","Por fracción de eyección y clase funcional (NYHA)"],["Tratamiento","Dirigido por guías en FE reducida; manejo de congestión"]],
+        paraclinicos:["BNP/NT-proBNP, ecocardiograma, ECG.","Función renal e ionograma (vigilancia con diuréticos/antialdosterónicos), hemograma."],
+        gpc:["GPC colombiana de falla cardiaca (MinSalud/IETS).","Titulación con cautela en el anciano frágil; vigilar TA, función renal y polifarmacia."],
+        particular:["El seguimiento domiciliario del peso y los signos de congestión previene ingresos."],
+        reporte:["PEDT (Res. 202/2021) según corresponda.","RDA por atención (FHIR R4)."],
+        fuentes:[["Portal GPC MinSalud","https://gpc.minsalud.gov.co/SitePages/default.aspx"],["Res. 3280/2018 (RPMS)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"]]
+      }},
+
+    /* ---------------- DISCAPACIDAD ---------------- */
+    discapacidad:{cat:"discapacidad", built:true, color:"#6a4c93", label:"Certificación de discapacidad",
+      blurb:"Res. 113/2020 · CIF · RLCPD.",
+      title:"Certificación de discapacidad del adulto mayor",
+      sub:"La discapacidad y la dependencia funcional se solapan en el adulto mayor. CIAS, como IPS autorizada, puede valorar y certificar (Res. 113/2020). Base conceptual: CIF. Marco de derechos: Ley 1618/2013.",
+      dep:{autonomo:"Tamizaje y orientación sobre la ruta de certificación.", fragil:"Valoración multidisciplinaria; vincular a rehabilitación.", dependiente:"Certificación + plan de rehabilitación y ayudas técnicas; soporte al cuidador."},
+      diagnostico:{name:"Valoración multidisciplinaria (CIF)", sub:"Res. 113/2020",
+        desc:"Valoración clínica multidisciplinaria con base en la CIF, por el equipo que designe la IPS según la deficiencia; garantías de voluntariedad y segunda opinión.",
+        criteria:{title:"Base y garantías", items:["Autorreconocimiento y voluntariedad","Valoración multidisciplinaria (CIF) por IPS autorizada","Se apoya en la valoración funcional (Barthel/Lawton)","Derecho a segunda opinión (10 días hábiles); gratuidad para el usuario"]},
+        tech:"Instrumentos de valoración funcional · CIF", note:"La valoración para certificación es presencial y multidisciplinaria."},
+      manejo:{name:"Certificado, RLCPD y plan", sub:"Acceso a derechos",
+        desc:"Emisión del certificado (si aplica), inscripción en el RLCPD (SISPRO) y plan de rehabilitación y ayudas técnicas.",
+        options:{title:"Resultado y plan", items:["<b>Certificado</b> de discapacidad (personal e intransferible; solo IPS autorizadas)","<b>Inscripción</b> en el RLCPD (SISPRO)","<b>Rehabilitación</b> según la deficiencia y ayudas técnicas","<b>Acceso a derechos</b> y articulación con programas sociales (Ley 1618/2013)"]},
+        tech:"RLCPD · SISPRO · plan de rehabilitación", note:"La certificación abre acceso a derechos; no es un fin en sí misma."},
+      complicaciones:null,
+      escalas:["barthel","lawton"],
+      teral:["Necesidad de concepto de fisiatría/rehabilitación para el plan","Áreas terapéuticas no disponibles en la valoración inicial","Ajuste del plan de rehabilitación o de ayudas técnicas"],
+      remision:["Manejo de mayor complejidad de la condición de base"],
+      emergencia:["Evento agudo durante la valoración (p. ej. crisis, broncoaspiración)"],
+      factura:FACT(["Evento (valoración multidisciplinaria)","Paquete de certificación + rehabilitación","Particular — pago de bolsillo o plan voluntario de salud"]),
+      norma:{
+        marco:[["Res. 113 de 2020","Procedimiento de certificación de discapacidad y RLCPD; valoración multidisciplinaria por IPS autorizada."],["CIF","Clasificación Internacional del Funcionamiento — base conceptual."],["Ley 1618 de 2013","Garantía del pleno ejercicio de los derechos de las personas con discapacidad."]],
+        exige:[["Valoración","Clínica multidisciplinaria (CIF)"],["Garantías","Voluntariedad, autorreconocimiento, segunda opinión (10 días)"],["Registro","Inscripción en el RLCPD (SISPRO)"]],
+        paraclinicos:["Según la deficiencia de base; la valoración es funcional y multidisciplinaria (no una batería fija)."],
+        gpc:["Marco de derechos (Ley 1618/2013) y procedimiento Res. 113/2020.","La rehabilitación se orienta según la condición de base."],
+        particular:["En el adulto mayor, la dependencia funcional severa suele coincidir con discapacidad certificable."],
+        reporte:["RLCPD (SISPRO).","RDA por atención (FHIR R4)."],
+        fuentes:[["Res. 113/2020 (SUIN-Juriscol)","https://www.suin-juriscol.gov.co/clp/contenidos.dll/Resolucion/30040205"],["ABECÉ certificación y RLCPD (MinSalud)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/PS/abc-certificacion-rlcpd.pdf"]]
+      }},
+
+    /* pendientes (ninguna por ahora) */
+  };
+
+  /* =====================================================================
+     FLUJO BASE (pasos completos; algunos condicionales por patología)
+     ===================================================================== */
+  function actorMD(base, patch){ return Object.assign({kind:"Acto médico", name:"Acto médico", sub:"Médico orquestador", tone:"diff",
+    recv:["Conjunto clínico de la valoración","Historia y medicación"], emit:["Decisión clínica","Órdenes y registro"], tech:"", note:""}, base, patch||{}); }
+
+  function baseSteps(p){
+    var steps=[];
+    steps.push({title:"El adulto mayor o su familia inicia el contacto", desc:"Solicitud de atención; muchas veces la activa la familia o el cuidador.",
+      nodes:["patient"], spot:"patient", edges:[],
+      actor:{kind:"Origen del proceso", name:"Adulto mayor en su domicilio", sub:"Persona de 60 años o más", tone:"coco",
+        desc:"Punto de partida. El domicilio permite ver al paciente en su entorno real (clave en quien tiene movilidad reducida).",
+        recv:["Confirmación de su atención","Hora de llegada del equipo"], emit:["Solicitud de atención","Antecedentes y lista de fármacos"],
+        tech:"Contacto · canal de la IPS", note:"La atención viaja al paciente."}});
+    steps.push({title:"Coordinación agenda la visita", desc:"Se inscribe al adulto mayor en el programa de vejez y se agenda la visita domiciliaria.",
+      nodes:["patient","coco"], edges:["e1"], spot:"coco",
+      actor:{kind:"Coordinación", name:"Coordinación y agendamiento", sub:"Central de citas y videoconsulta", tone:"coco",
+        desc:"Centraliza la agenda y sostiene la continuidad (visitas de seguimiento).",
+        recv:["Solicitud del paciente/familia","Disponibilidad del equipo"], emit:["Confirmación de cita","Despacho del equipo","Agenda de seguimiento"],
+        tech:"Agendamiento extramural", note:"La valoración de vejez es periódica."}});
+    steps.push({title:"Revisión de la historia clínica oficial", desc:"El médico revisa antecedentes, comorbilidad y la lista de medicamentos antes de la visita.",
+      nodes:["patient","coco","md","himed"], edges:["e1","e2"], spot:"himed",
+      actor:{kind:"Plataforma de historia", name:"Historia clínica electrónica (HCE oficial)", sub:"Registro clínico-legal", tone:"diff",
+        desc:"El médico consulta antecedentes y la lista de fármacos (clave para la revisión de polifarmacia) antes de la visita.",
+        recv:["Notificación de coordinación","Historia y medicación previa"], emit:["Historia disponible para el equipo","Base para la conciliación medicamentosa"],
+        tech:"HCE oficial · FHIR R4", note:"La facturación al SGSSS se tramita desde la HCE oficial."}});
+    steps.push({title:"Despacho del equipo extramural", desc:"Enfermería entrenada se desplaza al domicilio con el kit BLE.",
+      nodes:["patient","coco","md","nurse"], edges:["e1","e2","e2b"], spot:"nurse",
+      actor:{kind:"Profesional en territorio", name:"Equipo extramural", sub:"Enfermería con tablet y dispositivos biomédicos", tone:"data",
+        desc:"Aplica los instrumentos de la valoración y capta signos con el kit BLE. Observa el entorno del hogar (riesgo de caídas).",
+        options:{title:"Kit biomédico (Ciudad)", items:["<b>Tensiómetro BLE</b> — presión arterial","<b>Pulsioxímetro</b> — saturación y frecuencia cardiaca","<b>Fonendoscopio digital con ECG</b> — auscultación + ritmo (tamizaje de FA)","<b>Báscula / cinta métrica</b> — peso, IMC, perímetros","<b>Glucómetro</b> y <b>tablet</b> con captura BLE"]},
+        recv:["Asignación de coordinación","Protocolo de la valoración"], emit:["Escalas y signos validados","Observación del entorno"],
+        tech:"Kit BLE · tablet · captura del episodio", note:"Captura clínica del episodio, no telemonitoreo (Res. 2654/2019)."}});
+    steps.push({title:"Visita: valoración + captura en territorio", desc:"Se aplican los instrumentos y la captura alimenta la historia de datos extramural; el médico puede dirigir por videollamada.",
+      nodes:["patient","coco","md","nurse","hde"], edges:["e3a","eH1"], spot:"hde",
+      actor:{kind:"Captura extramural", name:"Historia de datos extramural", sub:"Captura en territorio", tone:"data",
+        desc:"Recibe los datos de la valoración y de los wearables durante la visita. Complementa la historia oficial; no la sustituye.",
+        recv:["Parámetros del kit BLE","Anamnesis y examen"], emit:["Conjunto clínico de la valoración","Soporte para el médico"],
+        tech:"Captura en territorio · BLE", note:"La captura consolida la valoración para la decisión médica."}});
+
+    // Paso SIEMPRE presente: la Valoración Geriátrica Integral es el eje del manejo de toda patología
+    steps.push({title:"Valoración Geriátrica Integral (VGI)", desc:"La VGI multidimensional es el eje del manejo: toda patología se aborda sobre clínica, funcional, mental y social, con foco en esta entidad.",
+      nodes:["patient","nurse","hde","md"], edges:["eH1","eH2"], spot:"hde", vc:p.color,
+      actor:{kind:"Valoración integral · eje del manejo", name:"Valoración Geriátrica Integral", sub:"4 dimensiones · base del plan", tone:"data",
+        desc:"Toda patología se maneja SOBRE la VGI: el nivel de dependencia y los síndromes detectados modifican el manejo (p. ej. metas más laxas en el frágil).",
+        criteria:{title:"Dimensiones de la VGI (con foco en esta patología)", items:["<b>Clínica</b>: comorbilidad, riesgo CV, fármacos","<b>Funcional</b>: ABVD/AIVD y marcha — define el nivel de dependencia","<b>Mental</b>: cognición y estado de ánimo","<b>Social</b>: cuidador, redes de apoyo y entorno"]},
+        options:(p.escalas&&p.escalas.length)?{title:"Escalas aplicadas en esta patología", items:p.escalas.map(function(id){ var e=ESCALAS[id]; return "<b>"+e.name+"</b> — "+e.corte; })}:null,
+        recv:["Anamnesis y parámetros del kit BLE"], emit:["Perfil multidimensional","Nivel de dependencia (autónomo/frágil/dependiente)"],
+        tech:"VGI · escalas validadas", note:"El nivel de dependencia que arroja la VGI define la intensidad y las metas del manejo (ver la etiqueta clicable arriba del flujo)."}});
+
+    var dg=p.diagnostico||{};
+    steps.push({title:(dg.name?("Acto médico — "+dg.name):"Acto médico — diagnóstico"), desc:"El médico confirma el diagnóstico o caracteriza el problema con los hallazgos de la valoración.",
+      nodes:["patient","md","nurse","hde"], edges:["eH2"], spot:"md", vc:p.color,
+      actor:actorMD({kind:"Acto médico · diagnóstico", name:dg.name||"Diagnóstico", sub:dg.sub||"", desc:dg.desc||"", criteria:dg.criteria, tech:dg.tech||"", note:dg.note||""})});
+
+    var mn=p.manejo||{};
+    var depCrit = (p.dep&&p.dep[depSel]) ? {title:"Manejo según la VGI · nivel "+DEP_LBL[depSel], items:[p.dep[depSel]]} : null;
+    steps.push({key:"manejo", title:(mn.name?("Acto médico — "+mn.name):"Acto médico — manejo"), desc:"El médico define metas y plan de manejo, individualizado por el nivel de dependencia que arrojó la VGI (etiqueta clicable arriba).",
+      nodes:["patient","md"], edges:["eH2"], spot:"md", vc:p.color,
+      actor:actorMD({kind:"Acto médico · metas y manejo", name:mn.name||"Manejo", sub:mn.sub||"", desc:mn.desc||"", criteria:depCrit, options:mn.options, tech:mn.tech||"", note:mn.note||"",
+        recv:["VGI: diagnóstico, clasificación y nivel de dependencia"], emit:["Plan de manejo individualizado","Metas y formulación"]})});
+
+    if(p.complicaciones){
+      var cx=p.complicaciones;
+      steps.push({title:"Vigilancia de complicaciones", desc:"Se definen las complicaciones a vigilar y las señales de alarma para el paciente y el cuidador.",
+        nodes:["patient","md","cuidador"], edges:["e6"], spot:"md", vc:p.color,
+        actor:actorMD({kind:"Acto médico · vigilancia", name:cx.name||"Complicaciones a vigilar", sub:"Prevención secundaria", desc:"Anticipar y vigilar las complicaciones propias de esta entidad.",
+          options:{title:"Complicaciones / señales de alarma", items:cx.items}, tech:"Plan de vigilancia · señales de alarma", note:cx.note||"",
+          recv:["Plan de manejo"], emit:["Señales de alarma","Criterios de reconsulta"]})});
+    }
+
+    steps.push({title:"Teleapoyo de especialistas (cuando se requiere)", desc:"Ante complejidad, el caso se escala por telexperticia médico-médico.",
+      nodes:["patient","md","nurse","hde","teral"], edges:["e4","e5"], spot:"teral", vc:p.color,
+      actor:{kind:"Teleapoyo de especialistas", name:"Telexperticia", sub:"Geriatría y especialidades", tone:"asoegre",
+        desc:"El médico escala el caso para concepto especializado. No es rutinario: se usa en casos que lo ameritan.",
+        options:{title:"Casos para teleapoyo", items:(p.teral||["Caso que supera el manejo inicial"])},
+        recv:["Caso del paciente","Resultados de la valoración"], emit:["Concepto del especialista","Ajuste del plan o remisión"],
+        tech:"Telexperticia · grupo por especialidad", note:"La recomendación no es vinculante y se factura desde la HCE oficial."}});
+
+    steps.push({title:"Plan de cuidado con el cuidador", desc:"El cuidador se integra como co-protagonista: educación, señales de alarma y soporte en casa.",
+      nodes:["patient","md","cuidador"], edges:["e6"], spot:"cuidador",
+      actor:{kind:"Co-protagonista del plan", name:"Cuidador", sub:"Familiar o cuidador formal", tone:"coco",
+        desc:"El plan domiciliario sólo funciona si el cuidador puede ejecutarlo. CIAS lo capacita y vigila su sobrecarga.",
+        options:{title:"Soporte al cuidador", items:["Educación en el plan: fármacos, movilización, prevención de caídas y úlceras","Señales de alarma y canal directo con coordinación","Detección de sobrecarga del cuidador y de riesgo de maltrato/abandono"]},
+        recv:["Plan de cuidado del médico","Capacitación del equipo"], emit:["Ejecución del cuidado en casa","Reporte de evolución y alarmas"],
+        tech:"Educación + canal de coordinación", note:"Cuidar al cuidador es parte del cuidado del paciente."}});
+
+    steps.push({title:"Registro y reporte (RDA)", desc:"La valoración y el plan quedan en la HCE oficial (RDA en FHIR R4); coordinación agenda la reevaluación.",
+      nodes:["patient","coco","md","hde","himed"], edges:["e2"], spot:"himed",
+      actor:{kind:"Registro", name:"Registro en la HCE oficial", sub:"Historia y reporte", tone:"diff",
+        desc:"Se consolida la valoración y el plan en la historia oficial; se emite el RDA. Coordinación programa la siguiente valoración.",
+        recv:["Plan y resultados","Conceptos de telexperticia"], emit:["RDA (FHIR R4)","Agenda de reevaluación"],
+        tech:"HCE oficial · RDA Res. 866/2021", note:"El RDA es el reporte clínico interoperable de la atención."}});
+
+    if(p.remision){
+      steps.push({title:"Camino alterno: remisión a mayor complejidad", desc:"Si el caso supera la capacidad resolutiva domiciliaria, se remite a una unidad de mayor complejidad.",
+        nodes:["patient","md","emergencia"], edges:["eEM"], spot:"emergencia", vc:p.color,
+        actor:{kind:"Camino alterno · salida del modelo domiciliario", name:"Remisión a mayor complejidad", sub:"Unidad de mayor complejidad", tone:"coco",
+          desc:"El paciente sale del modelo domiciliario hacia una unidad de mayor complejidad cuando se cumplen criterios de remisión.",
+          options:{title:"Criterios de remisión", items:p.remision},
+          recv:["Caso que supera la capacidad domiciliaria"], emit:["Remisión con la información clínica","Contrarreferencia al retorno"],
+          tech:"Red de remisión · contrarreferencia", note:"El nivel de mayor complejidad no se desarrolla aquí; solo se marca el camino."}});
+    }
+    if(p.emergencia){
+      steps.push({title:"Salida de emergencia: traslado urgente", desc:"Si durante la visita el paciente se deteriora y cumple criterios de emergencia, se activa el traslado urgente.",
+        nodes:["patient","nurse","md","emergencia"], edges:["eEM"], spot:"emergencia", vc:p.color,
+        actor:{kind:"Camino de emergencia · salida del modelo domiciliario", name:"Urgencias · mayor complejidad", sub:"Traslado urgente", tone:"coco",
+          desc:"Ante una emergencia detectada durante la visita, el equipo en territorio y el médico activan la atención urgente.",
+          options:{title:"Criterios de emergencia", items:p.emergencia},
+          recv:["Deterioro clínico durante la visita"], emit:["Activación de la emergencia","Traslado por la red local de salud"],
+          tech:"Urgencias · traslado por la red local de salud", note:"El traslado lo ejecuta la red local de salud (SEM/ambulancia)."}});
+    }
+    var f=p.factura||FACT();
+    steps.push({title:"Facturación (paso administrativo)", desc:"Último eslabón, netamente administrativo: deriva del acto clínico ya registrado.",
+      nodes:["patient","himed","facturacion"], edges:["eFA"], spot:"facturacion",
+      actor:{kind:"Paso administrativo · deriva de la atención", name:"Facturación", sub:"según el tipo de servicio", tone:"asoegre",
+        desc:"Traduce a facturación el acto clínico ya registrado, sin generar un acto clínico nuevo.",
+        options:{title:"Modalidades de facturación", items:f.modalidades},
+        recv:["Acto clínico registrado"], emit:["Factura / RIPS / RDA según la modalidad"],
+        tech:"HCE oficial · RIPS / RDA", note:"El detalle del marco de facturación está en la pestaña Marco normativo."}});
+    return steps;
+  }
+
+  /* =====================================================================
+     MOTOR
+     ===================================================================== */
+  var step=0, seen={}, timer=null, STEP_MS=6200, currentSteps=[], patSel="general", catSel="general", depSel="autonomo";
+  var DEP_LBL={autonomo:"Autónomo / robusto", fragil:"Frágil / pre-frágil", dependiente:"Dependiente"};
+  var svg=document.getElementById("flowSvg");
+  function node(id){ return svg.querySelector('.story-node[data-node="'+id+'"]'); }
+  function edge(id){ return document.getElementById(id); }
+  function particle(id){ return svg.querySelector('.story-particle[data-p="'+id+'"]'); }
+  function clearAll(){
+    svg.querySelectorAll(".story-node").forEach(function(n){ n.classList.remove("is-visible","is-spotlight","is-dim"); });
+    svg.querySelectorAll(".story-edge").forEach(function(e){ e.classList.remove("is-visible"); });
+    svg.querySelectorAll(".story-particle").forEach(function(p){ p.classList.remove("is-visible"); });
+  }
+  function setList(el, items, html){
+    el.innerHTML="";
+    (items||[]).forEach(function(x,i){ var li=document.createElement("li"); if(html) li.innerHTML=x; else li.textContent=x; li.style.animationDelay=(40+i*55)+"ms"; el.appendChild(li); });
+  }
+  function fillActor(a){
+    var empty=document.getElementById("actorEmpty"), body=document.getElementById("actorBody");
+    if(!a){ empty.style.display="flex"; body.style.display="none"; return; }
+    empty.style.display="none"; body.style.display="flex";
+    var c=document.getElementById("actorCard");
+    c.className="actor-card"+(a.tone?(" tone-"+a.tone):"");
+    document.getElementById("aKind").textContent=a.kind||"";
+    document.getElementById("aName").textContent=a.name||"";
+    document.getElementById("aSub").textContent=a.sub||"";
+    document.getElementById("aDesc").textContent=a.desc||"";
+    var crit=document.getElementById("aCriteria");
+    if(a.criteria){ crit.style.display="block"; document.getElementById("aCritTitle").textContent=a.criteria.title||"Criterios"; setList(document.getElementById("aCritList"), a.criteria.items, true); }
+    else crit.style.display="none";
+    var opt=document.getElementById("aOptions");
+    if(a.options){ opt.style.display="block"; document.getElementById("aOptTitle").textContent=a.options.title||"Opciones"; setList(document.getElementById("aOptList"), a.options.items, true); }
+    else opt.style.display="none";
+    setList(document.getElementById("aRecv"), a.recv);
+    setList(document.getElementById("aEmit"), a.emit);
+    document.getElementById("aTech").textContent=a.tech||"";
+    var nw=document.getElementById("aNoteWrap");
+    if(a.note){ nw.style.display="block"; document.getElementById("aNote").textContent=a.note; } else nw.style.display="none";
+  }
+  function buildDots(n){
+    var d=document.getElementById("dots"); d.innerHTML="";
+    for(var i=0;i<n;i++){ var b=document.createElement("button"); b.className="dot-btn"; b.textContent=("0"+(i+1)).slice(-2);
+      (function(idx){ b.addEventListener("click",function(){ stop(); go(idx); }); })(i); d.appendChild(b); }
+  }
+  function go(i){
+    if(!currentSteps.length) return;
+    step=Math.max(0,Math.min(i,currentSteps.length-1)); seen[step]=true;
+    var st=currentSteps[step]; clearAll();
+    var cardVc = st.vc || (PAT[patSel]&&PAT[patSel].color) || "";
+    document.documentElement.style.setProperty("--vc", cardVc);
+    st.nodes.forEach(function(id){ var n=node(id); if(n) n.classList.add("is-visible"); });
+    if(st.spot){ st.nodes.forEach(function(id){ var n=node(id); if(n && id!==st.spot) n.classList.add("is-dim"); });
+      var sp=node(st.spot); if(sp){ sp.classList.remove("is-dim"); sp.classList.add("is-spotlight"); } }
+    (st.edges||[]).forEach(function(id){ var e=edge(id); if(e) e.classList.add("is-visible"); var p=particle(id); if(p) p.classList.add("is-visible"); });
+    document.getElementById("capNum").textContent="PASO "+("0"+(step+1)).slice(-2)+" / "+("0"+currentSteps.length).slice(-2);
+    document.getElementById("capTitle").textContent=st.title;
+    document.getElementById("capDesc").textContent=st.desc;
+    fillActor(st.actor);
+    document.querySelectorAll(".dot-btn").forEach(function(b,idx){ b.classList.toggle("is-active",idx===step); if(seen[idx]&&idx!==step) b.classList.add("seen"); });
+    document.getElementById("btnPrev").disabled=(step===0);
+    document.getElementById("btnNext").disabled=(step===currentSteps.length-1);
+  }
+  function play(){
+    document.getElementById("btnPlay").classList.add("playing");
+    document.getElementById("playIcon").innerHTML='<rect x="6" y="5" width="4" height="14"></rect><rect x="14" y="5" width="4" height="14"></rect>';
+    if(step>=currentSteps.length-1) go(0);
+    timer=setInterval(function(){ if(step>=currentSteps.length-1){ stop(); return; } go(step+1); },STEP_MS);
+  }
+  function stop(){ if(timer){ clearInterval(timer); timer=null; }
+    document.getElementById("btnPlay").classList.remove("playing");
+    document.getElementById("playIcon").innerHTML='<polygon points="8 5 19 12 8 19 8 5"></polygon>'; }
+
+  /* ---------- ESCALA cards ---------- */
+  function escCard(id){
+    var e=ESCALAS[id]; if(!e) return "";
+    return '<div class="esc-card"><div class="ec-top"><span class="ec-name">'+e.name+'</span><span class="ec-range">'+e.rango+'</span></div>'+
+      '<div class="ec-mide">'+e.mide+'</div>'+
+      '<div class="ec-corte"><b>Interpretación:</b> '+e.corte+'</div>'+
+      '<div class="ec-why"><b>Por qué:</b> '+e.why+'</div>'+
+      (e.flag?('<div class="ec-flag">⚠ '+e.flag+'</div>'):'')+
+      '<div class="ec-src">Fuente: <a href="'+e.src.u+'" target="_blank" rel="noopener">'+e.src.t+'</a></div></div>';
+  }
+
+  /* ---------- NORMA (completa) ---------- */
+  function kv(rows){ return rows.map(function(r){return '<div class="nrow"><span class="k">'+r[0]+'</span><span class="v">'+r[1]+'</span></div>';}).join(''); }
+  function nul(items){ return '<ul class="nlist">'+items.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>'; }
+  function ntags(arr){ return '<div class="ntaglist">'+arr.map(function(r){return '<span class="ntag2"><a href="'+r[1]+'" target="_blank" rel="noopener">'+r[0]+'</a></span>';}).join('')+'</div>'; }
+  function ncard(cls,ic,title,inner){ return '<div class="norma-card '+cls+'"><h4><span class="ic">'+ic+'</span>'+title+'</h4>'+inner+'</div>'; }
+  function renderNorma(p){
+    var N=p.norma||{}; var f=p.factura||FACT(); var html='<div class="norma-wrap">';
+    if(N.marco) html+=ncard('diff','N','Norma / guía marco', kv(N.marco));
+    if(N.exige) html+=ncard('','E','Qué exige', kv(N.exige));
+    if(N.paraclinicos) html+=ncard('data','P','Paraclínicos y tamizajes', nul(N.paraclinicos));
+    if(N.gpc) html+=ncard('','G','Guías de práctica clínica', nul(N.gpc));
+    if(N.particular) html+=ncard('','C','Particularidades del contexto', nul(N.particular));
+    if(N.reporte) html+=ncard('diff','R','Reporte y registro', nul(N.reporte));
+    var facturaInner='<div class="nrow"><span class="k">Más frecuentes</span><span class="v"><ol class="fact-mod">'+f.modalidades.map(function(m){return '<li>'+m+'</li>';}).join('')+'</ol></span></div>'+
+      '<div class="nrow"><span class="k">Marco</span><span class="v">'+f.marco+'</span></div>'+
+      '<div class="nrow"><span class="k">Codificación</span><span class="v">'+f.codigos+'</span></div>'+
+      '<div class="nrow"><span class="k">Glosas</span><span class="v">'+f.glosas+'</span></div>';
+    html+=ncard('gold full','$','Marco de facturación', facturaInner);
+    if(N.fuentes) html+=ncard('full','F','Fuentes oficiales', ntags(N.fuentes));
+    html+='</div>';
+    document.getElementById("viewNorma").innerHTML=html;
+  }
+
+  /* ---------- dep tag (clicable → ajusta el manejo del flujo) ---------- */
+  function renderDep(p){
+    var d=p.dep; var box=document.getElementById("patDep");
+    if(!d){ box.innerHTML=""; return; }
+    box.innerHTML="";
+    [["autonomo","--auto","Autónomo"],["fragil","--fragil","Frágil"],["dependiente","--depen","Dependiente"]].forEach(function(lv){
+      var key=lv[0];
+      var b=document.createElement("button");
+      b.className="pd"+(key===depSel?" is-active":""); b.type="button";
+      b.style.setProperty("--pdc","var("+lv[1]+")");
+      b.innerHTML='<div class="pdk">'+lv[2]+'</div><div class="pdv">'+d[key]+'</div>';
+      b.addEventListener("click",function(){ setDep(key); });
+      box.appendChild(b);
+    });
+  }
+  function setDep(level){
+    depSel=level; var p=PAT[patSel]; renderDep(p);
+    stop(); currentSteps=baseSteps(p); seen={}; buildDots(currentSteps.length);
+    var idx=0; for(var i=0;i<currentSteps.length;i++){ if(currentSteps[i].key==="manejo"){ idx=i; break; } }
+    go(idx);
+  }
+
+  /* ---------- aplicar patología ---------- */
+  function applyPatologia(){
+    var p=PAT[patSel]; if(!p||!p.built) return;
+    document.getElementById("patEyebrow").textContent = (CATS.filter(function(c){return c.id===p.cat;})[0]||{}).label || "Patología";
+    document.getElementById("patTitle").textContent=p.title;
+    document.getElementById("patSub").textContent=p.sub;
+    renderDep(p);
+    stop(); step=0; seen={}; currentSteps=baseSteps(p);
+    buildDots(currentSteps.length); go(0);
+    var es=document.getElementById("escStrip");
+    if(p.escalas&&p.escalas.length){ es.style.display="block";
+      es.innerHTML='<div class="es-h">Escalas aplicables a esta patología</div><div class="esc-grid">'+p.escalas.map(escCard).join('')+'</div>'; }
+    else es.style.display="none";
+    renderNorma(p);
+  }
+
+  /* ---------- categorías y chips ---------- */
+  function renderCats(){
+    var bar=document.getElementById("catBar"); bar.innerHTML="";
+    CATS.forEach(function(c){
+      var b=document.createElement("button"); b.className="cat-btn"+(c.id===catSel?" is-active":"");
+      b.style.setProperty("--cc", c.color);
+      b.innerHTML='<span class="cdot"></span>'+c.label;
+      b.addEventListener("click",function(){ catSel=c.id; var first=firstBuiltOfCat(c.id); if(first) patSel=first; renderCats(); renderPatChips(); applyPatologia(); });
+      bar.appendChild(b);
+    });
+  }
+  function patsOfCat(cat){ return Object.keys(PAT).filter(function(k){return PAT[k].cat===cat;}); }
+  function firstBuiltOfCat(cat){ var ks=patsOfCat(cat).filter(function(k){return PAT[k].built;}); return ks[0]||patsOfCat(cat)[0]; }
+  function renderPatChips(){
+    var box=document.getElementById("patChips"); box.innerHTML="";
+    patsOfCat(catSel).forEach(function(k){
+      var p=PAT[k]; var b=document.createElement("button");
+      b.className="pat-chip"+(k===patSel?" is-active":""); b.style.setProperty("--pc", p.color);
+      b.innerHTML='<span class="pdot"></span>'+p.label+(p.built?"":' <span style="font-size:9px;font-weight:800;opacity:.7">· próx.</span>');
+      b.disabled=!p.built;
+      if(p.built) b.addEventListener("click",function(){ patSel=k; renderPatChips(); applyPatologia(); });
+      box.appendChild(b);
+    });
+  }
+
+  /* ---------- MAPA de patologías ---------- */
+  function renderMapa(){
+    var cols=[{id:"sindrome",label:"Síndromes geriátricos",color:"#c9821f"},
+              {id:"cronica",label:"ECNT crónicas",color:"#be123c"},
+              {id:"discapacidad",label:"Discapacidad",color:"#6a4c93"}];
+    var built=0, total=0;
+    var html=cols.map(function(col){
+      var cards=patsOfCat(col.id).map(function(k){
+        var p=PAT[k]; total++; if(p.built) built++;
+        if(p.built){
+          return '<div class="mapa-card" data-pat="'+k+'" style="--mc:'+p.color+'"><div><div class="mt">'+p.label+'</div><div class="md">'+(p.blurb||"")+'</div></div><span class="mgo">→</span></div>';
+        }
+        return '<div class="mapa-card pending" style="--mc:'+p.color+'"><div><div class="mt">'+p.label+'</div><div class="md">'+(p.blurb||"")+'</div></div><span class="tagpx">próx.</span></div>';
+      }).join('');
+      return '<div class="mapa-col"><h4><span class="cdot" style="background:'+col.color+'"></span>'+col.label+'</h4>'+cards+'</div>';
+    }).join('');
+    document.getElementById("mapa").innerHTML=html;
+    document.getElementById("mapaProgreso").textContent="Activas: "+built+" de "+total+".";
+    document.querySelectorAll('#mapa .mapa-card[data-pat]').forEach(function(card){
+      card.addEventListener("click",function(){ var k=card.getAttribute("data-pat"); catSel=PAT[k].cat; patSel=k; renderCats(); renderPatChips(); applyPatologia(); showSec("patologias"); });
+    });
+  }
+
+  /* ---------- VALORACIÓN (VGI) ---------- */
+  function renderVGI(){
+    var html=VGI.map(function(g){
+      var blocks=(g.blocks||[]).map(function(bl){ return '<div class="gc-block"><div class="gb-h">'+bl.h+'</div><ul class="gc-list">'+bl.items.map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul></div>'; }).join('');
+      var cias=(g.cias&&g.cias.length)?('<div class="gc-block"><div class="cias-box"><div class="cb-h">Cómo lo aborda CIAS</div><ul>'+g.cias.map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul></div></div>'):'';
+      var escs=(g.escalas&&g.escalas.length)?('<div class="gc-block"><div class="gb-h">Escalas e instrumentos</div><div class="esc-grid">'+g.escalas.map(escCard).join('')+'</div></div>')
+        :('<div class="gc-block"><div class="gb-h">Escalas e instrumentos</div><p style="font-size:12px;color:var(--ink-500);font-style:italic">Esta dimensión se valora clínicamente (entrevista y observación dirigidas), sin una escala única embebida.</p></div>');
+      return '<div class="grp-card" style="--gc:'+g.color+'"><div class="gc-eye">Dimensión de la VGI</div><h3>'+g.t+'</h3><span class="gc-tag">'+g.tag+'</span><p class="gc-desc">'+g.desc+'</p>'+blocks+cias+escs+'</div>';
+    }).join('');
+    document.getElementById("vgiPanel").innerHTML=html;
+  }
+
+  /* ---------- GLOSARIO Y FUENTES ---------- */
+  function renderFuentes(){
+    var escRows=Object.keys(ESCALAS).map(function(k){ var e=ESCALAS[k];
+      return '<div class="nrow"><span class="k">'+e.name+'</span><span class="v">'+e.mide+' · <b>'+e.rango+'</b> · '+e.corte+' <a href="'+e.src.u+'" target="_blank" rel="noopener" style="color:var(--brand-500);font-weight:600;text-decoration:none">('+e.src.t+')</a></span></div>'; }).join('');
+    var html='<div class="norma-wrap">'+
+      ncard('diff','M','Componentes del modelo de atención', kv([
+        ["Historia clínica oficial","Registro clínico-legal y facturación al SGSSS; RDA en FHIR R4 (Res. 866/2021)."],
+        ["Coordinación","Agendamiento de los servicios y videoconsulta contextual (sincrónica)."],
+        ["Teleapoyo de especialistas","Telexperticia médico-médico (geriatría y otras); la recomendación no es vinculante."],
+        ["Historia de datos extramural","Captura clínica en territorio; complementa la historia oficial sin sustituirla."]
+      ]))+
+      ncard('data','E','Dispositivos biomédicos (kit Ciudad)', nul([
+        "<b>Tensiómetro BLE de brazo</b> — presión arterial.",
+        "<b>Pulsioxímetro</b> — saturación y frecuencia cardiaca.",
+        "<b>Fonendoscopio digital con ECG</b> — auscultación y ritmo (tamizaje de fibrilación auricular).",
+        "<b>Báscula y cinta métrica</b> — peso, IMC y perímetros (cribado nutricional).",
+        "<b>Glucómetro</b> y <b>tablet</b> con captura BLE. Son captura del episodio, no telemonitoreo (Res. 2654/2019)."
+      ]))+
+      ncard('full','S','Escalas e instrumentos de la VGI (verificados)', '<div>'+escRows+'</div>'+
+        '<p style="font-size:11px;color:var(--ink-500);margin-top:10px;font-style:italic">El MMSE está bajo licencia exclusiva de PAR (2001): no se reproduce el cuestionario; se aplica con licencia y corte ajustado por escolaridad. El resto son de uso clínico libre con atribución.</p>')+
+      ncard('full','G','Glosario de siglas', '<div class="norma-wrap" style="margin-top:0"><div>'+kv([
+        ["VGI","Valoración Geriátrica Integral (clínica, funcional, mental, social)"],
+        ["ABVD / AIVD","Actividades básicas / instrumentales de la vida diaria"],
+        ["RPMS","Ruta de Promoción y Mantenimiento de la Salud (Res. 3280/2018)"],
+        ["PEDT","Protección Específica y Detección Temprana (Res. 202/2021)"],
+        ["PPNEV","Política Pública Nacional de Envejecimiento y Vejez 2022–2031 (Decreto 681/2022)"]
+      ])+'</div><div>'+kv([
+        ["CIF","Clasificación Internacional del Funcionamiento"],
+        ["RLCPD","Registro de Localización y Caracterización de Personas con Discapacidad (SISPRO)"],
+        ["TNC mayor","Trastorno neurocognoscitivo mayor (demencia)"],
+        ["RDA / RIPS","Resumen Digital de Atención (FHIR R4) / Registro Individual de Prestación"],
+        ["ECNT","Enfermedad crónica no transmisible"]
+      ])+'</div></div>')+
+      ncard('full','F','Fuentes oficiales y de las escalas', ntags([
+        ["PPNEV 2022–2031 (MinSalud)","https://www.minsalud.gov.co/proteccionsocial/promocion-social/Paginas/envejecimiento-vejez.aspx"],
+        ["Res. 3280/2018 (RPMS)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"],
+        ["Res. 113/2020 (discapacidad)","https://www.suin-juriscol.gov.co/clp/contenidos.dll/Resolucion/30040205"],
+        ["GPC demencia (MinSalud)","https://gpc.minsalud.gov.co/SitePages/default.aspx"],
+        ["Barthel (Physiopedia)","https://www.physio-pedia.com/Barthel_Index"],
+        ["Lawton (Hartford HIGN)","https://hign.org/sites/default/files/2020-06/Try_This_General_Assessment_23.pdf"],
+        ["GDS-15 (Stanford)","https://web.stanford.edu/~yesavage/GDS.html"],
+        ["TUG (Podsiadlo 1991)","https://agsjournals.onlinelibrary.wiley.com/doi/10.1111/j.1532-5415.1991.tb01616.x"],
+        ["STOPP/START v3 (2023)","https://link.springer.com/article/10.1007/s41999-023-00777-y"],
+        ["Clinical Frailty Scale","https://www.dal.ca/sites/gmr/our-tools/clinical-frailty-scale.html"],
+        ["MNA (Nestlé NRC)","https://www.mna-elderly.com/development-and-validation"]
+      ]))+
+    '</div>';
+    document.getElementById("fuentesBody").innerHTML=html;
+  }
+
+  /* ---------- NAVEGACIÓN ---------- */
+  function showSec(sec){
+    document.querySelectorAll(".topsec").forEach(function(s){ s.classList.toggle("is-active", s.getAttribute("data-sec")===sec); });
+    document.querySelectorAll(".topnav-tab").forEach(function(t){ t.classList.toggle("is-active", t.getAttribute("data-sec")===sec); });
+    var onF=(sec==="fuentes"); var btn=document.getElementById("btnGloss");
+    btn.classList.toggle("is-on", onF); btn.textContent=onF?"← Volver":"Glosario y fuentes";
+    document.getElementById("topNav").style.display=onF?"none":"";
+    if(sec!=="patologias") stop();
+    window.scrollTo(0,0);
+  }
+  document.getElementById("topNav").addEventListener("click",function(e){ var t=e.target.closest?e.target.closest(".topnav-tab"):null; if(t) showSec(t.getAttribute("data-sec")); });
+  document.getElementById("btnGloss").addEventListener("click",function(){ var on=document.querySelector('.topsec[data-sec="fuentes"]').classList.contains("is-active"); showSec(on?"panorama":"fuentes"); });
+  document.querySelectorAll(".tab").forEach(function(t){ t.addEventListener("click",function(){
+    document.querySelectorAll(".tab").forEach(function(x){x.classList.remove("is-active");}); t.classList.add("is-active");
+    var v=t.getAttribute("data-view");
+    document.getElementById("viewFlujo").classList.toggle("is-active", v==="flujo");
+    document.getElementById("viewNorma").classList.toggle("is-active", v==="norma");
+    if(v==="norma") stop();
+  }); });
+  document.getElementById("btnPrev").addEventListener("click",function(){ stop(); go(step-1); });
+  document.getElementById("btnNext").addEventListener("click",function(){ stop(); go(step+1); });
+  document.getElementById("btnReset").addEventListener("click",function(){ stop(); go(0); });
+  document.getElementById("btnPlay").addEventListener("click",function(){ if(timer) stop(); else play(); });
+
+  /* ---------- init ---------- */
+  renderMapa(); renderVGI(); renderCats(); renderPatChips(); applyPatologia(); renderFuentes();
+})();
+
+</script>
+</body>
+</html>
