@@ -89,6 +89,42 @@ p{margin:0;}
 .dep-card .dt{font-size:16px;font-weight:800;margin-top:4px;}
 .dep-card .dd{font-size:12px;color:var(--ink-700);margin-top:7px;line-height:1.5;}
 
+/* DEPENDENCIA — espectro didáctico (continuo) */
+.dep-spectrum{margin-top:14px;}
+.dsp-axis{display:flex;justify-content:space-between;gap:12px;font-size:10.5px;font-weight:700;letter-spacing:.03em;color:var(--ink-300);text-transform:uppercase;margin-bottom:7px;padding:0 2px;}
+.dsp-gradient{height:7px;border-radius:var(--r-pill);background:linear-gradient(90deg,var(--auto) 0%,var(--fragil) 50%,var(--depen) 100%);box-shadow:inset 0 0 0 1px rgba(11,31,51,.05);margin-bottom:12px;}
+.dsp-track{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.dsp-seg{position:relative;font:inherit;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-top:3px solid var(--c,var(--brand-500));border-radius:var(--r-md);padding:11px 13px;background:color-mix(in srgb,var(--c,var(--brand-500)) 7%,#fff);transition:transform .16s var(--ease),box-shadow .16s var(--ease),background .16s var(--ease);}
+.dsp-seg:hover{transform:translateY(-1px);box-shadow:var(--shadow-2);}
+.dsp-seg:focus-visible{outline:2px solid var(--c,var(--brand-500));outline-offset:2px;}
+.dsp-seg.is-active{background:color-mix(in srgb,var(--c) 15%,#fff);box-shadow:var(--shadow-2);}
+.dsp-seg.is-active::after{content:"";position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);width:0;height:0;border:7px solid transparent;border-top-color:color-mix(in srgb,var(--c) 15%,#fff);}
+.dsp-seg .sg-k{font-size:11px;font-weight:800;letter-spacing:.02em;color:var(--c,var(--brand-500));}
+.dsp-seg .sg-t{font-size:14px;font-weight:800;color:var(--ink-900);}
+.dsp-detail{margin-top:17px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c,var(--brand-500));border-radius:var(--r-lg);padding:16px 19px;box-shadow:var(--shadow-1);animation:dspIn .32s var(--ease);}
+@keyframes dspIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
+.dsp-detail .dd-k{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--brand-500));}
+.dsp-detail h4{font-size:18px;margin-top:3px;}
+.dsp-detail .dd-state{font-size:12.5px;color:var(--ink-700);margin-top:8px;line-height:1.55;}
+.dsp-detail .dd-foco{font-size:12.5px;color:var(--ink-900);margin-top:11px;background:color-mix(in srgb,var(--c,var(--brand-500)) 9%,#fff);border-radius:var(--r-md);padding:9px 13px;line-height:1.5;}
+.dsp-detail .dd-foco b{color:var(--c,var(--brand-700));}
+@media (max-width:760px){
+  .dsp-track{grid-template-columns:1fr;}
+  .dsp-seg.is-active::after{display:none;}
+  .dsp-axis{font-size:9px;}
+}
+
+/* VGI síntesis (Overview) */
+.vgi-syn{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:14px;}
+.vgi-syn-card{text-align:left;font:inherit;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--vc,var(--brand-500));border-radius:var(--r-lg);padding:15px 16px;box-shadow:var(--shadow-1);transition:transform .16s var(--ease),box-shadow .16s var(--ease),border-color .16s var(--ease);display:flex;flex-direction:column;gap:7px;min-height:128px;}
+.vgi-syn-card:hover{box-shadow:var(--shadow-2);transform:translateY(-2px);border-color:var(--vc,var(--brand-300));}
+.vgi-syn-card:focus-visible{outline:2px solid var(--vc,var(--brand-500));outline-offset:2px;}
+.vgi-syn-card .vsk{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--vc,var(--brand-500));}
+.vgi-syn-card .vst{font-size:15px;font-weight:800;color:var(--ink-900);}
+.vgi-syn-card .vsd{font-size:11.5px;color:var(--ink-700);line-height:1.45;}
+.vgi-syn-card .vsgo{margin-top:auto;font-size:10px;font-weight:800;letter-spacing:.04em;color:var(--vc,var(--brand-500));display:flex;align-items:center;gap:5px;opacity:0;transform:translateX(-4px);transition:opacity .18s var(--ease),transform .18s var(--ease);}
+.vgi-syn-card:hover .vsgo{opacity:1;transform:translateX(0);}
+
 /* MAPA de patologías */
 .mapa{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px;}
 .mapa-col h4{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:8px;margin-bottom:10px;}
@@ -264,6 +300,119 @@ p{margin:0;}
 .ntag2{font-size:11px;font-weight:600;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-700);padding:4px 11px;border-radius:var(--r-pill);}
 .ntag2 a{color:inherit;text-decoration:none;}
 
+/* ===== VGI · PÁGINA DE DIMENSIÓN ===== */
+.vgd{--gc:var(--brand-500);}
+.vgd-back{display:flex;align-items:center;gap:13px;flex-wrap:wrap;padding:18px 0 2px;}
+.vgd-backbtn{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-pill);padding:8px 15px;font-size:12px;font-weight:700;color:var(--ink-700);display:inline-flex;align-items:center;gap:7px;box-shadow:var(--shadow-1);transition:transform .15s var(--ease),background .15s var(--ease),color .15s var(--ease);}
+.vgd-backbtn:hover{background:var(--surface-2);color:var(--ink-900);transform:translateX(-2px);}
+.vgd-crumb{font-size:11.5px;font-weight:700;color:var(--ink-300);letter-spacing:.02em;}
+.vgd-crumb b{color:var(--gc);}
+.vgd-hero{margin-top:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--gc) 78%,#000) 0%,var(--gc) 75%);border-radius:var(--r-xl);padding:30px 34px;color:#fff;box-shadow:var(--shadow-2);display:grid;grid-template-columns:1fr 200px;gap:26px;align-items:center;overflow:hidden;}
+.vgd-hero .vh-eye{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);}
+.vgd-hero h2{color:#fff;font-size:28px;letter-spacing:-.02em;margin-top:6px;}
+.vgd-hero .vh-tag{display:inline-block;margin-top:12px;font-size:12px;font-weight:700;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);padding:5px 13px;border-radius:var(--r-pill);}
+.vgd-hero .vh-desc{color:rgba(255,255,255,.92);font-size:14px;line-height:1.6;margin-top:14px;max-width:580px;}
+.vgd-hero .vh-illo{width:200px;height:170px;justify-self:end;}
+.vgd-sec{margin-top:26px;}
+.vgd-sec-h{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-900);display:flex;align-items:center;gap:10px;}
+.vgd-sec-h::before{content:"";width:4px;height:17px;border-radius:2px;background:var(--gc);}
+.vgd-sec-lead{font-size:12.5px;color:var(--ink-500);margin-top:7px;max-width:880px;line-height:1.55;}
+.vgd-eval-card{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--gc);border-radius:var(--r-lg);padding:6px 20px;box-shadow:var(--shadow-1);}
+.vgd-eval-list{list-style:none;margin:0;padding:0;}
+.vgd-eval-list li{position:relative;padding:11px 0 11px 24px;font-size:13px;color:var(--ink-700);line-height:1.5;border-bottom:1px dashed var(--line);}
+.vgd-eval-list li:last-child{border-bottom:0;}
+.vgd-eval-list li::before{content:"";position:absolute;left:4px;top:1.05em;width:8px;height:8px;border-radius:2px;transform:rotate(45deg);background:var(--gc);}
+.vgd-chart{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 20px;box-shadow:var(--shadow-1);}
+.vgd-chart svg{width:100%;height:auto;display:block;}
+.vgd-chart .ch-cap{font-size:11.5px;color:var(--ink-500);margin-top:12px;line-height:1.55;}
+.vgd-chart .ch-cap b{color:var(--ink-900);}
+.vgd-gauges{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px;}
+.sgc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:15px 17px;box-shadow:var(--shadow-1);}
+.sgc-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;}
+.sgc-name{font-size:14px;font-weight:800;color:var(--ink-900);}
+.sgc-range{font-size:10.5px;font-weight:700;color:var(--ink-500);background:var(--surface-2);border:1px solid var(--line);padding:3px 9px;border-radius:var(--r-pill);white-space:nowrap;}
+.sgc-mide{font-size:11.5px;color:var(--ink-500);margin-top:3px;}
+.sgc-gauge{margin-top:10px;}
+.gauge-svg{width:100%;height:auto;display:block;overflow:visible;}
+.sgc-corte{font-size:11.5px;color:var(--ink-900);margin-top:10px;background:var(--surface-3);border-radius:var(--r-sm);padding:7px 10px;line-height:1.45;}
+.sgc-more{margin-top:9px;}
+.sgc-more summary{cursor:pointer;font-size:11px;font-weight:800;color:var(--gc);list-style:none;display:inline-flex;align-items:center;gap:7px;}
+.sgc-more summary::-webkit-details-marker{display:none;}
+.sgc-more summary::before{content:"＋";font-weight:800;font-size:13px;}
+.sgc-more[open] summary::before{content:"－";}
+.sgc-why{font-size:11.5px;color:var(--ink-700);line-height:1.5;margin-top:8px;font-style:italic;}
+.sgc-flag{font-size:10.5px;color:#9a6212;background:var(--asoegre-soft);border-radius:var(--r-sm);padding:6px 9px;margin-top:7px;line-height:1.4;}
+.sgc-src{font-size:10.5px;margin-top:7px;color:var(--ink-500);}
+.sgc-src a{color:var(--gc);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--gc);}
+.vgd-cias{margin-top:14px;background:color-mix(in srgb,var(--gc) 8%,#fff);border:1px solid color-mix(in srgb,var(--gc) 28%,#fff);border-left:4px solid var(--gc);border-radius:var(--r-lg);padding:15px 20px;}
+.vgd-cias ul{list-style:none;margin:0;padding:0;}
+.vgd-cias li{position:relative;padding:7px 0 7px 22px;font-size:12.5px;color:var(--ink-700);line-height:1.5;border-bottom:1px dashed var(--line);}
+.vgd-cias li:last-child{border-bottom:0;}
+.vgd-cias li::before{content:"";position:absolute;left:4px;top:1em;width:8px;height:8px;border-radius:2px;transform:rotate(45deg);background:var(--gc);}
+@media (max-width:860px){
+  .vgd-hero{grid-template-columns:1fr;}
+  .vgd-hero .vh-illo{display:none;}
+  .vgd-gauges{grid-template-columns:1fr;}
+}
+
+/* PATOLOGÍAS · intro "Visión general" */
+.pintro-lead{font-size:13px;color:var(--ink-700);line-height:1.6;max-width:920px;margin-top:6px;}
+.pintro-lead b{color:var(--ink-900);}
+.pintro-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px;}
+.pintro-cat{text-align:left;font:inherit;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--cc,var(--brand-500));border-radius:var(--r-xl);padding:18px 20px;box-shadow:var(--shadow-1);transition:transform .16s var(--ease),box-shadow .16s var(--ease);display:flex;flex-direction:column;gap:10px;min-height:158px;}
+.pintro-cat:hover{transform:translateY(-2px);box-shadow:var(--shadow-2);}
+.pintro-cat:focus-visible{outline:2px solid var(--cc);outline-offset:2px;}
+.pic-top{display:flex;align-items:center;gap:9px;}
+.pic-dot{width:11px;height:11px;border-radius:3px;background:var(--cc);}
+.pic-label{font-size:15px;font-weight:800;color:var(--ink-900);}
+.pic-count{margin-left:auto;font-size:11px;font-weight:800;color:var(--cc);background:color-mix(in srgb,var(--cc) 13%,#fff);border-radius:var(--r-pill);padding:2px 11px;}
+.pic-desc{font-size:12px;color:var(--ink-700);line-height:1.5;}
+.pic-go{margin-top:auto;font-size:11px;font-weight:800;color:var(--cc);}
+.pintro-note{margin-top:18px;font-size:12px;color:var(--ink-700);background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-md);padding:11px 15px;line-height:1.5;}
+.pintro-note a{color:var(--brand-700);font-weight:700;text-decoration:none;border-bottom:1px dotted var(--brand-300);cursor:pointer;}
+.pstat-band{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:14px;}
+.pstat{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--sc,var(--brand-500));border-radius:var(--r-lg);padding:14px 16px;box-shadow:var(--shadow-1);}
+.pstat .ps-num{font-size:26px;font-weight:800;color:var(--sc,var(--brand-700));letter-spacing:-.02em;line-height:1;}
+.pstat .ps-txt{font-size:12px;color:var(--ink-700);line-height:1.42;margin-top:7px;}
+.pstat .ps-src{font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-300);margin-top:8px;}
+.pfrag{margin-top:13px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:15px 18px;box-shadow:var(--shadow-1);}
+.pfrag .pf-h{font-size:12.5px;color:var(--ink-700);margin-bottom:11px;line-height:1.45;}
+.pfrag .pf-h b{color:var(--ink-900);}
+.pfrag-bar{display:flex;height:26px;border-radius:var(--r-sm);overflow:hidden;}
+.pfrag-seg{display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:800;color:#fff;}
+.pfrag-legend{display:flex;gap:18px;margin-top:10px;flex-wrap:wrap;font-size:11px;color:var(--ink-700);}
+.pfrag-legend span{display:flex;align-items:center;gap:6px;}
+.pfrag-legend i{width:10px;height:10px;border-radius:2px;}
+.pintro-statsrc{font-size:11px;color:var(--ink-500);margin-top:12px;line-height:1.5;}
+.pintro-statsrc a{color:var(--brand-700);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--brand-300);}
+.vgsec{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--sc,var(--brand-500));border-radius:var(--r-lg);padding:15px 18px;box-shadow:var(--shadow-1);margin-top:13px;}
+.vgsec-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.vgsec-dot{width:11px;height:11px;border-radius:3px;background:var(--sc);}
+.vgsec-label{font-size:15px;font-weight:800;color:var(--ink-900);}
+.vgsec-count{font-size:11px;font-weight:700;color:var(--sc);background:color-mix(in srgb,var(--sc) 12%,#fff);border-radius:var(--r-pill);padding:2px 10px;}
+.vgsec-go{margin-left:auto;font:inherit;cursor:pointer;font-size:12px;font-weight:800;color:#fff;background:var(--sc);border:none;border-radius:var(--r-pill);padding:7px 15px;transition:transform .15s var(--ease),filter .15s var(--ease);}
+.vgsec-go:hover{transform:translateX(2px);filter:brightness(1.08);}
+.vgsec-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:13px;}
+.vgs{background:var(--surface-2);border-radius:var(--r-md);padding:10px 13px;}
+.vgs b{display:block;font-size:20px;font-weight:800;color:var(--sc,var(--ink-900));letter-spacing:-.01em;}
+.vgs span{display:block;font-size:11px;color:var(--ink-700);line-height:1.35;margin-top:3px;}
+/* gráficas dinámicas de las cifras */
+.statbar{height:5px;border-radius:var(--r-pill);background:var(--surface-2);overflow:hidden;margin:7px 0 1px;}
+.statbar i{display:block;height:100%;width:0;border-radius:var(--r-pill);animation:barGrow .9s var(--ease) .15s both;}
+.vgs .statbar{background:#e3e9f0;}
+.ring-svg{width:72px;height:72px;display:block;}
+.ring-fg{stroke-dashoffset:var(--c0,0);animation:ringGrow 1.15s var(--ease) .15s both;}
+@keyframes barGrow{from{width:0;}to{width:var(--w,0);}}
+@keyframes ringGrow{from{stroke-dashoffset:var(--c0);}to{stroke-dashoffset:var(--target,var(--c0));}}
+.pstat-ring{display:flex;align-items:center;gap:15px;}
+.ring-wrap{position:relative;width:72px;height:72px;flex-shrink:0;}
+.ring-val{position:absolute;inset:0;display:grid;place-items:center;font-size:15px;font-weight:800;color:var(--sc,var(--brand-700));letter-spacing:-.02em;}
+.pstat-ring .ps-body{min-width:0;}
+.pstat-ring .ps-txt{font-size:12px;color:var(--ink-700);line-height:1.4;}
+.pstat-ring .ps-src{font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-300);margin-top:7px;}
+.pfrag-seg{width:0;animation:barGrow 1s var(--ease) .2s both;min-width:0;overflow:hidden;white-space:nowrap;}
+@media (max-width:860px){ .pintro-cats{grid-template-columns:1fr;} .pstat-band{grid-template-columns:1fr;} }
+
 footer{margin-top:40px;padding:24px 0 40px;border-top:1px solid var(--line);color:var(--ink-500);font-size:11.5px;}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
 .src{font-size:10.5px;color:var(--ink-300);margin-top:5px;max-width:760px;}
@@ -307,9 +456,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
 
 <nav class="topnav" id="topNav">
   <div class="wrap">
-    <button class="topnav-tab is-active" data-sec="panorama"><span class="tnum">1</span>Panorama</button>
-    <button class="topnav-tab" data-sec="valoracion"><span class="tnum">2</span>Valoración (VGI)</button>
-    <button class="topnav-tab" data-sec="patologias"><span class="tnum">3</span>Patologías</button>
+    <button class="topnav-tab is-active" data-sec="panorama"><span class="tnum">1</span>Overview</button>
+    <button class="topnav-tab" data-sec="patologias"><span class="tnum">2</span>Patologías</button>
     <span class="ctx-pill"><span class="dot"></span>Versión Ciudad</span>
   </div>
 </nav>
@@ -319,8 +467,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
   <!-- ===================== PANORAMA ===================== -->
   <section class="topsec is-active" data-sec="panorama">
     <div class="hero">
-      <h2>El adulto mayor, pilar de servicio de CIAS</h2>
-      <p>La salud del adulto mayor es un eje propio del modelo CIAS. Su columna vertebral es la <b>Valoración Geriátrica Integral (VGI)</b>: una evaluación multidimensional —clínica, funcional, mental y social— que detecta los <b>síndromes geriátricos</b> que la consulta convencional pasa por alto y orienta un plan de cuidado domiciliario centrado en preservar la <b>funcionalidad</b>. Esta presentación va de lo general (cómo atendemos y valoramos) a lo particular (un abordaje específico por patología).</p>
+      <h2>El adulto mayor: modelo de atención, pilar del servicio de CIAS</h2>
+      <p>La salud del adulto mayor es un <b>pilar fundamental</b> del modelo de atención CIAS. Su columna vertebral es la <b>Valoración Geriátrica Integral (VGI)</b>, que abarca una evaluación multidimensional —clínica, funcional, mental y social—, lo que nos permite detectar los <b>síndromes geriátricos</b> que la consulta convencional podría omitir, y orienta un plan de atención domiciliaria centrado en preservar la <b>funcionalidad</b>. Abordaremos desde la visión general (atención y valoración) a lo particular (un manejo específico por patología).</p>
       <div class="pilar-grid">
         <div class="pilar-card"><div class="pk">Unidad de medida</div><div class="pv">No solo la enfermedad: la <b>funcionalidad</b> y su trayectoria.</div></div>
         <div class="pilar-card"><div class="pk">Dónde</div><div class="pv">En el domicilio — donde ocurren las caídas y vive el cuidador.</div></div>
@@ -328,33 +476,42 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
       </div>
     </div>
 
-    <div class="encuadre">
-      <span class="e-chip"><b>Captura clínica del episodio</b>, no telemonitoreo (Res. 2654/2019)</span>
-      <span class="e-chip">Atención domiciliaria · <b>versión Ciudad</b></span>
-      <span class="e-chip">Ancla RPMS-vejez (60+) · <b>Res. 3280/2018</b></span>
+    <div class="sec-title">La Valoración Geriátrica Integral (VGI)</div>
+    <div class="sec-lead">La columna vertebral del modelo: cuatro dimensiones que se evalúan en el domicilio y son comunes a todas las patologías. <b>Clic en una dimensión</b> para ver sus escalas e instrumentos.</div>
+    <div class="vgi-syn">
+      <button class="vgi-syn-card" type="button" data-vgi="clinica" style="--vc:var(--vgi-clin)">
+        <div class="vsk">Dimensión clínica</div>
+        <div class="vst">Salud y fármacos</div>
+        <div class="vsd">Comorbilidad, riesgo cardiovascular-metabólico y revisión de la medicación.</div>
+        <div class="vsgo">Ver página →</div>
+      </button>
+      <button class="vgi-syn-card" type="button" data-vgi="funcional" style="--vc:var(--vgi-func)">
+        <div class="vsk">Dimensión funcional</div>
+        <div class="vst">Funcionalidad</div>
+        <div class="vsd">ABVD/AIVD, marcha y equilibrio; la fragilidad como eje transversal.</div>
+        <div class="vsgo">Ver página →</div>
+      </button>
+      <button class="vgi-syn-card" type="button" data-vgi="mental" style="--vc:var(--vgi-ment)">
+        <div class="vsk">Dimensión mental</div>
+        <div class="vst">Cognición y ánimo</div>
+        <div class="vsd">Tamizaje cognitivo y de depresión; detección de delirium ante cambios agudos.</div>
+        <div class="vsgo">Ver página →</div>
+      </button>
+      <button class="vgi-syn-card" type="button" data-vgi="social" style="--vc:var(--vgi-soc)">
+        <div class="vsk">Dimensión social</div>
+        <div class="vst">Entorno y cuidador</div>
+        <div class="vsd">Cuidador y sobrecarga, redes de apoyo, hogar y protección de derechos.</div>
+        <div class="vsgo">Ver página →</div>
+      </button>
     </div>
 
     <div class="sec-title">Niveles de dependencia</div>
-    <div class="sec-lead">Una banda transversal que define la <b>intensidad del cuidado</b>: la misma patología se aborda distinto según la funcionalidad de la persona.</div>
-    <div class="dep-grid">
-      <div class="dep-card" style="--dc:var(--auto)"><div class="dk">Autónomo / robusto</div><div class="dt">Independiente</div><div class="dd">Conserva ABVD y AIVD, sin fragilidad. Foco: prevención, vacunación y tamizajes; preservar la autonomía.</div></div>
-      <div class="dep-card" style="--dc:var(--fragil)"><div class="dk">Frágil / pre-frágil</div><div class="dt">Vulnerable</div><div class="dd">En riesgo de declinar; síndromes incipientes. Ventana de intervención: la VGI domiciliaria tiene el mayor impacto.</div></div>
-      <div class="dep-card" style="--dc:var(--depen)"><div class="dk">Dependiente</div><div class="dt">Requiere cuidador</div><div class="dd">Pérdida de ABVD. Foco: cuidado continuado, prevención de complicaciones y soporte al cuidador.</div></div>
-    </div>
+    <div class="sec-lead">No son tres cajas separadas, sino un <b>continuo de funcionalidad</b> que define la <b>intensidad del cuidado</b>: la misma patología se aborda distinto a lo largo de esta banda. <b>Clic en un nivel</b> para ver su foco.</div>
+    <div class="dep-spectrum" id="depSpectrum"></div>
 
     <div class="sec-title">Mapa de patologías</div>
     <div class="sec-lead">El universo de entidades que aborda el programa, agrupadas en tres categorías. Cada una tiene su flujo de atención propio en la sección <b>Patologías</b>. <span id="mapaProgreso"></span></div>
     <div class="mapa" id="mapa"></div>
-  </section>
-
-  <!-- ===================== VALORACIÓN (VGI) ===================== -->
-  <section class="topsec" data-sec="valoracion">
-    <div class="scn-head">
-      <div class="scn-eyebrow">Cómo valoramos · versión Ciudad</div>
-      <h2>Valoración Geriátrica Integral (VGI)</h2>
-      <p class="scn-sub">El instrumento central de la geriatría: una evaluación multidimensional que se aplica en domicilio y es común a todas las patologías. Cada dimensión trae sus escalas con interpretación, "por qué" y fuente.</p>
-    </div>
-    <div class="grp-panel" id="vgiPanel"></div>
   </section>
 
   <!-- ===================== PATOLOGÍAS ===================== -->
@@ -368,18 +525,21 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
     <div class="cat-bar" id="catBar"></div>
     <div class="pat-chips" id="patChips"></div>
 
-    <div class="scn-head" style="padding-top:18px">
+    <div class="scn-head" id="patHead" style="padding-top:18px">
       <div class="scn-eyebrow" id="patEyebrow">Patología</div>
       <h2 id="patTitle">—</h2>
       <p class="scn-sub" id="patSub">—</p>
     </div>
+
+    <div id="patIntro" style="display:none"></div>
 
     <div class="dep-hint">Manejo según el nivel de dependencia <span>· clic en un nivel para verlo aplicado en el paso de manejo del flujo</span></div>
     <div class="pat-dep" id="patDep"></div>
 
     <div class="tabs">
       <button class="tab is-active" data-view="flujo"><span class="tn">A</span>Flujo de atención</button>
-      <button class="tab" data-view="norma"><span class="tn">B</span>Marco normativo</button>
+      <button class="tab" data-view="stats"><span class="tn">B</span>Información estadística</button>
+      <button class="tab" data-view="norma"><span class="tn">C</span>Marco normativo</button>
     </div>
 
     <div class="view is-active" id="viewFlujo">
@@ -638,6 +798,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
       </div>
     </div>
 
+    <div class="view" id="viewStats"></div>
     <div class="view" id="viewNorma"></div>
   </section>
 
@@ -649,6 +810,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
       <p class="scn-sub">Los componentes del modelo de atención, los dispositivos biomédicos, las escalas geriátricas con su fuente, el glosario de siglas y las fuentes oficiales.</p>
     </div>
     <div id="fuentesBody"></div>
+  </section>
+
+  <!-- ===================== VGI · PÁGINA DE DIMENSIÓN ===================== -->
+  <section class="topsec" data-sec="vgidetail">
+    <div id="vgiDetailBody"></div>
   </section>
 
 </main>
@@ -745,11 +911,24 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
   ];
 
   var CATS = [
-    {id:"general", label:"Visión general", color:"#1e4d72"},
     {id:"sindrome", label:"Síndromes geriátricos", color:"#c9821f"},
     {id:"cronica", label:"ECNT crónicas", color:"#be123c"},
     {id:"discapacidad", label:"Discapacidad", color:"#6a4c93"}
   ];
+
+  /* ---------- Niveles de dependencia (espectro Overview) ---------- */
+  var DEP_LEVELS = [
+    {id:"autonomo", c:"var(--auto)", k:"Autónomo / robusto", t:"Independiente",
+      state:"Conserva las actividades básicas (ABVD) e instrumentales (AIVD), sin fragilidad.",
+      foco:"Prevención, vacunación y tamizajes; preservar la autonomía."},
+    {id:"fragil", c:"var(--fragil)", k:"Frágil / pre-frágil", t:"Vulnerable",
+      state:"En riesgo de declinar, con síndromes geriátricos incipientes.",
+      foco:"Ventana de intervención: la VGI domiciliaria tiene aquí el mayor impacto."},
+    {id:"dependiente", c:"var(--depen)", k:"Dependiente", t:"Requiere cuidador",
+      state:"Pérdida de actividades básicas (ABVD); necesita el apoyo de un cuidador.",
+      foco:"Cuidado continuado, prevención de complicaciones y soporte al cuidador."}
+  ];
+  var dspSel = "autonomo";
 
   /* facturación común (versión Ciudad) — sin inventar códigos CUPS específicos */
   function FACT(mod){ return {modalidades:mod||["Evento / paquete por valoración y procedimiento","Programa de crónicos: cápita o pago global prospectivo (según contrato EPS)","Particular — pago de bolsillo o plan voluntario de salud"],
@@ -1143,11 +1322,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
 
     /* ---------------- DISCAPACIDAD ---------------- */
     discapacidad:{cat:"discapacidad", built:true, color:"#6a4c93", label:"Certificación de discapacidad",
-      blurb:"Res. 113/2020 · CIF · RLCPD.",
+      blurb:"Res. 1239/2022 · CIF · RLCPD.",
       title:"Certificación de discapacidad del adulto mayor",
-      sub:"La discapacidad y la dependencia funcional se solapan en el adulto mayor. CIAS, como IPS autorizada, puede valorar y certificar (Res. 113/2020). Base conceptual: CIF. Marco de derechos: Ley 1618/2013.",
+      sub:"La discapacidad y la dependencia funcional se solapan en el adulto mayor. CIAS, como IPS autorizada, puede valorar y certificar (Res. 1239/2022). Base conceptual: CIF. Marco de derechos: Ley 1618/2013.",
       dep:{autonomo:"Tamizaje y orientación sobre la ruta de certificación.", fragil:"Valoración multidisciplinaria; vincular a rehabilitación.", dependiente:"Certificación + plan de rehabilitación y ayudas técnicas; soporte al cuidador."},
-      diagnostico:{name:"Valoración multidisciplinaria (CIF)", sub:"Res. 113/2020",
+      diagnostico:{name:"Valoración multidisciplinaria (CIF)", sub:"Res. 1239/2022",
         desc:"Valoración clínica multidisciplinaria con base en la CIF, por el equipo que designe la IPS según la deficiencia; garantías de voluntariedad y segunda opinión.",
         criteria:{title:"Base y garantías", items:["Autorreconocimiento y voluntariedad","Valoración multidisciplinaria (CIF) por IPS autorizada","Se apoya en la valoración funcional (Barthel/Lawton)","Derecho a segunda opinión (10 días hábiles); gratuidad para el usuario"]},
         tech:"Instrumentos de valoración funcional · CIF", note:"La valoración para certificación es presencial y multidisciplinaria."},
@@ -1162,13 +1341,13 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
       emergencia:["Evento agudo durante la valoración (p. ej. crisis, broncoaspiración)"],
       factura:FACT(["Evento (valoración multidisciplinaria)","Paquete de certificación + rehabilitación","Particular — pago de bolsillo o plan voluntario de salud"]),
       norma:{
-        marco:[["Res. 113 de 2020","Procedimiento de certificación de discapacidad y RLCPD; valoración multidisciplinaria por IPS autorizada."],["CIF","Clasificación Internacional del Funcionamiento — base conceptual."],["Ley 1618 de 2013","Garantía del pleno ejercicio de los derechos de las personas con discapacidad."]],
+        marco:[["Res. 1239 de 2022","Procedimiento de certificación de discapacidad y RLCPD; valoración multidisciplinaria por IPS autorizada (deroga la Res. 113/2020)."],["CIF","Clasificación Internacional del Funcionamiento — base conceptual."],["Ley 1618 de 2013","Garantía del pleno ejercicio de los derechos de las personas con discapacidad."]],
         exige:[["Valoración","Clínica multidisciplinaria (CIF)"],["Garantías","Voluntariedad, autorreconocimiento, segunda opinión (10 días)"],["Registro","Inscripción en el RLCPD (SISPRO)"]],
         paraclinicos:["Según la deficiencia de base; la valoración es funcional y multidisciplinaria (no una batería fija)."],
-        gpc:["Marco de derechos (Ley 1618/2013) y procedimiento Res. 113/2020.","La rehabilitación se orienta según la condición de base."],
+        gpc:["Marco de derechos (Ley 1618/2013) y procedimiento Res. 1239/2022.","La rehabilitación se orienta según la condición de base."],
         particular:["En el adulto mayor, la dependencia funcional severa suele coincidir con discapacidad certificable."],
         reporte:["RLCPD (SISPRO).","RDA por atención (FHIR R4)."],
-        fuentes:[["Res. 113/2020 (SUIN-Juriscol)","https://www.suin-juriscol.gov.co/clp/contenidos.dll/Resolucion/30040205"],["ABECÉ certificación y RLCPD (MinSalud)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/PS/abc-certificacion-rlcpd.pdf"]]
+        fuentes:[["Res. 1239/2022 (Función Pública)","https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=199964"],["ABECÉ certificación y RLCPD (MinSalud)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/PS/abc-certificacion-rlcpd.pdf"]]
       }},
 
     /* pendientes (ninguna por ahora) */
@@ -1231,8 +1410,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
 
     var mn=p.manejo||{};
     var depCrit = (p.dep&&p.dep[depSel]) ? {title:"Manejo según la VGI · nivel "+DEP_LBL[depSel], items:[p.dep[depSel]]} : null;
-    steps.push({key:"manejo", title:(mn.name?("Acto médico — "+mn.name):"Acto médico — manejo"), desc:"El médico define metas y plan de manejo, individualizado por el nivel de dependencia que arrojó la VGI (etiqueta clicable arriba).",
-      nodes:["patient","md"], edges:["eH2"], spot:"md", vc:p.color,
+    var mflow = MANEJO_FLOW[depSel] || MANEJO_FLOW.autonomo;
+    steps.push({key:"manejo", title:(mn.name?("Acto médico — "+mn.name):"Acto médico — manejo"), desc:(MANEJO_DESC[depSel]||"El médico define metas y un plan individualizado por el nivel de dependencia que arrojó la VGI (etiqueta clicable arriba).")+" — clic en otro nivel para ver el flujo adaptado.",
+      nodes:mflow.nodes, edges:mflow.edges, spot:"md", vc:p.color,
       actor:actorMD({kind:"Acto médico · metas y manejo", name:mn.name||"Manejo", sub:mn.sub||"", desc:mn.desc||"", criteria:depCrit, options:mn.options, tech:mn.tech||"", note:mn.note||"",
         recv:["VGI: diagnóstico, clasificación y nivel de dependencia"], emit:["Plan de manejo individualizado","Metas y formulación"]})});
 
@@ -1302,6 +1482,17 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
      ===================================================================== */
   var step=0, seen={}, timer=null, STEP_MS=6200, currentSteps=[], patSel="general", catSel="general", depSel="autonomo";
   var DEP_LBL={autonomo:"Autónomo / robusto", fragil:"Frágil / pre-frágil", dependiente:"Dependiente"};
+  /* El paso de manejo adapta su flujo (nodos/aristas), su descripción y su foco al nivel de dependencia */
+  var MANEJO_FLOW={
+    autonomo:   {nodes:["patient","coco","md"],             edges:["e1","e2"]},
+    fragil:     {nodes:["patient","nurse","hde","md"],      edges:["e3a","eH1","eH2"]},
+    dependiente:{nodes:["patient","nurse","md","cuidador"], edges:["e3a","e6"]}
+  };
+  var MANEJO_DESC={
+    autonomo:"Nivel autónomo / robusto: plan preventivo de baja intensidad. Coordinación agenda seguimiento periódico para preservar la autonomía.",
+    fragil:"Nivel frágil / pre-frágil: plan dirigido de alta intensidad. El equipo extramural y la VGI completa orientan metas para revertir la fragilidad.",
+    dependiente:"Nivel dependiente: cuidado continuado. El plan se apoya en el cuidador como co-protagonista y en el soporte domiciliario."
+  };
   var svg=document.getElementById("flowSvg");
   function node(id){ return svg.querySelector('.story-node[data-node="'+id+'"]'); }
   function edge(id){ return document.getElementById(id); }
@@ -1404,6 +1595,72 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
     document.getElementById("viewNorma").innerHTML=html;
   }
 
+  /* ---------- INFORMACIÓN ESTADÍSTICA por patología (cifras verificadas) ---------- */
+  var PATSTATS = {
+    caidas:[{n:"31,9%",t:"de los adultos mayores sufre al menos una caída al año.",s:"SABE Colombia · 2015"},{n:"684 mil",t:"muertes al año por caídas en el mundo (2.ª causa de lesión no intencional).",s:"OMS · global"}],
+    fragilidad:[{n:"17,9%",t:"es frágil y 63,3% pre-frágil (criterios de Fried).",s:"SABE Colombia · Ocampo-Chaparro"},{n:"20,3%",t:"de fragilidad en mujeres frente a 14,5% en hombres.",s:"SABE Colombia · 2015"}],
+    cognicion:[{n:"9,4%",t:"tiene demencia; la prevalencia sube fuertemente con la edad.",s:"SABE Colombia / MinSalud"},{n:"17,6%",t:"presenta deterioro cognitivo leve.",s:"SABE Colombia · 2015"}],
+    polifarmacia:[{n:"27%",t:"toma 5 o más medicamentos (polifarmacia).",s:"SABE Bogotá"},{n:"36%",t:"de polifarmacia en adultos mayores de América Latina.",s:"Red SABE · LatAm"}],
+    incontinencia:[{n:"25,2%",t:"de prevalencia de incontinencia urinaria (estudio local).",s:"Colombia · Sabaneta"},{n:"71%",t:"de quienes la padecen nunca había consultado por ella.",s:"Colombia · Sabaneta"}],
+    malnutricion:[{n:"38,6%",t:"está desnutrido o en riesgo nutricional (MNA).",s:"SABE Colombia · 2015"},{n:"23,7%",t:"tiene obesidad: el exceso de peso también es frecuente.",s:"SABE Colombia · 2015"}],
+    depresion:[{n:"57,4%",t:"presenta síntomas depresivos (escala de Yesavage) — más de la mitad.",s:"SABE Colombia · 2015"},{n:"9,5%",t:"de los frágiles tiene síntomas depresivos severos.",s:"SABE Colombia · 2015"}],
+    hta:[{n:"52–57%",t:"de prevalencia de hipertensión en mayores de 60 años.",s:"Colombia · metaanálisis nacional"},{n:"6,1 mill.",t:"de casos de HTA reportados en el país (edad promedio 64 años).",s:"Cuenta de Alto Costo · 2024"}],
+    dm2:[{n:"18,5%",t:"de prevalencia de diabetes tipo 2 en mayores de 60 años.",s:"SABE Colombia · 2015"}],
+    erc:[{n:"991.212",t:"personas con enfermedad renal crónica en el país (edad promedio 67,9 años).",s:"Cuenta de Alto Costo · 2023"},{n:"32.519",t:"muertes al año en pacientes con ERC (todas las causas).",s:"Cuenta de Alto Costo · 2023"}],
+    epoc:[{n:"8,9%",t:"de prevalencia de EPOC en mayores de 40 años; aumenta con la edad.",s:"Colombia · PREPOCOL"},{n:"6,2–13,5%",t:"según la ciudad (Barranquilla–Medellín).",s:"PREPOCOL"}],
+    icc:[{n:"~2,3%",t:"de prevalencia estimada de falla cardiaca (≈1,1 millón de pacientes).",s:"Soc. Colombiana de Cardiología"},{n:"5,5",t:"muertes por falla cardiaca por cada 100 mil habitantes.",s:"Colombia · 2012"}],
+    discapacidad:[{n:"39,4%",t:"de los mayores de 80 años tiene alguna discapacidad (~15% entre 60–79).",s:"DANE · Censo 2018"},{n:"21,2%",t:"de los adultos mayores presenta dependencia funcional.",s:"SABE Colombia · 2015"}]
+  };
+  function renderStats(p){
+    var arr=PATSTATS[patSel]||[];
+    var epi = arr.length
+      ? ('<div class="vgd-sec-h">Epidemiología</div><div class="vgd-sec-lead">Cifras de referencia para dimensionar esta entidad en el adulto mayor.</div><div class="pstat-band" style="margin-top:13px">'+arr.map(function(s){var col=(s.c||p.color);var pct=pctOf(s.n);var bar=pct!==null?('<div class="statbar"><i style="--w:'+pct+'%;background:'+col+'"></i></div>'):'';return '<div class="pstat" style="--sc:'+col+'"><div class="ps-num" data-num="'+s.n+'">'+s.n+'</div>'+bar+'<div class="ps-txt">'+s.t+'</div><div class="ps-src">'+s.s+'</div></div>';}).join('')+'</div>')
+      : '<div class="vgd-sec-h">Epidemiología</div><div class="vgd-sec-lead">Sin una cifra nacional consolidada para esta entidad; ver las escalas y el marco normativo.</div>';
+    var scales = (p.escalas&&p.escalas.length)
+      ? ('<div class="vgd-sec-h" style="margin-top:24px">Escalas e instrumentos</div><div class="vgd-sec-lead">Cada escala con su rango, su umbral clínico y su fuente.</div><div class="vgd-gauges" style="--gc:'+p.color+';margin-top:13px">'+p.escalas.map(scaleGaugeCard).join('')+'</div>')
+      : '';
+    document.getElementById("viewStats").innerHTML='<div class="vgd" style="--gc:'+p.color+'">'+epi+scales+'</div>';
+    armViz(document.getElementById("viewStats"));
+  }
+
+  /* ---------- gráficas dinámicas de las cifras (anillos, barras, conteo) ---------- */
+  function parseStat(str){
+    var m=String(str).match(/^\s*(~|≈)?\s*([\d.]+(?:,\d+)?)(.*)$/);
+    if(!m) return null;
+    var numStr=m[2];
+    var thousands = numStr.indexOf(',')===-1 && /\.\d{3}/.test(numStr);
+    var clean = numStr.replace(/\./g,'').replace(',','.');
+    var val = parseFloat(clean); if(isNaN(val)) return null;
+    var decimals = numStr.indexOf(',')>=0 ? numStr.split(',')[1].length : 0;
+    return {prefix:(m[1]||''), val:val, suffix:(m[3]||''), decimals:decimals, thousands:thousands};
+  }
+  function fmtStat(val, decimals, thousands){
+    var s=val.toFixed(decimals); var parts=s.split('.');
+    if(thousands) parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+    return parts.length>1 ? (parts[0]+','+parts[1]) : parts[0];
+  }
+  function pctOf(str){
+    if(String(str).indexOf('%')===-1) return null;
+    var nums=String(str).replace(/,/g,'.').match(/\d+(?:\.\d+)?/g);
+    if(!nums||!nums.length) return null;
+    return Math.max(0,Math.min(100,parseFloat(nums[nums.length-1])));
+  }
+  function ringSvg(pct,color){
+    var c=(2*Math.PI*30).toFixed(1);
+    var target=(c*(1-pct/100)).toFixed(1);
+    return '<svg class="ring-svg" viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="30" fill="none" stroke="var(--line)" stroke-width="7"/>'+
+      '<circle class="ring-fg" cx="36" cy="36" r="30" fill="none" stroke="'+color+'" stroke-width="7" stroke-linecap="round" transform="rotate(-90 36 36)" stroke-dasharray="'+c+'" style="--c0:'+c+';--target:'+target+'"/></svg>';
+  }
+  function armViz(root){ if(!root) return; root.querySelectorAll('[data-num]').forEach(countUp); }
+  function countUp(el){
+    var info=parseStat(el.getAttribute('data-num')); if(!info){ return; }
+    var steps=32, i=0;
+    var iv=setInterval(function(){ i++; var k=i/steps; var e=1-Math.pow(1-k,3);
+      el.textContent=info.prefix+fmtStat(info.val*e,info.decimals,info.thousands)+info.suffix;
+      if(i>=steps){ clearInterval(iv); el.textContent=info.prefix+fmtStat(info.val,info.decimals,info.thousands)+info.suffix; }
+    }, 28);
+  }
+
   /* ---------- dep tag (clicable → ajusta el manejo del flujo) ---------- */
   function renderDep(p){
     var d=p.dep; var box=document.getElementById("patDep");
@@ -1429,17 +1686,64 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
   /* ---------- aplicar patología ---------- */
   function applyPatologia(){
     var p=PAT[patSel]; if(!p||!p.built) return;
+    var intro=document.getElementById("patIntro");
+    var flowEls=[document.getElementById("patHead"),document.querySelector(".dep-hint"),document.getElementById("patDep"),document.querySelector(".tabs"),document.getElementById("viewFlujo"),document.getElementById("viewStats"),document.getElementById("viewNorma")];
+    var chips=document.getElementById("patChips");
+    if(patSel==="general"){
+      flowEls.forEach(function(el){ if(el) el.style.display="none"; });
+      if(chips) chips.style.display="none";
+      if(intro){ intro.style.display="block"; } renderPatIntro(); stop(); return;
+    }
+    if(intro) intro.style.display="none";
+    flowEls.forEach(function(el){ if(el) el.style.display=""; });
+    if(chips) chips.style.display="";
     document.getElementById("patEyebrow").textContent = (CATS.filter(function(c){return c.id===p.cat;})[0]||{}).label || "Patología";
     document.getElementById("patTitle").textContent=p.title;
     document.getElementById("patSub").textContent=p.sub;
     renderDep(p);
     stop(); step=0; seen={}; currentSteps=baseSteps(p);
     buildDots(currentSteps.length); go(0);
-    var es=document.getElementById("escStrip");
-    if(p.escalas&&p.escalas.length){ es.style.display="block";
-      es.innerHTML='<div class="es-h">Escalas aplicables a esta patología</div><div class="esc-grid">'+p.escalas.map(escCard).join('')+'</div>'; }
-    else es.style.display="none";
+    document.getElementById("escStrip").style.display="none";
+    renderStats(p);
     renderNorma(p);
+  }
+
+  /* ---------- Patologías · intro "Visión general" ---------- */
+  function renderPatIntro(){
+    var box=document.getElementById("patIntro"); if(!box) return;
+    var gstats=[
+      {n:"14,9%", c:"#1e4d72", t:"de los colombianos tiene 60 años o más (≈7,9 millones); ~25% para 2050.", s:"DANE · 2025"},
+      {n:"84,8%", c:"#be123c", t:"vive con multimorbilidad: dos o más enfermedades crónicas.", s:"SABE Colombia · 2015"},
+      {n:"40,7%", c:"#2a9d8f", t:"tiene dificultad en al menos una actividad de la vida diaria.", s:"SABE Colombia · 2015"}
+    ];
+    var gCards=gstats.map(function(s){ var pct=pctOf(s.n)||0; return '<div class="pstat pstat-ring" data-viz style="--sc:'+s.c+'"><div class="ring-wrap">'+ringSvg(pct,s.c)+'<div class="ring-val" data-num="'+s.n+'">'+s.n+'</div></div><div class="ps-body"><div class="ps-txt">'+s.t+'</div><div class="ps-src">'+s.s+'</div></div></div>'; }).join('');
+    var fragBar='<div class="pfrag"><div class="pf-h">Fragilidad — <b>4 de cada 5 adultos mayores ya no son robustos</b>; y la fragilidad es reversible si se detecta a tiempo:</div>'+
+      '<div class="pfrag-bar"><div class="pfrag-seg" style="--w:18.8%;background:#2a9d8f">18,8%</div><div class="pfrag-seg" style="--w:63.3%;background:#c9821f">63,3%</div><div class="pfrag-seg" style="--w:17.9%;background:#b5485a">17,9%</div></div>'+
+      '<div class="pfrag-legend"><span><i style="background:#2a9d8f"></i>Robusto</span><span><i style="background:#c9821f"></i>Pre-frágil</span><span><i style="background:#b5485a"></i>Frágil</span><span style="color:var(--ink-300)">SABE Colombia · 2015</span></div></div>';
+    var sections=[
+      {id:"sindrome", label:"Síndromes geriátricos", color:"#c9821f", stats:[["57,4%","síntomas depresivos"],["31,9%","sufre una caída al año"],["17,6%","deterioro cognitivo leve"],["38,6%","riesgo nutricional"]]},
+      {id:"cronica", label:"ECNT crónicas", color:"#be123c", stats:[["52–57%","hipertensión en 60+"],["18,5%","diabetes en 60+"],["991 mil","personas con ERC"],["8,9%","EPOC en 40+"]]},
+      {id:"discapacidad", label:"Discapacidad", color:"#6a4c93", stats:[["39,4%","discapacidad en 80+"],["21,2%","dependencia funcional"]]}
+    ];
+    var secBlocks=sections.map(function(c){
+      var n=patsOfCat(c.id).filter(function(k){return PAT[k].built;}).length;
+      var mini=c.stats.map(function(s){ var pct=pctOf(s[0]); var bar=pct!==null?('<div class="statbar"><i style="--w:'+pct+'%;background:'+c.color+'"></i></div>'):''; return '<div class="vgs"><b data-num="'+s[0]+'">'+s[0]+'</b>'+bar+'<span>'+s[1]+'</span></div>'; }).join('');
+      return '<div class="vgsec" style="--sc:'+c.color+'">'+
+        '<div class="vgsec-head"><span class="vgsec-dot"></span><span class="vgsec-label">'+c.label+'</span><span class="vgsec-count">'+n+(n===1?' entidad':' entidades')+'</span><button class="vgsec-go" type="button" data-cat="'+c.id+'">Explorar →</button></div>'+
+        '<div class="vgsec-stats">'+mini+'</div></div>';
+    }).join('');
+    box.innerHTML=
+      '<div class="pintro-lead">Toda entidad se aborda <b>sobre la Valoración Geriátrica Integral (VGI)</b> y se <b>adapta al nivel de dependencia</b> de la persona, dentro de un flujo de atención domiciliaria común.</div>'+
+      '<div class="sec-title">Panorama del adulto mayor en Colombia</div>'+
+      '<div class="pstat-band">'+gCards+'</div>'+
+      fragBar+
+      '<div class="sec-title">Por sección · datos clave</div>'+
+      secBlocks+
+      '<div class="pintro-statsrc">Fuentes: <a href="https://www.minsalud.gov.co/sites/rid/lists/bibliotecaDigital/RIDE/VS/ED/GCFI/Resumen-ejecutivo-encuesta-SABE.pdf" target="_blank" rel="noopener">Estudio SABE Colombia (MinSalud, 2015)</a> · DANE · Cuenta de Alto Costo · OMS. Cada patología trae su epidemiología detallada en su pestaña «Información estadística».</div>'+
+      '<div class="pintro-note">La <b>VGI</b> es el eje de cada patología y participa como paso en todos los flujos — revisa sus 4 dimensiones en el <a data-goto-overview="1">Overview</a>.</div>';
+    box.querySelectorAll(".vgsec-go").forEach(function(b){ b.addEventListener("click",function(){ location.hash="#pat/"+firstBuiltOfCat(b.getAttribute("data-cat")); }); });
+    var ov=box.querySelector("[data-goto-overview]"); if(ov) ov.addEventListener("click",function(){ showSec("panorama"); });
+    armViz(box);
   }
 
   /* ---------- categorías y chips ---------- */
@@ -1449,7 +1753,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
       var b=document.createElement("button"); b.className="cat-btn"+(c.id===catSel?" is-active":"");
       b.style.setProperty("--cc", c.color);
       b.innerHTML='<span class="cdot"></span>'+c.label;
-      b.addEventListener("click",function(){ catSel=c.id; var first=firstBuiltOfCat(c.id); if(first) patSel=first; renderCats(); renderPatChips(); applyPatologia(); });
+      b.addEventListener("click",function(){ var first=firstBuiltOfCat(c.id); location.hash="#pat/"+(first||patSel); });
       bar.appendChild(b);
     });
   }
@@ -1462,9 +1766,34 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
       b.className="pat-chip"+(k===patSel?" is-active":""); b.style.setProperty("--pc", p.color);
       b.innerHTML='<span class="pdot"></span>'+p.label+(p.built?"":' <span style="font-size:9px;font-weight:800;opacity:.7">· próx.</span>');
       b.disabled=!p.built;
-      if(p.built) b.addEventListener("click",function(){ patSel=k; renderPatChips(); applyPatologia(); });
+      if(p.built) b.addEventListener("click",function(){ location.hash="#pat/"+k; });
       box.appendChild(b);
     });
+  }
+
+  /* ---------- Niveles de dependencia (espectro) ---------- */
+  function renderDepSpectrum(){
+    var box=document.getElementById("depSpectrum"); if(!box) return;
+    var segs=DEP_LEVELS.map(function(l){
+      return '<button class="dsp-seg" type="button" data-lvl="'+l.id+'" style="--c:'+l.c+'">'+
+        '<span class="sg-k">'+l.k+'</span><span class="sg-t">'+l.t+'</span></button>';
+    }).join('');
+    box.innerHTML='<div class="dsp-axis"><span>Mayor funcionalidad · autonomía</span><span>Mayor dependencia · cuidado</span></div>'+
+      '<div class="dsp-gradient"></div>'+
+      '<div class="dsp-track">'+segs+'</div>'+
+      '<div class="dsp-detail" id="dspDetail"></div>';
+    box.querySelectorAll(".dsp-seg").forEach(function(b){ b.addEventListener("click",function(){ selectDsp(b.getAttribute("data-lvl")); }); });
+    selectDsp(dspSel);
+  }
+  function selectDsp(id){
+    dspSel=id;
+    document.querySelectorAll("#depSpectrum .dsp-seg").forEach(function(b){ b.classList.toggle("is-active", b.getAttribute("data-lvl")===id); });
+    var l=DEP_LEVELS.filter(function(x){return x.id===id;})[0]||DEP_LEVELS[0];
+    var d=document.getElementById("dspDetail"); if(!d) return;
+    d.style.setProperty("--c", l.c);
+    d.innerHTML='<div class="dd-k">'+l.k+'</div><h4>'+l.t+'</h4>'+
+      '<div class="dd-state">'+l.state+'</div>'+
+      '<div class="dd-foco"><b>Foco del cuidado:</b> '+l.foco+'</div>';
   }
 
   /* ---------- MAPA de patologías ---------- */
@@ -1486,7 +1815,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
     document.getElementById("mapa").innerHTML=html;
     document.getElementById("mapaProgreso").textContent="Activas: "+built+" de "+total+".";
     document.querySelectorAll('#mapa .mapa-card[data-pat]').forEach(function(card){
-      card.addEventListener("click",function(){ var k=card.getAttribute("data-pat"); catSel=PAT[k].cat; patSel=k; renderCats(); renderPatChips(); applyPatologia(); showSec("patologias"); });
+      card.addEventListener("click",function(){ location.hash="#pat/"+card.getAttribute("data-pat"); });
     });
   }
 
@@ -1500,6 +1829,193 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
       return '<div class="grp-card" style="--gc:'+g.color+'"><div class="gc-eye">Dimensión de la VGI</div><h3>'+g.t+'</h3><span class="gc-tag">'+g.tag+'</span><p class="gc-desc">'+g.desc+'</p>'+blocks+cias+escs+'</div>';
     }).join('');
     document.getElementById("vgiPanel").innerHTML=html;
+  }
+
+  /* ---------- VGI · página de dimensión (vista dedicada) ---------- */
+  var GAUGES = {
+    barthel:{min:0,max:100,zones:[
+      {from:0,to:20,c:"#b5485a"},{from:20,to:40,c:"#d2694f"},{from:40,to:60,c:"#c9821f"},{from:60,to:100,c:"#2a9d8f"}
+    ],marks:[{at:60,lbl:"60/61"}]},
+    lawton:{min:0,max:8,grad:["#b5485a","#2a9d8f"],ends:["↓ más dependencia","más autonomía ↑"]},
+    tug:{min:0,max:20,unit:"s",zones:[
+      {from:0,to:12,c:"#2a9d8f"},{from:12,to:20,c:"#b5485a"}
+    ],marks:[{at:12,lbl:"12 s"}],openEnd:true},
+    tinetti:{min:0,max:28,zones:[
+      {from:0,to:19,c:"#b5485a"},{from:19,to:25,c:"#c9821f"},{from:25,to:28,c:"#2a9d8f"}
+    ],marks:[{at:19,lbl:"19"},{at:25,lbl:"25"}]},
+    mmse:{min:0,max:30,zones:[{from:0,to:24,c:"#b5485a"},{from:24,to:30,c:"#2a9d8f"}],marks:[{at:24,lbl:"≤23"}]},
+    gds15:{min:0,max:15,zones:[{from:0,to:5,c:"#2a9d8f"},{from:5,to:9,c:"#c9821f"},{from:9,to:12,c:"#d2694f"},{from:12,to:15,c:"#b5485a"}],marks:[{at:5,lbl:"5"}]},
+    mna:{min:0,max:30,zones:[{from:0,to:17,c:"#b5485a"},{from:17,to:24,c:"#c9821f"},{from:24,to:30,c:"#2a9d8f"}],marks:[{at:17,lbl:"17"},{at:24,lbl:"24"}]},
+    fried:{min:0,max:5,zones:[{from:0,to:1,c:"#2a9d8f"},{from:1,to:3,c:"#c9821f"},{from:3,to:5,c:"#b5485a"}],marks:[{at:1,lbl:"1"},{at:3,lbl:"3"}]},
+    cfs:{min:1,max:9,zones:[{from:1,to:4,c:"#2a9d8f"},{from:4,to:5,c:"#c9821f"},{from:5,to:9,c:"#b5485a"}],marks:[{at:5,lbl:"5"}]}
+  };
+  function gaugeSvg(id){
+    var g=GAUGES[id]; if(!g) return "";
+    var x0=8, W=284, y=18, H=15;
+    function px(v){ return x0+((v-g.min)/(g.max-g.min))*W; }
+    var s='<svg viewBox="0 0 300 58" class="gauge-svg" role="img" aria-label="Escala '+id+'">';
+    if(g.grad){
+      var gid='gg_'+id;
+      s+='<defs><linearGradient id="'+gid+'" x1="0" x2="1"><stop offset="0" stop-color="'+g.grad[0]+'"/><stop offset="1" stop-color="'+g.grad[1]+'"/></linearGradient></defs>';
+      s+='<rect x="'+x0+'" y="'+y+'" width="'+W+'" height="'+H+'" rx="7.5" fill="url(#'+gid+')"/>';
+      s+='<text x="'+x0+'" y="'+(y+H+15)+'" font-size="9.5" fill="#5b6b7e">'+g.ends[0]+'</text>';
+      s+='<text x="'+(x0+W)+'" y="'+(y+H+15)+'" font-size="9.5" fill="#5b6b7e" text-anchor="end">'+g.ends[1]+'</text>';
+    } else {
+      g.zones.forEach(function(z){ s+='<rect x="'+px(z.from).toFixed(1)+'" y="'+y+'" width="'+(px(z.to)-px(z.from)).toFixed(1)+'" height="'+H+'" fill="'+z.c+'" opacity="0.88"/>'; });
+      (g.marks||[]).forEach(function(m){ var mx=px(m.at).toFixed(1);
+        s+='<line x1="'+mx+'" y1="'+(y-4)+'" x2="'+mx+'" y2="'+(y+H+4)+'" stroke="#0b1f33" stroke-width="1.6"/>';
+        s+='<text x="'+mx+'" y="'+(y+H+15)+'" font-size="9.5" font-weight="700" fill="#0b1f33" text-anchor="middle">'+m.lbl+'</text>'; });
+      s+='<text x="'+x0+'" y="'+(y-5)+'" font-size="9.5" fill="#94a3b6">'+g.min+'</text>';
+      s+='<text x="'+(x0+W)+'" y="'+(y-5)+'" font-size="9.5" fill="#94a3b6" text-anchor="end">'+g.max+(g.openEnd?'+':'')+(g.unit?(' '+g.unit):'')+'</text>';
+    }
+    return s+'</svg>';
+  }
+  function scaleGaugeCard(id){
+    var e=ESCALAS[id]; if(!e) return "";
+    var gauge=GAUGES[id]?('<div class="sgc-gauge">'+gaugeSvg(id)+'</div>'):'';
+    return '<div class="sgc"><div class="sgc-top"><div class="sgc-name">'+e.name+'</div><div class="sgc-range">'+e.rango+'</div></div>'+
+      '<div class="sgc-mide">'+e.mide+'</div>'+gauge+
+      '<div class="sgc-corte">'+e.corte+'</div>'+
+      '<details class="sgc-more"><summary>Por qué importa</summary>'+
+        '<div class="sgc-why">'+e.why+'</div>'+
+        (e.flag?('<div class="sgc-flag">'+e.flag+'</div>'):'')+
+        '<div class="sgc-src">Fuente: <a href="'+e.src.u+'" target="_blank" rel="noopener">'+e.src.t+'</a></div>'+
+      '</details></div>';
+  }
+  var VGI_ILLO = {
+    funcional:'<svg viewBox="0 0 200 170" class="vh-illo" aria-hidden="true">'+
+      '<ellipse cx="100" cy="152" rx="72" ry="9" fill="#fff" opacity="0.12"/>'+
+      '<g fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.16"><path d="M150,42 a26,26 0 0 1 0,54"/><path d="M164,30 a40,40 0 0 1 0,80"/></g>'+
+      '<g fill="none" stroke="#fff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">'+
+        '<circle cx="84" cy="34" r="14" fill="#fff" stroke="none"/>'+
+        '<path d="M84,50 L82,100"/><path d="M82,64 L58,82"/><path d="M82,66 L108,74"/>'+
+        '<path d="M82,100 L62,142"/><path d="M82,100 L106,138"/><path d="M112,72 L124,150"/>'+
+      '</g></svg>',
+    clinica:'<svg viewBox="0 0 200 170" class="vh-illo" aria-hidden="true">'+
+      '<ellipse cx="100" cy="152" rx="66" ry="8" fill="#fff" opacity="0.12"/>'+
+      '<path d="M100,116 C70,96 52,78 52,60 C52,44 66,36 80,40 C90,43 96,52 100,60 C104,52 110,43 120,40 C134,36 148,44 148,60 C148,78 130,96 100,116 Z" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>'+
+      '<path d="M60,74 H82 L90,58 L99,92 L108,70 L114,74 H140" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'+
+      '<g transform="translate(66,136)"><rect x="-15" y="-8" width="30" height="16" rx="8" fill="#fff"/><line x1="0" y1="-8" x2="0" y2="8" stroke="#2c7da0" stroke-width="2.4"/></g>'+
+      '<g transform="translate(124,136)"><circle r="11" fill="none" stroke="#fff" stroke-width="4.5"/><line x1="-7" y1="0" x2="7" y2="0" stroke="#fff" stroke-width="3.4"/></g>'+
+    '</svg>',
+    mental:'<svg viewBox="0 0 200 170" class="vh-illo" aria-hidden="true">'+
+      '<ellipse cx="100" cy="152" rx="60" ry="8" fill="#fff" opacity="0.12"/>'+
+      '<path d="M72,124 Q54,112 56,86 Q58,52 94,46 Q132,40 140,74 Q144,88 134,98 Q142,106 132,114 L132,124" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>'+
+      '<path d="M82,76 Q92,66 102,76 Q110,68 118,78 M80,90 Q92,82 104,92 Q113,85 120,94" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" opacity="0.9"/>'+
+      '<circle cx="152" cy="58" r="3.2" fill="#fff" opacity="0.85"/><circle cx="161" cy="72" r="2.4" fill="#fff" opacity="0.6"/>'+
+    '</svg>',
+    social:'<svg viewBox="0 0 200 170" class="vh-illo" aria-hidden="true">'+
+      '<ellipse cx="100" cy="152" rx="66" ry="8" fill="#fff" opacity="0.12"/>'+
+      '<path d="M92,58 Q100,46 110,60" fill="none" stroke="#fff" stroke-width="3" opacity="0.65"/>'+
+      '<g fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"><circle cx="76" cy="58" r="13" fill="#fff" stroke="none"/><path d="M76,73 v30"/><path d="M76,84 l-16,10 M76,84 l16,10"/><path d="M76,103 l-12,24 M76,103 l12,24"/></g>'+
+      '<g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity="0.92"><circle cx="120" cy="66" r="11" fill="#fff" stroke="none"/><path d="M120,78 v25"/><path d="M120,86 l-13,8 M120,86 l13,8"/><path d="M120,103 l-10,20 M120,103 l10,20"/></g>'+
+    '</svg>'
+  };
+  function trajectoryChart(){
+    return '<svg viewBox="0 0 560 230" role="img" aria-label="Trayectoria de funcionalidad en el tiempo">'+
+      '<line x1="60" y1="18" x2="60" y2="182" stroke="#c9d4e0" stroke-width="1.5"/>'+
+      '<line x1="60" y1="182" x2="538" y2="182" stroke="#c9d4e0" stroke-width="1.5"/>'+
+      '<text x="60" y="12" font-size="11" font-weight="700" fill="#5b6b7e" text-anchor="middle">Funcionalidad</text>'+
+      '<text x="538" y="200" font-size="11" font-weight="700" fill="#5b6b7e" text-anchor="end">Tiempo / edad →</text>'+
+      '<line x1="60" y1="150" x2="538" y2="150" stroke="#b5485a" stroke-width="1.3" stroke-dasharray="5 4" opacity="0.6"/>'+
+      '<text x="64" y="146" font-size="9.5" font-weight="700" fill="#b5485a">Umbral de dependencia</text>'+
+      '<path d="M60,52 C200,72 380,150 530,162 L530,96 C380,86 220,62 60,52 Z" fill="#2a9d8f" opacity="0.13"/>'+
+      '<path d="M60,52 C200,72 380,150 530,162" fill="none" stroke="#b5485a" stroke-width="3" stroke-linecap="round"/>'+
+      '<path d="M60,52 C220,62 380,86 530,96" fill="none" stroke="#2a9d8f" stroke-width="3" stroke-linecap="round"/>'+
+      '<circle cx="60" cy="52" r="4.5" fill="#0b2540"/>'+
+      '<text x="534" y="176" font-size="10.5" font-weight="800" fill="#b5485a" text-anchor="end">Sin VGI</text>'+
+      '<text x="534" y="90" font-size="10.5" font-weight="800" fill="#1c6b60" text-anchor="end">Con VGI domiciliaria</text>'+
+    '</svg>';
+  }
+  function clinicaGraphic(){
+    function cap(x,y,stroke,dash){ return '<rect x="'+x+'" y="'+y+'" width="58" height="22" rx="11" fill="#fff" stroke="'+stroke+'" stroke-width="2.5"'+(dash?' stroke-dasharray="5 3"':'')+'/><line x1="'+(x+29)+'" y1="'+y+'" x2="'+(x+29)+'" y2="'+(y+22)+'" stroke="'+stroke+'" stroke-width="1.6"'+(dash?' stroke-dasharray="3 2"':'')+'/>'; }
+    function cross(cx,cy){ return '<line x1="'+(cx-9)+'" y1="'+(cy-9)+'" x2="'+(cx+9)+'" y2="'+(cy+9)+'" stroke="#b5485a" stroke-width="3" stroke-linecap="round"/><line x1="'+(cx+9)+'" y1="'+(cy-9)+'" x2="'+(cx-9)+'" y2="'+(cy+9)+'" stroke="#b5485a" stroke-width="3" stroke-linecap="round"/>'; }
+    function plus(cx,cy){ return '<line x1="'+(cx-9)+'" y1="'+cy+'" x2="'+(cx+9)+'" y2="'+cy+'" stroke="#2a9d8f" stroke-width="3" stroke-linecap="round"/><line x1="'+cx+'" y1="'+(cy-9)+'" x2="'+cx+'" y2="'+(cy+9)+'" stroke="#2a9d8f" stroke-width="3" stroke-linecap="round"/>'; }
+    return '<svg viewBox="0 0 560 178" role="img" aria-label="Conciliación STOPP/START">'+
+      '<rect x="22" y="42" width="248" height="116" rx="12" fill="#b5485a" opacity="0.06"/>'+
+      '<rect x="294" y="42" width="244" height="116" rx="12" fill="#2a9d8f" opacity="0.07"/>'+
+      '<text x="40" y="32" font-size="12.5" font-weight="800" fill="#b5485a">STOPP · fármacos a retirar</text>'+
+      '<text x="312" y="32" font-size="12.5" font-weight="800" fill="#1c6b60">START · tratamientos a iniciar</text>'+
+      cap(50,70,'#b5485a')+cross(79,81)+
+      cap(152,70,'#b5485a')+cross(181,81)+
+      cap(78,116,'#b5485a')+cross(107,127)+
+      cap(330,80,'#2a9d8f',true)+plus(359,91)+
+      cap(432,116,'#2a9d8f',true)+plus(461,127)+
+    '</svg>';
+  }
+  function mentalGraphic(){
+    function panel(x,color,title,s1,s2){ return '<rect x="'+x+'" y="40" width="160" height="112" rx="12" fill="#fff" stroke="'+color+'" stroke-width="1.6"/>'+
+      '<rect x="'+x+'" y="40" width="160" height="6" rx="3" fill="'+color+'"/>'+
+      '<text x="'+(x+16)+'" y="80" font-size="15" font-weight="800" fill="#0b1f33">'+title+'</text>'+
+      '<text x="'+(x+16)+'" y="106" font-size="11" fill="#5b6b7e">'+s1+'</text>'+
+      '<text x="'+(x+16)+'" y="124" font-size="11" fill="#5b6b7e">'+s2+'</text>'; }
+    return '<svg viewBox="0 0 560 168" role="img" aria-label="Demencia, depresión, delirium">'+
+      panel(20,'#6a4c93','Demencia','Inicio insidioso','Crónico, progresivo')+
+      panel(200,'#3b82d9','Depresión','Ánimo bajo, anhedonia','Semanas · reversible')+
+      panel(380,'#e76f51','Delirium','Inicio agudo','Fluctuante · atención ↓')+
+    '</svg>';
+  }
+  function socialGraphic(){
+    function node(x,y,w,label,fill){ return '<rect x="'+(x-w/2)+'" y="'+(y-15)+'" width="'+w+'" height="30" rx="15" fill="'+(fill||'#fff')+'" stroke="#c9a227" stroke-width="2"/><text x="'+x+'" y="'+(y+4)+'" font-size="11.5" font-weight="700" fill="'+(fill?'#fff':'#0b1f33')+'" text-anchor="middle">'+label+'</text>'; }
+    return '<svg viewBox="0 0 560 192" role="img" aria-label="Red de apoyo del adulto mayor">'+
+      '<g stroke="#c9a227" stroke-width="2" opacity="0.5"><line x1="280" y1="96" x2="120" y2="46"/><line x1="280" y1="96" x2="120" y2="146"/><line x1="280" y1="96" x2="445" y2="46"/><line x1="280" y1="96" x2="445" y2="146"/></g>'+
+      node(120,46,124,'Cuidador')+
+      node(120,146,144,'Familia y redes')+
+      node(445,46,150,'Programas sociales')+
+      node(445,146,132,'Equipo CIAS')+
+      node(280,96,154,'Adulto mayor','#c9a227')+
+    '</svg>';
+  }
+  function chartSection(h,lead,svg,cap){
+    return '<div class="vgd-sec"><div class="vgd-sec-h">'+h+'</div><div class="vgd-sec-lead">'+lead+'</div><div class="vgd-chart">'+svg+'<div class="ch-cap">'+cap+'</div></div></div>';
+  }
+  function dimGraphic(g){
+    if(g.id==='funcional') return chartSection('Por qué la funcionalidad es el eje','La funcionalidad predice el pronóstico mejor que el diagnóstico aislado. Detectar el declive temprano y actuar en domicilio cambia la trayectoria.', trajectoryChart(), '<b>Trayectoria de funcionalidad en el tiempo.</b> Sin una valoración que detecte el declive temprano, la pérdida funcional se acelera hacia la dependencia; la VGI domiciliaria interviene en la ventana frágil y preserva autonomía.');
+    if(g.id==='clinica') return chartSection('Conciliación de la medicación','La polifarmacia causa caídas, delirium e ingresos. Los criterios STOPP/START estandarizan qué retirar y qué iniciar en el anciano.', clinicaGraphic(), '<b>Criterios STOPP/START (v3, 2023).</b> STOPP señala fármacos potencialmente inapropiados a retirar; START, tratamientos beneficiosos omitidos a iniciar.');
+    if(g.id==='mental') return chartSection('Demencia, depresión y delirium','Tres cuadros que se confunden y a menudo coexisten. Diferenciarlos cambia el manejo y la seguridad del paciente.', mentalGraphic(), '<b>Diagnóstico diferencial.</b> El delirium es agudo y fluctuante; la depresión cursa con ánimo bajo y es reversible; la demencia es de instauración insidiosa y progresiva.');
+    if(g.id==='social') return chartSection('La red de apoyo del adulto mayor','El contexto que sostiene al paciente: el cuidador y su sobrecarga, las redes y los programas sociales, más la protección frente al maltrato.', socialGraphic(), '<b>Red de apoyo.</b> El cuidador es co-protagonista del plan; se articulan familia, redes y programas sociales, y se activan rutas de protección cuando hay riesgo de maltrato o abandono.');
+    return '';
+  }
+  function dimById(id){ return VGI.filter(function(x){return x.id===id;})[0]; }
+  function evItems(g){
+    var items=[]; (g.blocks||[]).forEach(function(bl){ (bl.items||[]).forEach(function(i){ items.push(i); }); });
+    return '<div class="vgd-eval-card"><ul class="vgd-eval-list">'+items.map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul></div>';
+  }
+  function renderVgiDetail(g){
+    var body=document.getElementById("vgiDetailBody"); if(!body) return;
+    var gauges=(g.escalas||[]).map(scaleGaugeCard).join('');
+    var escalasSec = gauges
+      ? ('<div class="vgd-sec"><div class="vgd-sec-h">Escalas e instrumentos</div><div class="vgd-sec-lead">Cada escala con su rango, su umbral clínico y su sustento. Despliega «por qué importa» para ver el detalle y la fuente.</div><div class="vgd-gauges">'+gauges+'</div></div>')
+      : '<div class="vgd-sec"><div class="vgd-sec-h">Escalas e instrumentos</div><div class="vgd-sec-lead">Esta dimensión se valora clínicamente (entrevista y observación dirigidas), sin una escala única embebida.</div></div>';
+    var cias=(g.cias||[]).map(function(i){return '<li>'+i+'</li>';}).join('');
+    var chart = dimGraphic(g);
+    body.innerHTML =
+      '<div class="vgd" style="--gc:'+g.color+'">'+
+        '<div class="vgd-back"><button class="vgd-backbtn" type="button">← Volver al Overview</button><span class="vgd-crumb">VGI › <b>'+g.t+'</b></span></div>'+
+        '<div class="vgd-hero"><div class="vh-text"><div class="vh-eye">Dimensión de la VGI</div><h2>'+g.t+'</h2><span class="vh-tag">'+g.tag+'</span><p class="vh-desc">'+g.desc+'</p></div>'+(VGI_ILLO[g.id]||'')+'</div>'+
+        '<div class="vgd-sec"><div class="vgd-sec-h">Qué evaluamos</div>'+evItems(g)+'</div>'+
+        chart+escalasSec+
+        '<div class="vgd-sec"><div class="vgd-sec-h">Cómo lo aborda CIAS</div><div class="vgd-cias"><ul>'+cias+'</ul></div></div>'+
+        '<div class="vgd-back" style="margin-top:30px"><button class="vgd-backbtn" type="button">← Volver al Overview</button></div>'+
+      '</div>';
+    body.querySelectorAll(".vgd-backbtn").forEach(function(b){ b.addEventListener("click", backToOverview); });
+  }
+  function showVgiDetail(id){
+    var g=dimById(id); if(!g) return;
+    renderVgiDetail(g);
+    document.querySelectorAll(".topsec").forEach(function(s){ s.classList.toggle("is-active", s.getAttribute("data-sec")==="vgidetail"); });
+    document.querySelectorAll(".topnav-tab").forEach(function(t){ t.classList.toggle("is-active", t.getAttribute("data-sec")==="panorama"); });
+    var btn=document.getElementById("btnGloss"); btn.classList.remove("is-on"); btn.textContent="Glosario y fuentes";
+    document.getElementById("topNav").style.display=""; stop(); window.scrollTo(0,0);
+  }
+  function backToOverview(){ try{ history.replaceState(null,"",location.pathname+location.search); }catch(e){} showSec("panorama"); }
+  function route(){
+    var h=(location.hash||"").replace(/^#/,"");
+    var mv=h.match(/^vgi\/([a-z]+)$/);
+    if(mv && dimById(mv[1])){ showVgiDetail(mv[1]); return; }
+    var mp=h.match(/^pat\/([a-z0-9]+)$/);
+    if(mp && PAT[mp[1]] && PAT[mp[1]].built){ showPatologia(mp[1]); return; }
+    showSec("panorama");
   }
 
   /* ---------- GLOSARIO Y FUENTES ---------- */
@@ -1538,7 +2054,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
       ncard('full','F','Fuentes oficiales y de las escalas', ntags([
         ["PPNEV 2022–2031 (MinSalud)","https://www.minsalud.gov.co/proteccionsocial/promocion-social/Paginas/envejecimiento-vejez.aspx"],
         ["Res. 3280/2018 (RPMS)","https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-3280-de-2018.pdf"],
-        ["Res. 113/2020 (discapacidad)","https://www.suin-juriscol.gov.co/clp/contenidos.dll/Resolucion/30040205"],
+        ["Res. 1239/2022 (discapacidad)","https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=199964"],
         ["GPC demencia (MinSalud)","https://gpc.minsalud.gov.co/SitePages/default.aspx"],
         ["Barthel (Physiopedia)","https://www.physio-pedia.com/Barthel_Index"],
         ["Lawton (Hartford HIGN)","https://hign.org/sites/default/files/2020-06/Try_This_General_Assessment_23.pdf"],
@@ -1553,7 +2069,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
   }
 
   /* ---------- NAVEGACIÓN ---------- */
-  function showSec(sec){
+  function activateSec(sec){
     document.querySelectorAll(".topsec").forEach(function(s){ s.classList.toggle("is-active", s.getAttribute("data-sec")===sec); });
     document.querySelectorAll(".topnav-tab").forEach(function(t){ t.classList.toggle("is-active", t.getAttribute("data-sec")===sec); });
     var onF=(sec==="fuentes"); var btn=document.getElementById("btnGloss");
@@ -1562,14 +2078,27 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
     if(sec!=="patologias") stop();
     window.scrollTo(0,0);
   }
-  document.getElementById("topNav").addEventListener("click",function(e){ var t=e.target.closest?e.target.closest(".topnav-tab"):null; if(t) showSec(t.getAttribute("data-sec")); });
+  function showSec(sec){
+    if(location.hash){ try{ history.replaceState(null,"",location.pathname+location.search); }catch(e){} }
+    activateSec(sec);
+  }
+  function showPatologia(k){
+    if(!PAT[k]||!PAT[k].built) return;
+    catSel=PAT[k].cat; patSel=k; renderCats(); renderPatChips(); applyPatologia(); activateSec("patologias");
+  }
+  document.getElementById("topNav").addEventListener("click",function(e){ var t=e.target.closest?e.target.closest(".topnav-tab"):null; if(!t) return; var sec=t.getAttribute("data-sec"); if(sec==="patologias"){ location.hash="#pat/general"; } else { showSec(sec); } });
+  document.querySelectorAll("[data-goto]").forEach(function(el){ el.addEventListener("click",function(){ showSec(el.getAttribute("data-goto")); }); });
+  document.querySelectorAll("[data-vgi]").forEach(function(el){ el.addEventListener("click",function(){ location.hash="#vgi/"+el.getAttribute("data-vgi"); }); });
+  window.addEventListener("hashchange", route);
   document.getElementById("btnGloss").addEventListener("click",function(){ var on=document.querySelector('.topsec[data-sec="fuentes"]').classList.contains("is-active"); showSec(on?"panorama":"fuentes"); });
   document.querySelectorAll(".tab").forEach(function(t){ t.addEventListener("click",function(){
     document.querySelectorAll(".tab").forEach(function(x){x.classList.remove("is-active");}); t.classList.add("is-active");
     var v=t.getAttribute("data-view");
     document.getElementById("viewFlujo").classList.toggle("is-active", v==="flujo");
+    document.getElementById("viewStats").classList.toggle("is-active", v==="stats");
     document.getElementById("viewNorma").classList.toggle("is-active", v==="norma");
-    if(v==="norma") stop();
+    if(v==="stats" && PAT[patSel]) renderStats(PAT[patSel]);
+    if(v!=="flujo") stop();
   }); });
   document.getElementById("btnPrev").addEventListener("click",function(){ stop(); go(step-1); });
   document.getElementById("btnNext").addEventListener("click",function(){ stop(); go(step+1); });
@@ -1577,7 +2106,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
   document.getElementById("btnPlay").addEventListener("click",function(){ if(timer) stop(); else play(); });
 
   /* ---------- init ---------- */
-  renderMapa(); renderVGI(); renderCats(); renderPatChips(); applyPatologia(); renderFuentes();
+  renderDepSpectrum(); renderMapa(); renderCats(); renderPatChips(); applyPatologia(); renderFuentes(); route();
 })();
 
 </script>
